@@ -133,7 +133,7 @@ main {
 
 .fitness-table th,
 .fitness-table td {
-  padding: var(--spacing-xl) var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-xl);
   text-align: left;
   border-bottom: 1px solid var(--glass-border);
 }
@@ -148,15 +148,6 @@ main {
   position: sticky;
   top: 0;
   z-index: 10;
-}
-
-.fitness-table tbody tr {
-  transition: all var(--transition-normal);
-}
-
-.fitness-table tbody tr:hover {
-  background: var(--glass-bg-hover);
-  transform: translateY(-0.125rem);
 }
 
 /* Track link */
@@ -196,7 +187,6 @@ main {
 /* Workout info */
 .workout-info {
   display: flex;
-  flex-direction: column;
   gap: var(--spacing-sm);
 }
 
