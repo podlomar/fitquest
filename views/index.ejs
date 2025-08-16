@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🏃‍♂️ Fitness Tracker</h1>
+      <p>Your fitness journey at a glance</p>
+    </header>
+
+    <main>
+      <div class="table-wrapper">
+        <table class="fitness-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Track</th>
+              <th>Distance</th>
+              <th>Performance</th>
+              <th>Workout</th>
+              <th>Stretching</th>
+              <th>Stairs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% data.forEach(function(entry) { %>
+              <tr>
+                <td data-label="Date">
+                  <%= new Date(entry.date).toLocaleDateString() %>
+                </td>
+                <td data-label="Track">
+                  <% if (entry.running && entry.running.track) { %>
+                    <% if (entry.running.track.url) { %>
+                      <a href="<%= entry.running.track.url %>" target="_blank" class="track-link">
+                        <%= entry.running.track.name %>
+                      </a>
+                      <% } else { %>
+                        <%= entry.running.track.name %>
+                          <% } %>
+                            <% } else { %>
+                              -
+                              <% } %>
+                </td>
+                <td data-label="Distance">
+                  <% if (entry.running && entry.running.track && entry.running.track.length) { %>
+                    <span class="distance">
+                      <%= entry.running.track.length %> km
+                    </span>
+                    <% } else { %>
+                      -
+                      <% } %>
+                </td>
+                <td data-label="Performance">
+                  <% if (entry.running && entry.running.performance) { %>
+                    <div class="performance-rating">
+                      <% for(let i=1; i <=5; i++) { %>
+                        <span class="star <%= i <= entry.running.performance ? 'filled' : '' %>">★</span>
+                        <% } %>
+                    </div>
+                    <% } else { %>
+                      -
+                      <% } %>
+                </td>
+                <td data-label="Workout">
+                  <% if (entry.workout) { %>
+                    <div class="workout-info">
+                      <span class="level level-<%= entry.workout.level %>">
+                        <%= entry.workout.level %>
+                      </span>
+                      <% if (entry.workout.content) { %>
+                        <div class="workout-content">
+                          <%= entry.workout.content %>
+                        </div>
+                        <% } %>
+                    </div>
+                    <% } else { %>
+                      -
+                      <% } %>
+                </td>
+                <td data-label="Stretching">
+                  <span class="status <%= entry.stretching ? 'yes' : 'no' %>">
+                    <%= entry.stretching ? '✓' : '✗' %>
+                  </span>
+                </td>
+                <td data-label="Stairs">
+                  <% if (entry.stairs) { %>
+                    <span class="stairs">
+                      <%= entry.stairs %>
+                    </span>
+                    <% } else { %>
+                      -
+                      <% } %>
+                </td>
+              </tr>
+              <% }); %>
+          </tbody>
+        </table>
+      </div>
+
+      <% if (data.length===0) { %>
+        <div class="no-data">
+          <p>No fitness data available</p>
+        </div>
+        <% } %>
+    </main>
+
+    <footer>
+      <p>Keep up the great work! 💪</p>
+    </footer>
+  </div>
+</body>
+
+</html>

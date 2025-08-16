@@ -1,0 +1,24 @@
+- date: 2023-10-01
+  running:
+    track:
+      name: "Track A"
+      length: 3.7
+      url: "http://example.com/track-a"
+    performance: 2
+  workout:
+    level: mid
+    content: "12d 8k"
+  stretching: true
+  stairs: mimo
+- date: 2023-10-02
+  running:
+    track:
+      name: "Track B"
+      length: 3.7
+      url: "http://example.com/track-b"
+    performance: 2
+  workout:
+    level: mid
+    content: "12d 8k"
+  stretching: true
+  stairs: mimo
