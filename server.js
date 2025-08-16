@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const path = require('path');
+const nunjucks = require('nunjucks');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -9,8 +10,18 @@ const PORT = process.env.PORT || 3001;
 // Serve static files from public directory
 app.use(express.static('public'));
 
-// Set EJS as template engine
-app.set('view engine', 'ejs');
+// Set up Nunjucks as template engine
+const nunjucksEnv = nunjucks.configure('views', {
+  autoescape: true,
+  express: app
+});
+
+// Add custom date filter
+nunjucksEnv.addFilter('formatDate', function(dateStr) {
+  return new Date(dateStr).toLocaleDateString();
+});
+
+app.set('view engine', 'njk');
 
 // Load and parse YAML data
 function loadData() {

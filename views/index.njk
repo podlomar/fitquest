@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🏃‍♂️ Fitness Tracker</h1>
+      <p>Your fitness journey at a glance</p>
+    </header>
+
+    <main>
+      <div class="table-wrapper">
+        <table class="fitness-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Track</th>
+              <th>Distance</th>
+              <th>Performance</th>
+              <th>Workout</th>
+              <th>Stretching</th>
+              <th>Stairs</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in data %}
+              <tr>
+                <td data-label="Date">
+                  {{ entry.date | formatDate }}
+                </td>
+                <td data-label="Track">
+                  {% if entry.running and entry.running.track %}
+                    {% if entry.running.track.url %}
+                      <a href="{{ entry.running.track.url }}" target="_blank" class="track-link">
+                        {{ entry.running.track.name }}
+                      </a>
+                    {% else %}
+                      {{ entry.running.track.name }}
+                    {% endif %}
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td data-label="Distance">
+                  {% if entry.running and entry.running.track and entry.running.track.length %}
+                    <span class="distance">
+                      {{ entry.running.track.length }} km
+                    </span>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td data-label="Performance">
+                  {% if entry.running and entry.running.performance %}
+                    <div class="performance-rating">
+                      {% for i in range(1, 6) %}
+                        <span class="star {{ 'filled' if i <= entry.running.performance else '' }}">★</span>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td data-label="Workout">
+                  {% if entry.workout %}
+                    <div class="workout-info">
+                      <span class="level level-{{ entry.workout.level }}">
+                        {{ entry.workout.level }}
+                      </span>
+                      {% if entry.workout.content %}
+                        <div class="workout-content">
+                          {{ entry.workout.content }}
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+                <td data-label="Stretching">
+                  <span class="status {{ 'yes' if entry.stretching else 'no' }}">
+                    {{ '✓' if entry.stretching else '✗' }}
+                  </span>
+                </td>
+                <td data-label="Stairs">
+                  {% if entry.stairs %}
+                    <span class="stairs">
+                      {{ entry.stairs }}
+                    </span>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% if data.length == 0 %}
+        <div class="no-data">
+          <p>No fitness data available</p>
+        </div>
+      {% endif %}
+    </main>
+
+    <footer>
+      <p>Keep up the great work! 💪</p>
+    </footer>
+  </div>
+</body>
+
+</html>
