@@ -22,7 +22,6 @@
             <tr>
               <th>Date</th>
               <th>Track</th>
-              <th>Distance</th>
               <th>Progress</th>
               <th>Performance</th>
               <th>Workout</th>
@@ -40,20 +39,11 @@
                   {% if entry.running and entry.running.track %}
                     {% if entry.running.track.url %}
                       <a href="{{ entry.running.track.url }}" target="_blank" class="track-link">
-                        {{ entry.running.track.name }}
+                        {{ entry.running.track.name }} ({{ entry.running.track.length }} km)
                       </a>
                     {% else %}
                       {{ entry.running.track.name }}
                     {% endif %}
-                  {% else %}
-                    -
-                  {% endif %}
-                </td>
-                <td data-label="Distance">
-                  {% if entry.running and entry.running.track and entry.running.track.length %}
-                    <span class="distance">
-                      {{ entry.running.track.length }} km
-                    </span>
                   {% else %}
                     -
                   {% endif %}
