@@ -17,7 +17,7 @@ const nunjucksEnv = nunjucks.configure('views', {
 });
 
 // Add custom date filter
-nunjucksEnv.addFilter('formatDate', function(dateStr) {
+nunjucksEnv.addFilter('formatDate', function (dateStr) {
   return new Date(dateStr).toLocaleDateString();
 });
 
