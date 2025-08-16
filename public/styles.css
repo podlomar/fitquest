@@ -22,8 +22,8 @@
   --level-high-bg: rgba(244, 67, 54, 0.3);
 
   /* Shadows */
-  --shadow-glass: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
-  --shadow-card: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+  --shadow-glass: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
 
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -35,9 +35,9 @@
   --spacing-3xl: 2rem;
 
   /* Border radius */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
 
   /* Typography */
   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
