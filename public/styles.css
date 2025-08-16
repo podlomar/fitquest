@@ -108,6 +108,68 @@ header p {
   font-size: var(--font-size-lg);
 }
 
+/* Summary Section */
+.summary-section {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.summary-card {
+  background: var(--glass-bg);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(0.625rem);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  transition: all var(--transition-normal);
+}
+
+.summary-card:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: var(--shadow-glass);
+  background: var(--glass-bg-hover);
+}
+
+.summary-icon {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--glass-border);
+  border-radius: var(--radius-lg);
+}
+
+.summary-content {
+  flex: 1;
+}
+
+.summary-number {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--accent-primary);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-xs);
+}
+
+.summary-label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-weight: 600;
+}
+
 /* Main content */
 main {
   flex: 1;
@@ -315,6 +377,27 @@ footer {
     font-size: var(--font-size-3xl);
   }
 
+  /* Summary cards responsive */
+  .summary-cards {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .summary-card {
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+
+  .summary-icon {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .summary-number {
+    font-size: var(--font-size-2xl);
+  }
+
   /* Mobile table layout */
   .fitness-table,
   .fitness-table thead,
@@ -370,6 +453,20 @@ footer {
 @media (max-width: 30rem) {
   header h1 {
     font-size: var(--font-size-2xl);
+  }
+
+  /* Smaller summary cards on mobile */
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .summary-card {
+    padding: var(--spacing-md);
+  }
+
+  .summary-number {
+    font-size: var(--font-size-xl);
   }
 
   .fitness-table td:before {

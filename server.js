@@ -43,10 +43,53 @@ function loadData() {
   }
 }
 
+// Calculate statistics
+function calculateStats(data) {
+  const stats = {
+    totalDays: data.length,
+    totalDistance: 0,
+    stretchingStreak: 0,
+    avgPerformance: 0
+  };
+
+  // Calculate total distance
+  data.forEach(entry => {
+    if (entry.running && entry.running.track && entry.running.track.length) {
+      stats.totalDistance += entry.running.track.length;
+    }
+  });
+
+  // Calculate stretching streak (from most recent)
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].stretching) {
+      stats.stretchingStreak++;
+    } else {
+      break;
+    }
+  }
+
+  // Calculate average performance
+  let totalPerformance = 0;
+  let performanceCount = 0;
+  data.forEach(entry => {
+    if (entry.running && entry.running.performance && entry.running.performance !== 'none') {
+      totalPerformance += entry.running.performance;
+      performanceCount++;
+    }
+  });
+
+  if (performanceCount > 0) {
+    stats.avgPerformance = Math.round((totalPerformance / performanceCount) * 10) / 10;
+  }
+
+  return stats;
+}
+
 // Routes
 app.get('/', (req, res) => {
   const data = loadData();
-  res.render('index', { data });
+  const stats = calculateStats(data);
+  res.render('index', { data, stats });
 });
 
 app.listen(PORT, () => {
