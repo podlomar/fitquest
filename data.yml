@@ -1,3 +1,337 @@
+- date: 2025-08-16
+  running:
+    track:
+      name: "Nuselská"
+      length: 4
+      progress: flight 6
+      url: "http://example.com/track-a"
+    performance: 2
+  workout:
+    level: mid
+    content: "12d 8k"
+  stretching: true
+  stairs: away
+
+- date: 2025-08-14
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: 2
+  workout:
+    level: mid
+    content: "12d 8k"
+  stretching: true
+  stairs: away
+
+- date: 2025-08-14
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: 1
+  workout:
+    level: mid
+    content: "12d 8k"
+  stretching: true
+  stairs: away
+
+- date: 2025-08-13
+  running:
+    track:
+      name: "Nuselská"
+      length: 4
+      progress: flight 6
+      url: "http://example.com/track-a"
+    performance: 3
+  workout:
+    level: mid
+    content: "12d 8k"
+  stretching: true
+  stairs: away
+
+- date: 2025-08-12
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: 2
+  workout:
+    level: mid
+    content: "12d 8k"
+  stretching: true
+  stairs: away
+
+- date: 2025-08-11
+  running:
+    track:
+      name: "Nuselská"
+      length: 4
+      progress: flight 10
+      url: "http://example.com/track-a"
+    performance: 4
+  workout:
+    level: mid
+    content: "12d 8k"
+  stretching: true
+  stairs: away
+
+- date: 2025-08-10
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: 4
+  workout:
+    level: mid
+    content: "12d 8k"
+  stretching: true
+  stairs: away
+
+- date: 2025-08-09
+  running:
+    track:
+      name: "Nuselská"
+      length: 4
+      progress: flight 9
+      url: "http://example.com/track-a"
+    performance: 3
+  workout:
+    level: base
+    content: "8d 5k"
+  stretching: true
+  stairs: away
+
+- date: 2025-08-08
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: 1
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-08-07
+  running:
+    track:
+      name: "Newton"
+      length: 3.7
+      progress: Cihelná brána
+      url: "http://example.com/track-a"
+    performance: 2
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-08-06
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: 3
+  workout: rest
+  stretching: true
+  stairs: away
+
+- date: 2025-08-05
+  running:
+    track:
+      name: "Folimanka"
+      length: 6
+      progress: pole 10
+      url: "http://example.com/track-a"
+    performance: 4
+  workout: rest
+  stretching: true
+  stairs: away
+
+- date: 2025-08-04
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-08-03
+  running:
+    track:
+      name: "Folimanka"
+      length: 6
+      progress: pole 10
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-08-02
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-08-01
+  running:
+    track:
+      name: "Nuselská"
+      length: 4
+      progress: flight 8
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-07-31
+  running:
+    track:
+      name: "Folimanka"
+      length: 6
+      progress: pole 10
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs:
+    floors: 8
+    time: "1:30"
+
+- date: 2025-07-30
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs:
+    floors: 8
+    time: "1:05"
+
+- date: 2025-07-29
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs:
+    floors: 8
+    time: "1:15"
+
+- date: 2025-07-28
+  running:
+    track:
+      name: "Nuselská"
+      length: 4
+      progress: flight 8
+      url: "http://example.com/track-a"
+    performance: none
+  workout:
+    level: high
+    content: "20+20d 12k 10r"
+  stretching: false
+  stairs:
+    floors: 8
+    time: "1:12"
+
+- date: 2025-07-27
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-07-26
+  running:
+    track:
+      name: "Nuselská"
+      length: 4
+      progress: flight 9
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-07-25
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
+  workout: 
+    level: high
+    content: "20+20d 12k 8r"
+  stretching: false
+  stairs: away
+
+- date: 2025-07-24
+  running:
+    track:
+      name: "Folimanka"
+      length: 6
+      progress: pole 10
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs:
+    floors: 8
+    time: "1:20"
+
+- date: 2025-07-23
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
+  workout:
+    level: off
+    content: "0d 12k"
+  stretching: false
+  stairs:
+    floors: 8
+    time: "1:23"
+
 - date: 2025-07-22
   running:
     track:
