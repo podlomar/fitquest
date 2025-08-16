@@ -18,7 +18,16 @@ const nunjucksEnv = nunjucks.configure('views', {
 
 // Add custom date filter
 nunjucksEnv.addFilter('formatDate', function (dateStr) {
-  return new Date(dateStr).toLocaleDateString();
+  const date = new Date(dateStr);
+  const czechDays = ['ne', 'po', 'út', 'st', 'čt', 'pá', 'so'];
+  const czechMonths = ['led', 'úno', 'bře', 'dub', 'kvě', 'čvn', 'čvc', 'srp', 'zář', 'říj', 'lis', 'pro'];
+
+  const dayName = czechDays[date.getDay()];
+  const day = date.getDate().toString();
+  const monthName = czechMonths[date.getMonth()];
+  const year = date.getFullYear().toString().slice(-2);
+
+  return `${dayName} ${day}. ${monthName} ${year}`;
 });
 
 app.set('view engine', 'njk');

@@ -23,6 +23,7 @@
               <th>Date</th>
               <th>Track</th>
               <th>Distance</th>
+              <th>Progress</th>
               <th>Performance</th>
               <th>Workout</th>
               <th>Stretching</th>
@@ -57,29 +58,44 @@
                     -
                   {% endif %}
                 </td>
+                <td data-label="Progress">
+                  {% if entry.running and entry.running.track and entry.running.track.progress %}
+                    <span class="progress">
+                      {{ entry.running.track.progress }}
+                    </span>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
                 <td data-label="Performance">
-                  {% if entry.running and entry.running.performance %}
+                  {% if entry.running and entry.running.performance and entry.running.performance != 'none' %}
                     <div class="performance-rating">
                       {% for i in range(1, 6) %}
                         <span class="star {{ 'filled' if i <= entry.running.performance else '' }}">★</span>
                       {% endfor %}
                     </div>
                   {% else %}
-                    -
+                    <span class="performance-none">-</span>
                   {% endif %}
                 </td>
                 <td data-label="Workout">
                   {% if entry.workout %}
-                    <div class="workout-info">
-                      <span class="level level-{{ entry.workout.level }}">
-                        {{ entry.workout.level }}
-                      </span>
-                      {% if entry.workout.content %}
-                        <div class="workout-content">
-                          {{ entry.workout.content }}
-                        </div>
-                      {% endif %}
-                    </div>
+                    {% if entry.workout == 'rest' %}
+                      <span class="workout-rest">Rest</span>
+                    {% elif entry.workout.level %}
+                      <div class="workout-info">
+                        <span class="level level-{{ entry.workout.level }}">
+                          {{ entry.workout.level }}
+                        </span>
+                        {% if entry.workout.content %}
+                          <div class="workout-content">
+                            {{ entry.workout.content }}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% else %}
+                      {{ entry.workout }}
+                    {% endif %}
                   {% else %}
                     -
                   {% endif %}
@@ -91,9 +107,20 @@
                 </td>
                 <td data-label="Stairs">
                   {% if entry.stairs %}
-                    <span class="stairs">
-                      {{ entry.stairs }}
-                    </span>
+                    {% if entry.stairs == 'away' %}
+                      <span class="stairs-away">Away</span>
+                    {% elif entry.stairs == 'none' %}
+                      <span class="stairs-none">-</span>
+                    {% elif entry.stairs.floors %}
+                      <div class="stairs-info">
+                        <span class="stairs-floors">{{ entry.stairs.floors }} floors</span>
+                        {% if entry.stairs.time %}
+                          <span class="stairs-time">{{ entry.stairs.time }}</span>
+                        {% endif %}
+                      </div>
+                    {% else %}
+                      <span class="stairs">{{ entry.stairs }}</span>
+                    {% endif %}
                   {% else %}
                     -
                   {% endif %}

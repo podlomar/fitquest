@@ -1,24 +1,79 @@
-- date: 2023-10-01
+- date: 2025-07-22
   running:
     track:
-      name: "Track A"
-      length: 3.7
+      name: "Nuselská"
+      length: 4
+      progress: flight 7
       url: "http://example.com/track-a"
-    performance: 2
-  workout:
-    level: mid
-    content: "12d 8k"
-  stretching: true
-  stairs: mimo
-- date: 2023-10-02
+    performance: none
+  workout: rest
+  stretching: false
+  stairs:
+    floors: 8
+    time: "1:15"
+
+- date: 2025-07-21
   running:
     track:
-      name: "Track B"
-      length: 3.7
-      url: "http://example.com/track-b"
-    performance: 2
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
+  workout:
+    level: mid
+    content: "12d 10k"
+  stretching: false
+  stairs:
+    floors: 8
+    time: "1:25"
+
+- date: 2025-07-20
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-07-19
+  running:
+    track:
+      name: "Folimanka"
+      length: 6
+      progress: pole 8
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+
+- date: 2025-07-18
+  running:
+    track:
+      name: "Město"
+      length: 2
+      progress: full
+      url: "http://example.com/track-a"
+    performance: none
   workout:
     level: mid
     content: "12d 8k"
-  stretching: true
-  stairs: mimo
+  stretching: false
+  stairs: none
+
+- date: 2025-07-17
+  running:
+    track:
+      name: "Nuselská"
+      length: 4
+      progress: flight 9
+      url: "http://example.com/track-a"
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: none
