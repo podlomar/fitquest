@@ -7,8 +7,10 @@ import { FitnessEntry, Statistics } from './types';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Serve static files from public directory
+// Middleware
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Set up Nunjucks as template engine
 const nunjucksEnv = nunjucks.configure('views', {
@@ -41,6 +43,21 @@ function loadData(): FitnessEntry[] {
   } catch (e) {
     console.error('Error loading data.yml:', e);
     return [];
+  }
+}
+
+// Save data to YAML file
+function saveData(data: FitnessEntry[]): boolean {
+  try {
+    const yamlContent = yaml.dump(data, {
+      flowLevel: -1,
+      indent: 2
+    });
+    fs.writeFileSync('./data.yml', yamlContent, 'utf8');
+    return true;
+  } catch (e) {
+    console.error('Error saving data.yml:', e);
+    return false;
   }
 }
 
@@ -116,7 +133,67 @@ function calculateStats(data: FitnessEntry[]): Statistics {
 app.get('/', (req: Request, res: Response) => {
   const data = loadData();
   const stats = calculateStats(data);
-  res.render('index', { data, stats });
+  const success = req.query.success === '1';
+  const error = req.query.error === '1';
+  res.render('index', { data, stats, success, error });
+});
+
+app.post('/add-entry', (req: Request, res: Response) => {
+  try {
+    const {
+      date,
+      trackName,
+      trackLength,
+      trackProgress,
+      trackUrl,
+      performance,
+      workoutLevel,
+      workoutContent,
+      stretching,
+      stairsType,
+      stairsFloors,
+      stairsTime
+    } = req.body;
+
+    // Create new entry object
+    const newEntry: FitnessEntry = {
+      date: date || new Date().toISOString().split('T')[0],
+      running: {
+        track: {
+          name: trackName || '',
+          length: parseFloat(trackLength) || 0,
+          progress: trackProgress || '',
+          url: trackUrl || ''
+        },
+        performance: performance === 'none' ? 'none' : parseInt(performance) || 1
+      },
+      workout: workoutLevel === 'rest' ? 'rest' : {
+        level: workoutLevel as 'low' | 'mid' | 'high' | 'base' | 'off',
+        content: workoutContent || ''
+      },
+      stretching: stretching === 'true',
+      stairs: stairsType === 'away' ? 'away' :
+        stairsType === 'none' ? 'none' :
+          {
+            floors: parseInt(stairsFloors) || 8,
+            time: stairsTime || ''
+          }
+    };
+
+    // Load existing data and add new entry at the beginning
+    const data = loadData();
+    data.unshift(newEntry);
+
+    // Save updated data
+    if (saveData(data)) {
+      res.redirect('/?success=1');
+    } else {
+      res.redirect('/?error=1');
+    }
+  } catch (error) {
+    console.error('Error adding entry:', error);
+    res.redirect('/?error=1');
+  }
 });
 
 app.listen(PORT, () => {

@@ -13,7 +13,127 @@
     <header>
       <h1>🏃‍♂️ Fitness Tracker</h1>
       <p>Your fitness journey at a glance</p>
+      
+      <!-- Success/Error Messages -->
+      {% if success %}
+        <div class="message success">✅ Entry added successfully!</div>
+      {% endif %}
+      {% if error %}
+        <div class="message error">❌ Error adding entry. Please try again.</div>
+      {% endif %}
+      
+      <!-- Add Entry Button -->
+      <button id="addEntryBtn" class="add-entry-btn">+ Add New Entry</button>
     </header>
+
+    <!-- Add Entry Form (initially hidden) -->
+    <div id="addEntryForm" class="form-container" style="display: none;">
+      <div class="form-wrapper">
+        <h2>Add New Fitness Entry</h2>
+        <form action="/add-entry" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Date:</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>🏃‍♂️ Running</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="trackName">Track Name:</label>
+                <input type="text" id="trackName" name="trackName" placeholder="e.g., Nuselská">
+              </div>
+              <div class="form-group">
+                <label for="trackLength">Length (km):</label>
+                <input type="number" id="trackLength" name="trackLength" step="0.1" min="0" placeholder="4">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="trackProgress">Progress:</label>
+                <input type="text" id="trackProgress" name="trackProgress" placeholder="e.g., full, flight 6">
+              </div>
+              <div class="form-group">
+                <label for="trackUrl">Track URL:</label>
+                <input type="url" id="trackUrl" name="trackUrl" placeholder="http://example.com/track">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="performance">Performance (1-5):</label>
+                <select id="performance" name="performance">
+                  <option value="none">None</option>
+                  <option value="1">1 ⭐</option>
+                  <option value="2" selected>2 ⭐⭐</option>
+                  <option value="3">3 ⭐⭐⭐</option>
+                  <option value="4">4 ⭐⭐⭐⭐</option>
+                  <option value="5">5 ⭐⭐⭐⭐⭐</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>💪 Workout</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="workoutLevel">Level:</label>
+                <select id="workoutLevel" name="workoutLevel">
+                  <option value="low">Low</option>
+                  <option value="mid" selected>Mid</option>
+                  <option value="high">High</option>
+                  <option value="base">Base</option>
+                  <option value="off">Off</option>
+                  <option value="rest">Rest</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="workoutContent">Content:</label>
+                <input type="text" id="workoutContent" name="workoutContent" placeholder="e.g., 12d 8k">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>🧘‍♀️ Other Activities</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="stretching">Stretching:</label>
+                <select id="stretching" name="stretching">
+                  <option value="true" selected>Yes ✓</option>
+                  <option value="false">No ✗</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="stairsType">Stairs:</label>
+                <select id="stairsType" name="stairsType" onchange="toggleStairsFields()">
+                  <option value="data">Stairs Data</option>
+                  <option value="away">Away</option>
+                  <option value="none">None</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row" id="stairsFields">
+              <div class="form-group">
+                <label for="stairsFloors">Floors:</label>
+                <input type="number" id="stairsFloors" name="stairsFloors" min="1" value="8">
+              </div>
+              <div class="form-group">
+                <label for="stairsTime">Time (mm:ss):</label>
+                <input type="text" id="stairsTime" name="stairsTime" placeholder="1:15" pattern="[0-9]+:[0-5][0-9]">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-btn">Save Entry</button>
+            <button type="button" id="cancelBtn" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <main>
       <!-- Summary Statistics -->
@@ -177,6 +297,40 @@
       <p>Keep up the great work! 💪</p>
     </footer>
   </div>
+
+  <script>
+    // Set current date as default
+    document.getElementById('date').value = new Date().toISOString().split('T')[0];
+
+    // Toggle form visibility
+    document.getElementById('addEntryBtn').addEventListener('click', function() {
+      const form = document.getElementById('addEntryForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+      if (form.style.display === 'block') {
+        form.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Cancel button
+    document.getElementById('cancelBtn').addEventListener('click', function() {
+      document.getElementById('addEntryForm').style.display = 'none';
+    });
+
+    // Toggle stairs fields based on selection
+    function toggleStairsFields() {
+      const stairsType = document.getElementById('stairsType').value;
+      const stairsFields = document.getElementById('stairsFields');
+      stairsFields.style.display = stairsType === 'data' ? 'flex' : 'none';
+    }
+
+    // Hide messages after 5 seconds
+    setTimeout(function() {
+      const messages = document.querySelectorAll('.message');
+      messages.forEach(function(message) {
+        message.style.display = 'none';
+      });
+    }, 5000);
+  </script>
 </body>
 
 </html>
