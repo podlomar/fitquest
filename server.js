@@ -49,7 +49,8 @@ function calculateStats(data) {
     totalDays: data.length,
     totalDistance: 0,
     stretchingStreak: 0,
-    avgPerformance: 0
+    avgPerformance: 0,
+    bestStairsTime: null
   };
 
   // Calculate total distance
@@ -80,6 +81,31 @@ function calculateStats(data) {
 
   if (performanceCount > 0) {
     stats.avgPerformance = Math.round((totalPerformance / performanceCount) * 10) / 10;
+  }
+
+  // Find best time for 8 flights of stairs
+  let bestTimeInSeconds = null;
+  data.forEach(entry => {
+    if (entry.stairs && entry.stairs.floors === 8 && entry.stairs.time) {
+      const timeStr = entry.stairs.time;
+      // Parse time format like "1:15" to seconds
+      const timeParts = timeStr.split(':');
+      if (timeParts.length === 2) {
+        const minutes = parseInt(timeParts[0]);
+        const seconds = parseInt(timeParts[1]);
+        const totalSeconds = minutes * 60 + seconds;
+
+        if (bestTimeInSeconds === null || totalSeconds < bestTimeInSeconds) {
+          bestTimeInSeconds = totalSeconds;
+        }
+      }
+    }
+  });
+
+  if (bestTimeInSeconds !== null) {
+    const minutes = Math.floor(bestTimeInSeconds / 60);
+    const seconds = bestTimeInSeconds % 60;
+    stats.bestStairsTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
   }
 
   return stats;
