@@ -30,9 +30,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: 2
   workout:
     level: mid
@@ -44,9 +44,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: 1
   workout:
     level: mid
@@ -72,9 +72,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: 2
   workout:
     level: mid
@@ -100,9 +100,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: 4
   workout:
     level: mid
@@ -128,9 +128,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: 1
   workout: rest
   stretching: false
@@ -152,9 +152,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: 3
   workout: rest
   stretching: true
@@ -176,9 +176,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout: rest
   stretching: false
@@ -200,9 +200,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout: rest
   stretching: false
@@ -237,9 +237,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout: rest
   stretching: false
@@ -250,9 +250,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout: rest
   stretching: false
@@ -278,9 +278,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout: rest
   stretching: false
@@ -302,9 +302,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout:
     level: high
@@ -329,9 +329,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout:
     level: 'off'
@@ -357,9 +357,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout:
     level: mid
@@ -372,9 +372,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout: rest
   stretching: false
@@ -396,9 +396,9 @@
   running:
     track:
       name: Město
-      length: 2
+      length: 2.3
       progress: full
-      url: http://example.com/track-a
+      url: https://mapy.com/s/kafolokugu
     performance: none
   workout:
     level: mid

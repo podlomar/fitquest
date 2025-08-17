@@ -10,13 +10,13 @@ const PORT = process.env.PORT || 3001;
 // Predefined tracks configuration
 const PREDEFINED_TRACKS: PredefinedTrack[] = [
   {
-    name: "Nuselská",
-    length: 4,
-    url: "http://example.com/track-a"
+    name: "Město",
+    length: 2.3,
+    url: "https://mapy.com/s/kafolokugu"
   },
   {
-    name: "Město",
-    length: 2,
+    name: "Nuselská",
+    length: 4,
     url: "http://example.com/track-a"
   },
   {
@@ -103,6 +103,8 @@ function calculateStats(data: FitnessEntry[]): Statistics {
       stats.totalDistance += entry.running.track.length;
     }
   });
+
+  stats.totalDistance = Math.round(stats.totalDistance * 10) / 10; // Round to one decimal place
 
   // Calculate stretching streak (from most recent)
   for (let i = 0; i < data.length; i++) {
