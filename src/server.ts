@@ -2,10 +2,34 @@ import express, { Request, Response } from 'express';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import * as nunjucks from 'nunjucks';
-import { FitnessEntry, Statistics } from './types';
+import { FitnessEntry, Statistics, PredefinedTrack } from './types';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Predefined tracks configuration
+const PREDEFINED_TRACKS: PredefinedTrack[] = [
+  {
+    name: "Nuselská",
+    length: 4,
+    url: "http://example.com/track-a"
+  },
+  {
+    name: "Město",
+    length: 2,
+    url: "http://example.com/track-a"
+  },
+  {
+    name: "Folimanka",
+    length: 6,
+    url: "http://example.com/track-a"
+  },
+  {
+    name: "Newton",
+    length: 3.7,
+    url: "http://example.com/track-a"
+  }
+];
 
 // Middleware
 app.use(express.static('public'));
@@ -68,7 +92,9 @@ function calculateStats(data: FitnessEntry[]): Statistics {
     totalDistance: 0,
     stretchingStreak: 0,
     avgPerformance: 0,
-    bestStairsTime: null
+    bestStairsTime: null,
+    currentWeight: null,
+    weightChange: null
   };
 
   // Calculate total distance
@@ -126,6 +152,29 @@ function calculateStats(data: FitnessEntry[]): Statistics {
     stats.bestStairsTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
   }
 
+  // Calculate weight statistics
+  // Find current weight (most recent non-'none' weight)
+  let currentWeight: number | null = null;
+  let previousWeight: number | null = null;
+  let foundCurrent = false;
+
+  for (const entry of data) {
+    if (entry.weight && entry.weight !== 'none') {
+      if (!foundCurrent) {
+        currentWeight = entry.weight as number;
+        foundCurrent = true;
+      } else {
+        previousWeight = entry.weight as number;
+        break;
+      }
+    }
+  }
+
+  stats.currentWeight = currentWeight;
+  if (currentWeight !== null && previousWeight !== null) {
+    stats.weightChange = Math.round((currentWeight - previousWeight) * 10) / 10;
+  }
+
   return stats;
 }
 
@@ -135,35 +184,40 @@ app.get('/', (req: Request, res: Response) => {
   const stats = calculateStats(data);
   const success = req.query.success === '1';
   const error = req.query.error === '1';
-  res.render('index', { data, stats, success, error });
+  res.render('index', { data, stats, success, error, predefinedTracks: PREDEFINED_TRACKS });
 });
 
 app.post('/add-entry', (req: Request, res: Response) => {
   try {
     const {
       date,
-      trackName,
-      trackLength,
+      selectedTrack,
       trackProgress,
-      trackUrl,
       performance,
       workoutLevel,
       workoutContent,
       stretching,
       stairsType,
       stairsFloors,
-      stairsTime
+      stairsTime,
+      weight
     } = req.body;
+
+    // Find the selected predefined track
+    const predefinedTrack = PREDEFINED_TRACKS.find(track => track.name === selectedTrack);
+    if (!predefinedTrack) {
+      throw new Error('Invalid track selection');
+    }
 
     // Create new entry object
     const newEntry: FitnessEntry = {
       date: date || new Date().toISOString().split('T')[0],
       running: {
         track: {
-          name: trackName || '',
-          length: parseFloat(trackLength) || 0,
+          name: predefinedTrack.name,
+          length: predefinedTrack.length,
           progress: trackProgress || '',
-          url: trackUrl || ''
+          url: predefinedTrack.url
         },
         performance: performance === 'none' ? 'none' : parseInt(performance) || 1
       },
@@ -177,7 +231,8 @@ app.post('/add-entry', (req: Request, res: Response) => {
           {
             floors: parseInt(stairsFloors) || 8,
             time: stairsTime || ''
-          }
+          },
+      weight: weight === 'none' || weight === '' ? 'none' : parseFloat(weight) || 'none'
     };
 
     // Load existing data and add new entry at the beginning

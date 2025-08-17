@@ -1,3 +1,17 @@
+- date: '2025-08-17'
+  running:
+    track:
+      name: Folimanka
+      length: 6
+      progress: pole 8
+      url: http://example.com/track-a
+    performance: 3
+  workout:
+    level: mid
+    content: 12d 10k
+  stretching: true
+  stairs: away
+  weight: 107.4
 - date: 2025-08-16T00:00:00.000Z
   running:
     track:
@@ -11,6 +25,7 @@
     content: 12d 8k
   stretching: true
   stairs: away
+  weight: 107.4
 - date: 2025-08-14T00:00:00.000Z
   running:
     track:
@@ -24,6 +39,7 @@
     content: 12d 8k
   stretching: true
   stairs: away
+  weight: none
 - date: 2025-08-14T00:00:00.000Z
   running:
     track:
@@ -37,6 +53,7 @@
     content: 12d 8k
   stretching: true
   stairs: away
+  weight: none
 - date: 2025-08-13T00:00:00.000Z
   running:
     track:
@@ -50,6 +67,7 @@
     content: 12d 8k
   stretching: true
   stairs: away
+  weight: none
 - date: 2025-08-12T00:00:00.000Z
   running:
     track:
@@ -63,6 +81,7 @@
     content: 12d 8k
   stretching: true
   stairs: away
+  weight: none
 - date: 2025-08-11T00:00:00.000Z
   running:
     track:
@@ -76,6 +95,7 @@
     content: 12d 8k
   stretching: true
   stairs: away
+  weight: none
 - date: 2025-08-10T00:00:00.000Z
   running:
     track:
@@ -89,6 +109,7 @@
     content: 12d 8k
   stretching: true
   stairs: away
+  weight: none
 - date: 2025-08-09T00:00:00.000Z
   running:
     track:
@@ -102,6 +123,7 @@
     content: 8d 5k
   stretching: true
   stairs: away
+  weight: none
 - date: 2025-08-08T00:00:00.000Z
   running:
     track:
@@ -113,6 +135,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-08-07T00:00:00.000Z
   running:
     track:
@@ -124,6 +147,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-08-06T00:00:00.000Z
   running:
     track:
@@ -135,6 +159,7 @@
   workout: rest
   stretching: true
   stairs: away
+  weight: none
 - date: 2025-08-05T00:00:00.000Z
   running:
     track:
@@ -146,6 +171,7 @@
   workout: rest
   stretching: true
   stairs: away
+  weight: none
 - date: 2025-08-04T00:00:00.000Z
   running:
     track:
@@ -157,6 +183,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-08-03T00:00:00.000Z
   running:
     track:
@@ -168,6 +195,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-08-02T00:00:00.000Z
   running:
     track:
@@ -179,6 +207,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-08-01T00:00:00.000Z
   running:
     track:
@@ -190,6 +219,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-07-31T00:00:00.000Z
   running:
     track:
@@ -255,6 +285,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-07-26T00:00:00.000Z
   running:
     track:
@@ -266,6 +297,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-07-25T00:00:00.000Z
   running:
     track:
@@ -279,6 +311,7 @@
     content: 20+20d 12k 8r
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-07-24T00:00:00.000Z
   running:
     track:
@@ -346,6 +379,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-07-19T00:00:00.000Z
   running:
     track:
@@ -357,6 +391,7 @@
   workout: rest
   stretching: false
   stairs: away
+  weight: none
 - date: 2025-07-18T00:00:00.000Z
   running:
     track:

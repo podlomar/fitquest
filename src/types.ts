@@ -5,6 +5,12 @@ export interface Track {
   url: string;
 }
 
+export interface PredefinedTrack {
+  name: string;
+  length: number;
+  url: string;
+}
+
 export interface Running {
   track: Track;
   performance: number | 'none';
@@ -26,6 +32,7 @@ export interface FitnessEntry {
   workout: Workout | 'rest';
   stretching: boolean;
   stairs: StairsData | 'away' | 'none';
+  weight: number | 'none';
 }
 
 export interface Statistics {
@@ -34,4 +41,6 @@ export interface Statistics {
   stretchingStreak: number;
   avgPerformance: number;
   bestStairsTime: string | null;
+  currentWeight: number | null;
+  weightChange: number | null;
 }

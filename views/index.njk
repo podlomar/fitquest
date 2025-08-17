@@ -42,25 +42,28 @@
             <h3>🏃‍♂️ Running</h3>
             <div class="form-row">
               <div class="form-group">
-                <label for="trackName">Track Name:</label>
-                <input type="text" id="trackName" name="trackName" placeholder="e.g., Nuselská">
+                <label for="selectedTrack">Track:</label>
+                <select id="selectedTrack" name="selectedTrack" required onchange="updateTrackInfo()">
+                  <option value="">Select a track...</option>
+                  {% for track in predefinedTracks %}
+                    <option value="{{ track.name }}" data-length="{{ track.length }}" data-url="{{ track.url }}">
+                      {{ track.name }} ({{ track.length }} km)
+                    </option>
+                  {% endfor %}
+                </select>
               </div>
-              <div class="form-group">
-                <label for="trackLength">Length (km):</label>
-                <input type="number" id="trackLength" name="trackLength" step="0.1" min="0" placeholder="4">
-              </div>
-            </div>
-            <div class="form-row">
               <div class="form-group">
                 <label for="trackProgress">Progress:</label>
-                <input type="text" id="trackProgress" name="trackProgress" placeholder="e.g., full, flight 6">
-              </div>
-              <div class="form-group">
-                <label for="trackUrl">Track URL:</label>
-                <input type="url" id="trackUrl" name="trackUrl" placeholder="http://example.com/track">
+                <input type="text" id="trackProgress" name="trackProgress" placeholder="e.g., full, flight 6" required>
               </div>
             </div>
             <div class="form-row">
+              <div class="form-group track-info">
+                <label>Track Info:</label>
+                <div id="trackInfoDisplay" class="track-info-display">
+                  <span id="trackLength">Select a track to see details</span>
+                </div>
+              </div>
               <div class="form-group">
                 <label for="performance">Performance (1-5):</label>
                 <select id="performance" name="performance">
@@ -125,6 +128,16 @@
                 <input type="text" id="stairsTime" name="stairsTime" placeholder="1:15" pattern="[0-9]+:[0-5][0-9]">
               </div>
             </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" step="0.1" min="0" placeholder="70.5">
+              </div>
+              <div class="form-group">
+                <label>&nbsp;</label>
+                <small style="color: var(--text-muted); margin-top: 5px;">Leave empty for 'none'</small>
+              </div>
+            </div>
           </div>
 
           <div class="form-actions">
@@ -178,6 +191,28 @@
               <div class="summary-label">Best 8 Flights</div>
             </div>
           </div>
+          
+          <div class="summary-card">
+            <div class="summary-icon">⚖️</div>
+            <div class="summary-content">
+              <div class="summary-number">{{ stats.currentWeight if stats.currentWeight else '-' }} kg</div>
+              <div class="summary-label">Current Weight</div>
+            </div>
+          </div>
+          
+          <div class="summary-card">
+            <div class="summary-icon">📈</div>
+            <div class="summary-content">
+              <div class="summary-number">
+                {% if stats.weightChange %}
+                  {{ '+' if stats.weightChange > 0 else '' }}{{ stats.weightChange }} kg
+                {% else %}
+                  -
+                {% endif %}
+              </div>
+              <div class="summary-label">Weight Change</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -192,6 +227,7 @@
               <th>Workout</th>
               <th>Stretching</th>
               <th>Stairs</th>
+              <th>Weight</th>
             </tr>
           </thead>
           <tbody>
@@ -280,6 +316,13 @@
                     -
                   {% endif %}
                 </td>
+                <td data-label="Weight">
+                  {% if entry.weight and entry.weight != 'none' %}
+                    <span class="weight">{{ entry.weight }} kg</span>
+                  {% else %}
+                    <span class="weight-none">-</span>
+                  {% endif %}
+                </td>
               </tr>
             {% endfor %}
           </tbody>
@@ -321,6 +364,27 @@
       const stairsType = document.getElementById('stairsType').value;
       const stairsFields = document.getElementById('stairsFields');
       stairsFields.style.display = stairsType === 'data' ? 'flex' : 'none';
+    }
+
+    // Update track info display when track is selected
+    function updateTrackInfo() {
+      const selectedTrack = document.getElementById('selectedTrack');
+      const trackInfoDisplay = document.getElementById('trackInfoDisplay');
+      const trackLength = document.getElementById('trackLength');
+      
+      if (selectedTrack.value) {
+        const selectedOption = selectedTrack.options[selectedTrack.selectedIndex];
+        const length = selectedOption.getAttribute('data-length');
+        const url = selectedOption.getAttribute('data-url');
+        
+        trackLength.innerHTML = `
+          <strong>${selectedTrack.value}</strong><br>
+          <span style="color: var(--text-secondary);">Length: ${length} km</span><br>
+          <a href="${url}" target="_blank" style="color: var(--accent-primary); text-decoration: none;">View Track →</a>
+        `;
+      } else {
+        trackLength.textContent = 'Select a track to see details';
+      }
     }
 
     // Hide messages after 5 seconds
