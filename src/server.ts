@@ -1,8 +1,8 @@
-const express = require('express');
-const fs = require('fs');
-const yaml = require('js-yaml');
-const path = require('path');
-const nunjucks = require('nunjucks');
+import express, { Request, Response } from 'express';
+import * as fs from 'fs';
+import * as yaml from 'js-yaml';
+import * as nunjucks from 'nunjucks';
+import { FitnessEntry, Statistics } from './types';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,7 +17,7 @@ const nunjucksEnv = nunjucks.configure('views', {
 });
 
 // Add custom date filter
-nunjucksEnv.addFilter('formatDate', function (dateStr) {
+nunjucksEnv.addFilter('formatDate', function (dateStr: string): string {
   const date = new Date(dateStr);
   const czechDays = ['ne', 'po', 'út', 'st', 'čt', 'pá', 'so'];
   const czechMonths = ['led', 'úno', 'bře', 'dub', 'kvě', 'čvn', 'čvc', 'srp', 'zář', 'říj', 'lis', 'pro'];
@@ -33,10 +33,11 @@ nunjucksEnv.addFilter('formatDate', function (dateStr) {
 app.set('view engine', 'njk');
 
 // Load and parse YAML data
-function loadData() {
+function loadData(): FitnessEntry[] {
   try {
     const fileContents = fs.readFileSync('./data.yml', 'utf8');
-    return yaml.load(fileContents);
+    const data = yaml.load(fileContents) as FitnessEntry[];
+    return data || [];
   } catch (e) {
     console.error('Error loading data.yml:', e);
     return [];
@@ -44,8 +45,8 @@ function loadData() {
 }
 
 // Calculate statistics
-function calculateStats(data) {
-  const stats = {
+function calculateStats(data: FitnessEntry[]): Statistics {
+  const stats: Statistics = {
     totalDays: data.length,
     totalDistance: 0,
     stretchingStreak: 0,
@@ -55,7 +56,7 @@ function calculateStats(data) {
 
   // Calculate total distance
   data.forEach(entry => {
-    if (entry.running && entry.running.track && entry.running.track.length) {
+    if (entry.running?.track?.length) {
       stats.totalDistance += entry.running.track.length;
     }
   });
@@ -73,8 +74,8 @@ function calculateStats(data) {
   let totalPerformance = 0;
   let performanceCount = 0;
   data.forEach(entry => {
-    if (entry.running && entry.running.performance && entry.running.performance !== 'none') {
-      totalPerformance += entry.running.performance;
+    if (entry.running?.performance && entry.running.performance !== 'none') {
+      totalPerformance += entry.running.performance as number;
       performanceCount++;
     }
   });
@@ -84,9 +85,9 @@ function calculateStats(data) {
   }
 
   // Find best time for 8 flights of stairs
-  let bestTimeInSeconds = null;
+  let bestTimeInSeconds: number | null = null;
   data.forEach(entry => {
-    if (entry.stairs && entry.stairs.floors === 8 && entry.stairs.time) {
+    if (entry.stairs && typeof entry.stairs === 'object' && 'floors' in entry.stairs && entry.stairs.floors === 8 && entry.stairs.time) {
       const timeStr = entry.stairs.time;
       // Parse time format like "1:15" to seconds
       const timeParts = timeStr.split(':');
@@ -112,7 +113,7 @@ function calculateStats(data) {
 }
 
 // Routes
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   const data = loadData();
   const stats = calculateStats(data);
   res.render('index', { data, stats });

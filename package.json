@@ -2,10 +2,12 @@
   "name": "fitness-tracker-viewer",
   "version": "1.0.0",
   "description": "A mobile-friendly dark-themed web app to display fitness data",
-  "main": "server.js",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node dist/server.js",
+    "dev": "nodemon",
+    "build": "tsc",
+    "watch": "tsc -w"
   },
   "keywords": [
     "fitness",
@@ -21,6 +23,12 @@
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "typescript": "^5.1.6",
+    "@types/node": "^20.4.2",
+    "@types/express": "^4.17.17",
+    "@types/js-yaml": "^4.0.5",
+    "@types/nunjucks": "^3.2.2",
+    "ts-node": "^10.9.1"
   }
 }
