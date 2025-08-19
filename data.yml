@@ -1,3 +1,17 @@
+- date: '2025-08-19'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 3
+  workout:
+    level: mid
+    content: 18d 10k
+  stretching: true
+  stairs: away
+  weight: 107.5
 - date: '2025-08-18'
   running:
     track:
