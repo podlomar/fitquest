@@ -1,7 +1,9 @@
+import { JSX } from 'react/jsx-runtime';
 import express, { Request, Response } from 'express';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
-import * as nunjucks from 'nunjucks';
+import { prerenderToNodeStream } from 'react-dom/static';
+import { HomePage } from './pages/HomePage';
 import { FitnessEntry, Statistics, PredefinedTrack } from './types';
 
 const app = express();
@@ -36,13 +38,10 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Set up Nunjucks as template engine
-const nunjucksEnv = nunjucks.configure('views', {
-  autoescape: true,
-  express: app
-});
-
-app.set('view engine', 'njk');
+const render = async (component: JSX.Element, res: express.Response) => {
+  const { prelude } = await prerenderToNodeStream(component);
+  prelude.pipe(res);
+};
 
 // Load and parse YAML data
 function loadData(): FitnessEntry[] {
@@ -166,13 +165,20 @@ function calculateStats(data: FitnessEntry[]): Statistics {
   return stats;
 }
 
-// Routes
 app.get('/', (req: Request, res: Response) => {
   const data = loadData();
   const stats = calculateStats(data);
   const success = req.query.success === '1';
   const error = req.query.error === '1';
-  res.render('index', { data, stats, success, error, predefinedTracks: PREDEFINED_TRACKS });
+  render(
+    <HomePage
+      alert={success ? 'success' : error ? 'error' : null}
+      data={data}
+      stats={stats}
+      predefinedTracks={PREDEFINED_TRACKS}
+    />,
+    res,
+  );
 });
 
 app.post('/add-entry', (req: Request, res: Response) => {

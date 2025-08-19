@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "A mobile-friendly dark-themed web app to display fitness data",
   "main": "dist/server.js",
+  "type": "module",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "nodemon",
+    "dev": "gulp watch --color && nodemon",
     "build": "tsc",
     "watch": "tsc -w"
   },

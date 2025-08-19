@@ -28,6 +28,8 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Fitness Tracker</title>
         <link rel="stylesheet" href="/styles.css" />
+
+        <script defer src="/index.js"></script>
       </head>
 
       <body>
@@ -62,7 +64,7 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
                   <div className="form-row">
                     <div className="form-group">
                       <label htmlFor="selectedTrack">Track:</label>
-                      <select id="selectedTrack" name="selectedTrack" required onChange="updateTrackInfo()">
+                      <select id="selectedTrack" name="selectedTrack" required>
                         <option value="">Select a track...</option>
                         {predefinedTracks.map((track) => (
                           <option key={track.name} value={track.name} data-length={track.length} data-url={track.url}>
@@ -130,7 +132,7 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
                     </div>
                     <div className="form-group">
                       <label htmlFor="stairsType">Stairs:</label>
-                      <select id="stairsType" name="stairsType" onChange="toggleStairsFields()">
+                      <select id="stairsType" name="stairsType">
                         <option value="data">Stairs Data</option>
                         <option value="away">Away</option>
                         <option value="none">None</option>
@@ -251,39 +253,6 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
                         {formatDate(entry.date)}
                       </td>
                       <td data-label="Track">
-                        {entry.running && entry.running.track ? (
-                          entry.running.track.url ? (
-                            <a href={entry.running.track.url} target="_blank" className="track-link">
-                              {entry.running.track.name} ({entry.running.track.length} km)
-                            </a>
-                          ) : (
-                            entry.running.track.name
-                          )
-                        ) : (
-                          "-"
-                        )}
-                        {entry.running && entry.running.track ? (
-                          entry.running.track.url ? (
-                            <a href={entry.running.track.url} target="_blank" className="track-link">
-                              {entry.running.track.name} ({entry.running.track.length} km)
-                            </a>
-                          ) : (
-                            entry.running.track.name
-                          )
-                        ) : (
-                          "-"
-                        )}
-                        {entry.running && entry.running.track ? (
-                          entry.running.track.url ? (
-                            <a href={entry.running.track.url} target="_blank" className="track-link">
-                              {entry.running.track.name} ({entry.running.track.length} km)
-                            </a>
-                          ) : (
-                            entry.running.track.name
-                          )
-                        ) : (
-                          "-"
-                        )}
                         {entry.running && entry.running.track ? (
                           entry.running.track.url ? (
                             <a href={entry.running.track.url} target="_blank" className="track-link">

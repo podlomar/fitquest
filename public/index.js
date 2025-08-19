@@ -41,6 +41,9 @@ function updateTrackInfo() {
   }
 }
 
+document.getElementById('stairsType').addEventListener('change', toggleStairsFields);
+document.getElementById('selectedTrack').addEventListener('change', updateTrackInfo);
+
 // Hide messages after 5 seconds
 setTimeout(function () {
   const messages = document.querySelectorAll('.message');
