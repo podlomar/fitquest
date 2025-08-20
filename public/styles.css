@@ -154,7 +154,7 @@ header p {
   flex: 1;
 }
 
-.summary-number {
+.summary-value {
   font-size: var(--font-size-3xl);
   font-weight: 700;
   color: var(--accent-primary);
@@ -394,7 +394,7 @@ footer {
     height: 3rem;
   }
 
-  .summary-number {
+  .summary-value {
     font-size: var(--font-size-2xl);
   }
 
@@ -465,7 +465,7 @@ footer {
     padding: var(--spacing-md);
   }
 
-  .summary-number {
+  .summary-value {
     font-size: var(--font-size-xl);
   }
 
