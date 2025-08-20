@@ -3,6 +3,7 @@ import { Header } from "../../components/Header";
 import { AddEntryForm } from "../../components/AddEntryForm";
 import { FitnessTable } from "../../components/FitnessTable";
 import { SummaryCard } from "../../components/SummaryCard";
+import { Footer } from "../../components/Footer";
 
 interface Props {
   alert: 'success' | 'error' | null;
@@ -41,20 +42,10 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
               </div>
             </div>
 
-            <div className="table-wrapper">
-              <FitnessTable data={data} />
-            </div>
-
-            {data.length === 0 ? (
-              <div className="no-data">
-                <p>No fitness data available</p>
-              </div>
-            ) : null}
+            <FitnessTable data={data} />
           </main>
 
-          <footer>
-            <p>Keep up the great work! 💪</p>
-          </footer>
+          <Footer />
         </div>
       </body>
     </html>

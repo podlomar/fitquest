@@ -9,8 +9,7 @@ import { FitnessEntry, Statistics, PredefinedTrack } from './types';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Predefined tracks configuration
-const PREDEFINED_TRACKS: PredefinedTrack[] = [
+const predefinedTracks: PredefinedTrack[] = [
   {
     name: "Město",
     length: 2.3,
@@ -33,7 +32,6 @@ const PREDEFINED_TRACKS: PredefinedTrack[] = [
   }
 ];
 
-// Middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -43,7 +41,6 @@ const render = async (component: JSX.Element, res: express.Response) => {
   prelude.pipe(res);
 };
 
-// Load and parse YAML data
 function loadData(): FitnessEntry[] {
   try {
     const fileContents = fs.readFileSync('./data.yml', 'utf8');
@@ -55,7 +52,6 @@ function loadData(): FitnessEntry[] {
   }
 }
 
-// Save data to YAML file
 function saveData(data: FitnessEntry[]): boolean {
   try {
     const yamlContent = yaml.dump(data, {
@@ -70,7 +66,6 @@ function saveData(data: FitnessEntry[]): boolean {
   }
 }
 
-// Calculate statistics
 function calculateStats(data: FitnessEntry[]): Statistics {
   const stats: Statistics = {
     totalDays: data.length,
@@ -175,7 +170,7 @@ app.get('/', (req: Request, res: Response) => {
       alert={success ? 'success' : error ? 'error' : null}
       data={data}
       stats={stats}
-      predefinedTracks={PREDEFINED_TRACKS}
+      predefinedTracks={predefinedTracks}
     />,
     res,
   );
@@ -197,13 +192,11 @@ app.post('/add-entry', (req: Request, res: Response) => {
       weight
     } = req.body;
 
-    // Find the selected predefined track
-    const predefinedTrack = PREDEFINED_TRACKS.find(track => track.name === selectedTrack);
+    const predefinedTrack = predefinedTracks.find(track => track.name === selectedTrack);
     if (!predefinedTrack) {
       throw new Error('Invalid track selection');
     }
 
-    // Create new entry object
     const newEntry: FitnessEntry = {
       date: date || new Date().toISOString().split('T')[0],
       running: {
@@ -229,11 +222,9 @@ app.post('/add-entry', (req: Request, res: Response) => {
       weight: weight === 'none' || weight === '' ? 'none' : parseFloat(weight) || 'none'
     };
 
-    // Load existing data and add new entry at the beginning
     const data = loadData();
     data.unshift(newEntry);
 
-    // Save updated data
     if (saveData(data)) {
       res.redirect('/?success=1');
     } else {
