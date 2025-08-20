@@ -6,7 +6,8 @@ interface Props {
 
 export const AddEntryForm = ({ predefinedTracks }: Props) => {
   return (
-    <form action="/add-entry" method="POST">
+    <form id="addEntryForm" className="entry-form" action="/add-entry" method="POST" style={{ display: "none" }}>
+      <h2>Add New Fitness Entry</h2>
       <div className="form-row">
         <div className="form-group">
           <label htmlFor="date">Date:</label>

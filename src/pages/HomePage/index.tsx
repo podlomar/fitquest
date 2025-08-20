@@ -26,13 +26,7 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
       <body>
         <div className="container">
           <Header alert={alert} />
-
-          <div id="addEntryForm" className="form-container" style={{ display: "none" }}>
-            <div className="form-wrapper">
-              <h2>Add New Fitness Entry</h2>
-              <AddEntryForm predefinedTracks={predefinedTracks} />
-            </div>
-          </div>
+          <AddEntryForm predefinedTracks={predefinedTracks} />
 
           <main>
             <div className="summary-section">
