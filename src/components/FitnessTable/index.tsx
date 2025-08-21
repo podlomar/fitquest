@@ -1,4 +1,5 @@
 import { FitnessEntry } from "../../types";
+import { getRoutineById, legacyRoutine } from "../../data/routines";
 
 const formatDate = (dateStr: string): string => {
   const date = new Date(dateStr);
@@ -73,7 +74,7 @@ export const FitnessTable = ({ data }: Props) => {
                 {entry.running && entry.running.performance && entry.running.performance !== 'none' ? (
                   <div className="performance-rating">
                     {Array.from({ length: 5 }, (_, i) => (
-                      <span key={i} className={`star ${i < entry.running.performance ? 'filled' : ''}`}>★</span>
+                      <span key={i} className={`star ${i < Number(entry.running.performance) ? 'filled' : ''}`}>★</span>
                     ))}
                   </div>
                 ) : (
@@ -89,6 +90,28 @@ export const FitnessTable = ({ data }: Props) => {
                       <span className="level level-{entry.workout.level}">
                         {entry.workout.level}
                       </span>
+                      {entry.workout.routine && (
+                        <div className="workout-routine">
+                          {(() => {
+                            // Handle legacy routine format
+                            if (entry.workout.routine.startsWith('legacy:')) {
+                              return <span className="routine-legacy">{entry.workout.routine}</span>;
+                            }
+
+                            // Handle new routine format
+                            const routine = getRoutineById(entry.workout.routine);
+                            if (routine) {
+                              return (
+                                <span className={`routine ${routine.isLegacy ? 'routine-legacy' : ''}`}>
+                                  {routine.name}: {routine.exercises.map(ex => ex.name).join(', ')}
+                                </span>
+                              );
+                            }
+
+                            return <span className="routine-unknown">{entry.workout.routine}</span>;
+                          })()}
+                        </div>
+                      )}
                       {entry.workout.content && (
                         <div className="workout-content">
                           {entry.workout.content}

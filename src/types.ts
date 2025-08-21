@@ -16,7 +16,20 @@ export interface Running {
   performance: number | 'none';
 }
 
+export interface Exercise {
+  name: string;
+  reps?: string;
+}
+
+export interface Routine {
+  id: string;
+  name: string;
+  exercises: Exercise[];
+  isLegacy?: boolean;
+}
+
 export interface Workout {
+  routine?: string; // routine ID or legacy string
   level: 'low' | 'mid' | 'high' | 'base' | 'off';
   content: string;
 }

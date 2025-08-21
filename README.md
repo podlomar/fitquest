@@ -84,6 +84,7 @@ Add your fitness data to `data.yml` using this structure:
       url: "http://example.com/track"
     performance: 2  # 1-5 stars or 'none'
   workout:
+    routine: "squads, knee push ups"
     level: mid  # 'low', 'mid', 'high', 'base', 'off'
     content: "12d 8k"
   stretching: true

@@ -1,10 +1,14 @@
 import { PredefinedTrack } from "../../types";
+import { getAllRoutines, getRoutineForDay } from "../../data/routines";
 
 interface Props {
   predefinedTracks: PredefinedTrack[];
 }
 
 export const AddEntryForm = ({ predefinedTracks }: Props) => {
+  const allRoutines = getAllRoutines();
+  const availableRoutines = allRoutines.filter(routine => !routine.isLegacy);
+
   return (
     <form id="addEntryForm" className="entry-form" action="/add-entry" method="POST" style={{ display: "none" }}>
       <h2>Add New Fitness Entry</h2>
@@ -43,10 +47,10 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
           </div>
           <div className="form-group">
             <label htmlFor="performance">Performance (1-5):</label>
-            <select id="performance" name="performance">
+            <select id="performance" name="performance" defaultValue="2">
               <option value="none">None</option>
               <option value="1">1 ⭐</option>
-              <option value="2" selected>2 ⭐⭐</option>
+              <option value="2">2 ⭐⭐</option>
               <option value="3">3 ⭐⭐⭐</option>
               <option value="4">4 ⭐⭐⭐⭐</option>
               <option value="5">5 ⭐⭐⭐⭐⭐</option>
@@ -59,10 +63,23 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         <h3>💪 Workout</h3>
         <div className="form-row">
           <div className="form-group">
+            <label htmlFor="workoutRoutine">Routine:</label>
+            <select id="workoutRoutine" name="workoutRoutine">
+              <option value="">None (manual entry)</option>
+              {availableRoutines.map((routine) => (
+                <option key={routine.id} value={routine.id}>
+                  {routine.name}: {routine.exercises.map(ex => ex.name).join(', ')}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group">
             <label htmlFor="workoutLevel">Level:</label>
-            <select id="workoutLevel" name="workoutLevel">
+            <select id="workoutLevel" name="workoutLevel" defaultValue="mid">
               <option value="low">Low</option>
-              <option value="mid" selected>Mid</option>
+              <option value="mid">Mid</option>
               <option value="high">High</option>
               <option value="base">Base</option>
               <option value="off">Off</option>
@@ -81,8 +98,8 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="stretching">Stretching:</label>
-            <select id="stretching" name="stretching">
-              <option value="true" selected>Yes ✓</option>
+            <select id="stretching" name="stretching" defaultValue="true">
+              <option value="true">Yes ✓</option>
               <option value="false">No ✗</option>
             </select>
           </div>

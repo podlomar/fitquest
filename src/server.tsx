@@ -183,6 +183,7 @@ app.post('/add-entry', (req: Request, res: Response) => {
       selectedTrack,
       trackProgress,
       performance,
+      workoutRoutine,
       workoutLevel,
       workoutContent,
       stretching,
@@ -209,6 +210,7 @@ app.post('/add-entry', (req: Request, res: Response) => {
         performance: performance === 'none' ? 'none' : parseInt(performance) || 1
       },
       workout: workoutLevel === 'rest' ? 'rest' : {
+        routine: workoutRoutine || undefined,
         level: workoutLevel as 'low' | 'mid' | 'high' | 'base' | 'off',
         content: workoutContent || ''
       },

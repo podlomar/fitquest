@@ -1,5 +1,54 @@
 document.getElementById('date').value = new Date().toISOString().split('T')[0];
 
+// Weekly routines data structure
+const weeklyRoutines = {
+  0: { name: 'Sunday', exercises: ['yoga flow', 'stretching'] }, // Sunday
+  1: { name: 'Monday', exercises: ['squats', 'push ups'] },
+  2: { name: 'Tuesday', exercises: ['lunges', 'planks'] },
+  3: { name: 'Wednesday', exercises: ['squats', 'glute bridges'] },
+  4: { name: 'Thursday', exercises: ['deadlifts', 'pull ups'] },
+  5: { name: 'Friday', exercises: ['squats', 'dips'] },
+  6: { name: 'Saturday', exercises: ['cardio intervals', 'core workout'] }
+};
+
+// Suggest routine based on selected date
+function suggestRoutineForDate() {
+  const dateInput = document.getElementById('date');
+  const routineSelect = document.getElementById('workoutRoutine');
+
+  if (dateInput.value) {
+    const selectedDate = new Date(dateInput.value);
+    const dayOfWeek = selectedDate.getDay();
+    const dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const routineId = dayNames[dayOfWeek];
+
+    // Find the matching routine option
+    const routineOptions = routineSelect.options;
+    for (let i = 0; i < routineOptions.length; i++) {
+      const option = routineOptions[i];
+      if (option.value === routineId) {
+        routineSelect.selectedIndex = i;
+        break;
+      }
+    }
+  }
+}
+
+// Toggle workout content field based on level
+function toggleWorkoutContent() {
+  const workoutLevel = document.getElementById('workoutLevel').value;
+  const workoutContent = document.getElementById('workoutContent');
+  const workoutContentGroup = workoutContent.closest('.form-group');
+
+  // Hide content field for 'rest' level
+  if (workoutLevel === 'rest') {
+    workoutContentGroup.style.display = 'none';
+    workoutContent.value = '';
+  } else {
+    workoutContentGroup.style.display = 'block';
+  }
+}
+
 document.getElementById('addEntryBtn').addEventListener('click', function () {
   const form = document.getElementById('addEntryForm');
   form.style.display = form.style.display === 'none' ? 'block' : 'none';
@@ -43,6 +92,13 @@ function updateTrackInfo() {
 
 document.getElementById('stairsType').addEventListener('change', toggleStairsFields);
 document.getElementById('selectedTrack').addEventListener('change', updateTrackInfo);
+document.getElementById('date').addEventListener('change', suggestRoutineForDate);
+document.getElementById('workoutLevel').addEventListener('change', toggleWorkoutContent);
+
+// Initialize form state
+toggleStairsFields();
+toggleWorkoutContent();
+suggestRoutineForDate();
 
 // Hide messages after 5 seconds
 setTimeout(function () {
