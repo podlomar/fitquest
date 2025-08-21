@@ -37,8 +37,7 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
                 <SummaryCard icon="🧘‍♀️" value={stats.stretchingStreak} label="Stretching Streak" />
                 <SummaryCard icon="⭐" value={stats.avgPerformance > 0 ? stats.avgPerformance : '-'} label="Avg Performance" />
                 <SummaryCard icon="🏢" value={stats.bestStairsTime ? stats.bestStairsTime : '-'} label="Best 8 Flights" />
-                <SummaryCard icon="⚖️" value={stats.currentWeight ? stats.currentWeight : '-'} label="Current Weight" />
-                <SummaryCard icon="📈" value={stats.weightChange ? `${stats.weightChange > 0 ? '+' : ''}${stats.weightChange} kg` : '-'} label="Weight Change" />
+                <SummaryCard icon="⚖️" value={stats.weight !== null ? stats.weight : '-'} label="Current Weight" />
               </div>
             </div>
 

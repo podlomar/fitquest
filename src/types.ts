@@ -53,6 +53,5 @@ export interface Statistics {
   stretchingStreak: number;
   avgPerformance: number;
   bestStairsTime: string | null;
-  currentWeight: number | null;
-  weightChange: number | null;
+  weight: number | null;
 }

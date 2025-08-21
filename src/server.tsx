@@ -73,8 +73,7 @@ function calculateStats(data: FitnessEntry[]): Statistics {
     stretchingStreak: 0,
     avgPerformance: 0,
     bestStairsTime: null,
-    currentWeight: null,
-    weightChange: null
+    weight: null
   };
 
   // Calculate total distance
@@ -134,27 +133,19 @@ function calculateStats(data: FitnessEntry[]): Statistics {
     stats.bestStairsTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
   }
 
-  // Calculate weight statistics
-  // Find current weight (most recent non-'none' weight)
-  let currentWeight: number | null = null;
-  let previousWeight: number | null = null;
-  let foundCurrent = false;
+  // Find avarage weight for last seven entries
+  let weightSum: number = 0;
+  let weightCount: number = 0;
 
-  for (const entry of data) {
-    if (entry.weight && entry.weight !== 'none') {
-      if (!foundCurrent) {
-        currentWeight = entry.weight as number;
-        foundCurrent = true;
-      } else {
-        previousWeight = entry.weight as number;
-        break;
-      }
+  for (const entry of data.slice(0, 7)) {
+    if (entry.weight !== 'none') {
+      weightSum += entry.weight;
+      weightCount++;
     }
   }
 
-  stats.currentWeight = currentWeight;
-  if (currentWeight !== null && previousWeight !== null) {
-    stats.weightChange = Math.round((currentWeight - previousWeight) * 10) / 10;
+  if (weightCount > 0) {
+    stats.weight = Math.round((weightSum / weightCount) * 10) / 10;
   }
 
   return stats;
