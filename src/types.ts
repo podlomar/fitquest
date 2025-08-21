@@ -29,8 +29,7 @@ export interface Routine {
 }
 
 export interface Workout {
-  routine?: string; // routine ID or legacy string
-  level: 'low' | 'mid' | 'high' | 'base' | 'off';
+  routine: string;
   content: string;
 }
 

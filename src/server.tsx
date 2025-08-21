@@ -211,7 +211,6 @@ app.post('/add-entry', (req: Request, res: Response) => {
       },
       workout: workoutLevel === 'rest' ? 'rest' : {
         routine: workoutRoutine || undefined,
-        level: workoutLevel as 'low' | 'mid' | 'high' | 'base' | 'off',
         content: workoutContent || ''
       },
       stretching: stretching === 'true',

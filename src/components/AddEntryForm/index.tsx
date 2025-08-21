@@ -76,17 +76,6 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         </div>
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="workoutLevel">Level:</label>
-            <select id="workoutLevel" name="workoutLevel" defaultValue="mid">
-              <option value="low">Low</option>
-              <option value="mid">Mid</option>
-              <option value="high">High</option>
-              <option value="base">Base</option>
-              <option value="off">Off</option>
-              <option value="rest">Rest</option>
-            </select>
-          </div>
-          <div className="form-group">
             <label htmlFor="workoutContent">Content:</label>
             <input type="text" id="workoutContent" name="workoutContent" placeholder="e.g., 12d 8k" />
           </div>

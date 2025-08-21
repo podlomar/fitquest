@@ -87,36 +87,29 @@ export const FitnessTable = ({ data }: Props) => {
                     <span className="workout-rest">Rest</span>
                   ) : (
                     <div className="workout-info">
-                      <span className="level level-{entry.workout.level}">
-                        {entry.workout.level}
-                      </span>
-                      {entry.workout.routine && (
-                        <div className="workout-routine">
-                          {(() => {
-                            // Handle legacy routine format
-                            if (entry.workout.routine.startsWith('legacy:')) {
-                              return <span className="routine-legacy">{entry.workout.routine}</span>;
-                            }
+                      <div className="workout-routine">
+                        {(() => {
+                          // Handle legacy routine format
+                          if (entry.workout.routine.startsWith('legacy:')) {
+                            return <span className="routine-legacy">{entry.workout.routine}</span>;
+                          }
 
-                            // Handle new routine format
-                            const routine = getRoutineById(entry.workout.routine);
-                            if (routine) {
-                              return (
-                                <span className={`routine ${routine.isLegacy ? 'routine-legacy' : ''}`}>
-                                  {routine.name}: {routine.exercises.map(ex => ex.name).join(', ')}
-                                </span>
-                              );
-                            }
+                          // Handle new routine format
+                          const routine = getRoutineById(entry.workout.routine);
+                          if (routine) {
+                            return (
+                              <span className={`routine ${routine.isLegacy ? 'routine-legacy' : ''}`}>
+                                {routine.name}: {routine.exercises.map(ex => ex.name).join(', ')}
+                              </span>
+                            );
+                          }
 
-                            return <span className="routine-unknown">{entry.workout.routine}</span>;
-                          })()}
-                        </div>
-                      )}
-                      {entry.workout.content && (
-                        <div className="workout-content">
-                          {entry.workout.content}
-                        </div>
-                      )}
+                          return <span className="routine-unknown">{entry.workout.routine}</span>;
+                        })()}
+                      </div>
+                      <div className="workout-content">
+                        {entry.workout.content}
+                      </div>
                     </div>
                   )
                 ) : (
