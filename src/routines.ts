@@ -1,4 +1,4 @@
-import { Routine } from '../types';
+import { Routine } from './types';
 
 export const weeklyRoutines: Record<string, Routine> = {
   monday: {
@@ -58,25 +58,8 @@ export const weeklyRoutines: Record<string, Routine> = {
   }
 };
 
-export const legacyRoutine: Routine = {
-  id: 'legacy',
-  name: 'Legacy',
-  exercises: [
-    { name: 'squats' },
-    { name: 'knee push ups' }
-  ],
-  isLegacy: true
-};
-
 export const getAllRoutines = (): Routine[] => {
-  return [...Object.values(weeklyRoutines), legacyRoutine];
-};
-
-export const getRoutineById = (id: string): Routine | undefined => {
-  if (id === 'legacy') {
-    return legacyRoutine;
-  }
-  return weeklyRoutines[id];
+  return Object.values(weeklyRoutines);
 };
 
 export const getRoutineForDay = (date: Date): Routine => {

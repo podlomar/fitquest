@@ -1,5 +1,4 @@
 import { FitnessEntry } from "../../types";
-import { getRoutineById, legacyRoutine } from "../../data/routines";
 
 const formatDate = (dateStr: string): string => {
   const date = new Date(dateStr);
@@ -88,24 +87,7 @@ export const FitnessTable = ({ data }: Props) => {
                   ) : (
                     <div className="workout-info">
                       <div className="workout-routine">
-                        {(() => {
-                          // Handle legacy routine format
-                          if (entry.workout.routine.startsWith('legacy:')) {
-                            return <span className="routine-legacy">{entry.workout.routine}</span>;
-                          }
-
-                          // Handle new routine format
-                          const routine = getRoutineById(entry.workout.routine);
-                          if (routine) {
-                            return (
-                              <span className={`routine ${routine.isLegacy ? 'routine-legacy' : ''}`}>
-                                {routine.name}: {routine.exercises.map(ex => ex.name).join(', ')}
-                              </span>
-                            );
-                          }
-
-                          return <span className="routine-unknown">{entry.workout.routine}</span>;
-                        })()}
+                        {entry.workout.routine}
                       </div>
                       <div className="workout-content">
                         {entry.workout.content}

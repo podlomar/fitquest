@@ -1,5 +1,5 @@
 import { PredefinedTrack } from "../../types";
-import { getAllRoutines, getRoutineForDay } from "../../data/routines";
+import { getAllRoutines, getRoutineForDay } from "../../routines";
 
 interface Props {
   predefinedTracks: PredefinedTrack[];

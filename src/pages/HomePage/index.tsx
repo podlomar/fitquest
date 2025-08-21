@@ -32,12 +32,12 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
           <main>
             <div className="summary-section">
               <div className="summary-cards">
-                <SummaryCard icon="📅" value={stats.totalDays} label="Total Days" />
+                <SummaryCard icon="🗓️" value={stats.totalDays} label="Total Days" />
                 <SummaryCard icon="🏃‍♂️" value={stats.totalDistance} label="Total Distance" />
                 <SummaryCard icon="🧘‍♀️" value={stats.stretchingStreak} label="Stretching Streak" />
                 <SummaryCard icon="⭐" value={stats.avgPerformance > 0 ? stats.avgPerformance : '-'} label="Avg Performance" />
                 <SummaryCard icon="🏢" value={stats.bestStairsTime ? stats.bestStairsTime : '-'} label="Best 8 Flights" />
-                <SummaryCard icon="⚖️" value={stats.weight !== null ? stats.weight : '-'} label="Current Weight" />
+                <SummaryCard icon="⏲️" value={stats.weight !== null ? stats.weight : '-'} label="Current Weight" />
               </div>
             </div>
 

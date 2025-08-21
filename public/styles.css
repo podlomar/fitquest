@@ -265,32 +265,6 @@ main {
 }
 
 .workout-routine {
-  margin-top: var(--spacing-xs);
-}
-
-.routine {
-  display: inline-block;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-sm);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-
-.routine-legacy {
-  background: rgba(255, 152, 0, 0.2);
-  border-color: rgba(255, 152, 0, 0.3);
-  color: var(--warning-color);
-}
-
-.routine-unknown {
-  background: rgba(244, 67, 54, 0.2);
-  border-color: rgba(244, 67, 54, 0.3);
-  color: var(--error-color);
-}
-
-.level {
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-md);
   font-size: var(--font-size-xs);
@@ -298,21 +272,8 @@ main {
   text-transform: uppercase;
   display: inline-block;
   width: fit-content;
-}
-
-.level-low {
   background: var(--level-low-bg);
   color: var(--success-color);
-}
-
-.level-mid {
-  background: var(--level-mid-bg);
-  color: var(--warning-color);
-}
-
-.level-high {
-  background: var(--level-high-bg);
-  color: var(--error-color);
 }
 
 .workout-content {
