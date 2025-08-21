@@ -6,15 +6,15 @@ export const weeklyRoutines: Record<string, Routine> = {
     name: 'Monday',
     exercises: [
       { name: 'squats' },
-      { name: 'push ups' }
+      { name: 'knee push ups' }
     ]
   },
   tuesday: {
     id: 'tuesday',
     name: 'Tuesday',
     exercises: [
-      { name: 'lunges' },
-      { name: 'planks' }
+      { name: 'ring rows' },
+      { name: 'front plank' }
     ]
   },
   wednesday: {
@@ -29,39 +29,38 @@ export const weeklyRoutines: Record<string, Routine> = {
     id: 'thursday',
     name: 'Thursday',
     exercises: [
-      { name: 'deadlifts' },
-      { name: 'pull ups' }
+      { name: 'knee push ups' },
+      { name: 'side plank' }
     ]
   },
   friday: {
     id: 'friday',
     name: 'Friday',
     exercises: [
-      { name: 'squats' },
-      { name: 'dips' }
+      { name: 'ring rows' },
+      { name: 'squats' }
     ]
   },
   saturday: {
     id: 'saturday',
     name: 'Saturday',
     exercises: [
-      { name: 'cardio intervals' },
-      { name: 'core workout' }
+      { name: 'knee push ups' },
+      { name: 'glute bridges' }
     ]
   },
   sunday: {
     id: 'sunday',
     name: 'Sunday',
     exercises: [
-      { name: 'yoga flow' },
-      { name: 'stretching' }
+      { name: 'yoga flow' }
     ]
   }
 };
 
 export const legacyRoutine: Routine = {
   id: 'legacy',
-  name: 'Legacy: squats, knee push ups',
+  name: 'Legacy',
   exercises: [
     { name: 'squats' },
     { name: 'knee push ups' }

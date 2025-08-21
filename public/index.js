@@ -1,17 +1,5 @@
 document.getElementById('date').value = new Date().toISOString().split('T')[0];
 
-// Weekly routines data structure
-const weeklyRoutines = {
-  0: { name: 'Sunday', exercises: ['yoga flow', 'stretching'] }, // Sunday
-  1: { name: 'Monday', exercises: ['squats', 'push ups'] },
-  2: { name: 'Tuesday', exercises: ['lunges', 'planks'] },
-  3: { name: 'Wednesday', exercises: ['squats', 'glute bridges'] },
-  4: { name: 'Thursday', exercises: ['deadlifts', 'pull ups'] },
-  5: { name: 'Friday', exercises: ['squats', 'dips'] },
-  6: { name: 'Saturday', exercises: ['cardio intervals', 'core workout'] }
-};
-
-// Suggest routine based on selected date
 function suggestRoutineForDate() {
   const dateInput = document.getElementById('date');
   const routineSelect = document.getElementById('workoutRoutine');
