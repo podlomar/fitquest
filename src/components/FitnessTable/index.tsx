@@ -1,4 +1,5 @@
 import { FitnessEntry } from "../../types";
+import styles from "./styles.module.css";
 
 const formatDate = (dateStr: string): string => {
   const date = new Date(dateStr);
@@ -20,15 +21,15 @@ interface Props {
 export const FitnessTable = ({ data }: Props) => {
   if (data.length === 0) {
     return (
-      <div className="no-data">
+      <div className={styles.noData}>
         <p>No fitness data available</p>
       </div>
     );
   }
 
   return (
-    <div className="table-wrapper">
-      <table className="fitness-table">
+    <div className={styles.tableWrapper}>
+      <table className={styles.fitnessTable}>
         <thead>
           <tr>
             <th>Date</th>
@@ -50,7 +51,7 @@ export const FitnessTable = ({ data }: Props) => {
               <td data-label="Track">
                 {entry.running && entry.running.track ? (
                   entry.running.track.url ? (
-                    <a href={entry.running.track.url} target="_blank" className="track-link">
+                    <a href={entry.running.track.url} target="_blank" className={styles.trackLink}>
                       {entry.running.track.name} ({entry.running.track.length} km)
                     </a>
                   ) : (
@@ -62,7 +63,7 @@ export const FitnessTable = ({ data }: Props) => {
               </td>
               <td data-label="Progress">
                 {entry.running && entry.running.track && entry.running.track.progress ? (
-                  <span className="progress">
+                  <span className={styles.progress}>
                     {entry.running.track.progress}
                   </span>
                 ) : (
@@ -71,25 +72,25 @@ export const FitnessTable = ({ data }: Props) => {
               </td>
               <td data-label="Performance">
                 {entry.running && entry.running.performance && entry.running.performance !== 'none' ? (
-                  <div className="performance-rating">
+                  <div className={styles.performanceRating}>
                     {Array.from({ length: 5 }, (_, i) => (
-                      <span key={i} className={`star ${i < Number(entry.running.performance) ? 'filled' : ''}`}>★</span>
+                      <span key={i} className={`${styles.star} ${i < Number(entry.running.performance) ? styles.filled : ''}`}>★</span>
                     ))}
                   </div>
                 ) : (
-                  <span className="performance-none">-</span>
+                  <span className={styles.performanceNone}>-</span>
                 )}
               </td>
               <td data-label="Workout">
                 {entry.workout ? (
                   entry.workout === 'rest' ? (
-                    <span className="workout-rest">Rest</span>
+                    <span className={styles.workoutRest}>Rest</span>
                   ) : (
-                    <div className="workout-info">
-                      <div className="workout-routine">
+                    <div className={styles.workoutInfo}>
+                      <div className={styles.workoutRoutine}>
                         {entry.workout.routine}
                       </div>
-                      <div className="workout-content">
+                      <div className={styles.workoutContent}>
                         {entry.workout.content}
                       </div>
                     </div>
@@ -99,21 +100,21 @@ export const FitnessTable = ({ data }: Props) => {
                 )}
               </td>
               <td data-label="Stretching">
-                <span className={`status ${entry.stretching ? 'yes' : 'no'}`}>
+                <span className={`${styles.status} ${entry.stretching ? styles.yes : styles.no}`}>
                   {entry.stretching ? '✓' : '✗'}
                 </span>
               </td>
               <td data-label="Stairs">
                 {entry.stairs ? (
                   entry.stairs === 'away' ? (
-                    <span className="stairs-away">Away</span>
+                    <span className={styles.stairsAway}>Away</span>
                   ) : entry.stairs === 'none' ? (
-                    <span className="stairs-none">-</span>
+                    <span className={styles.stairsNone}>-</span>
                   ) : entry.stairs.floors ? (
-                    <div className="stairs-info">
-                      <span className="stairs-floors">{entry.stairs.floors} floors</span>
+                    <div className={styles.stairsInfo}>
+                      <span className={styles.stairsFloors}>{entry.stairs.floors} floors</span>
                       {entry.stairs.time && (
-                        <span className="stairs-time">{entry.stairs.time}</span>
+                        <span className={styles.stairsTime}>{entry.stairs.time}</span>
                       )}
                     </div>
                   ) : (
@@ -125,9 +126,9 @@ export const FitnessTable = ({ data }: Props) => {
               </td>
               <td data-label="Weight">
                 {entry.weight && entry.weight !== 'none' ? (
-                  <span className="weight">{entry.weight} kg</span>
+                  <span className={styles.weight}>{entry.weight} kg</span>
                 ) : (
-                  <span className="weight-none">-</span>
+                  <span className={styles.weightNone}>-</span>
                 )}
               </td>
             </tr>

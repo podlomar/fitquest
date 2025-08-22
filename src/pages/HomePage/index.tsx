@@ -20,6 +20,7 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Fitness Tracker</title>
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="/server.css" />
 
         <script defer src="/index.js"></script>
       </head>

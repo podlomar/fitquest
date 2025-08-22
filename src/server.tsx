@@ -32,7 +32,7 @@ const predefinedTracks: PredefinedTrack[] = [
   }
 ];
 
-app.use(express.static('public'));
+app.use(express.static('static'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -43,7 +43,7 @@ const render = async (component: JSX.Element, res: express.Response) => {
 
 function loadData(): FitnessEntry[] {
   try {
-    const fileContents = fs.readFileSync('./data.yml', 'utf8');
+    const fileContents = fs.readFileSync('../data.yml', 'utf8');
     const data = yaml.load(fileContents) as FitnessEntry[];
     return data || [];
   } catch (e) {

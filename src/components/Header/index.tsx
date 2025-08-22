@@ -1,21 +1,23 @@
+import styles from './styles.module.css';
+
 interface Props {
   alert: 'success' | 'error' | null;
 }
 
 export const Header = ({ alert }: Props) => {
   return (
-    <header>
+    <header className={styles.header}>
       <h1>🏃‍♂️ Fitness Tracker</h1>
       <p>Your fitness journey at a glance</p>
 
       {alert === 'success' && (
-        <div className="message success">✅ Entry added successfully!</div>
+        <div className={`${styles.message} ${styles.success}`}>✅ Entry added successfully!</div>
       )}
       {alert === 'error' && (
-        <div className="message error">❌ Error adding entry. Please try again.</div>
+        <div className={`${styles.message} ${styles.error}`}>❌ Error adding entry. Please try again.</div>
       )}
 
-      <button id="addEntryBtn" className="add-entry-btn">+ Add New Entry</button>
+      <button id="addEntryBtn" className={styles.addEntryBtn}>+ Add New Entry</button>
     </header>
   );
 };

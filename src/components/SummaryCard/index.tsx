@@ -1,3 +1,5 @@
+import styles from './styles.module.css';
+
 interface Props {
   icon: string;
   value: number | string;
@@ -6,11 +8,11 @@ interface Props {
 
 export const SummaryCard = ({ icon, value, label }: Props) => {
   return (
-    <div className="summary-card">
-      <div className="summary-icon">{icon}</div>
-      <div className="summary-content">
-        <div className="summary-value">{value}</div>
-        <div className="summary-label">{label}</div>
+    <div className={styles.summaryCard}>
+      <div className={styles.summaryIcon}>{icon}</div>
+      <div className={styles.summaryContent}>
+        <div className={styles.summaryValue}>{value}</div>
+        <div className={styles.summaryLabel}>{label}</div>
       </div>
     </div>
   );

@@ -35,14 +35,23 @@ const watchTs = () => {
   return gulp.watch('src/**/*.{ts,tsx}', buildTs);
 }
 
-// const copyStyles = () => {
-//   return gulp.src(['dist/server.css'])
-//     .pipe(gulp.dest('dist/static'));
-// }
+const copyStyles = () => {
+  return gulp.src(['dist/server.css'])
+    .pipe(gulp.dest('dist/static'));
+}
 
-// const watchStyles = () => {
-//   return gulp.watch('dist/server.css', copyStyles);
-// }
+const copyStaticFiles = () => {
+  return gulp.src('src/static/**/*', { encoding: false })
+    .pipe(gulp.dest('dist/static'));
+}
+
+const watchStyles = () => {
+  return gulp.watch('dist/server.css', copyStyles);
+}
+
+const watchStaticFiles = () => {
+  return gulp.watch('src/static/**/*', copyStaticFiles);
+}
 
 const clean = () => {
   return fs.rm('dist', { recursive: true, force: true });
@@ -51,18 +60,15 @@ const clean = () => {
 export const build = gulp.series(
   clean,
   buildTs,
-  // copyStaticFiles,
-  // copyStyles,
-  // copyPosts
+  copyStaticFiles,
+  copyStyles,
 );
 
 export const watch = gulp.series(
   build,
   gulp.parallel(
     watchTs,
-    // watchStaticFiles,
-    // watchPosts,
-    // watchStyles
+    watchStaticFiles,
+    watchStyles
   )
 );
-

@@ -17,8 +17,9 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "jsx": "react-jsx",
-    "types": [
-      "node"
+    "typeRoots": [
+      "./src/types",
+      "./node_modules/@types"
     ]
   },
   "include": [

@@ -1,6 +1,8 @@
+import styles from './styles.module.css';
+
 export const Footer = () => {
   return (
-    <footer>
+    <footer className={styles.footer}>
       <p>Keep up the great work! 💪</p>
     </footer>
   );
