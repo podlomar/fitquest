@@ -4,6 +4,8 @@ import { AddEntryForm } from "../../components/AddEntryForm";
 import { FitnessTable } from "../../components/FitnessTable";
 import { SummaryCard } from "../../components/SummaryCard";
 import { Footer } from "../../components/Footer";
+import './global.css';
+import styles from './styles.module.css';
 
 interface Props {
   alert: 'success' | 'error' | null;
@@ -19,20 +21,19 @@ export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Fitness Tracker</title>
-        <link rel="stylesheet" href="/styles.css" />
         <link rel="stylesheet" href="/server.css" />
 
         <script defer src="/index.js"></script>
       </head>
 
       <body>
-        <div className="container">
+        <div className={styles.container}>
           <Header alert={alert} />
           <AddEntryForm predefinedTracks={predefinedTracks} />
 
           <main>
-            <div className="summary-section">
-              <div className="summary-cards">
+            <div className={styles.summarySection}>
+              <div className={styles.summaryCards}>
                 <SummaryCard icon="🗓️" value={stats.totalDays} label="Total Days" />
                 <SummaryCard icon="🏃‍♂️" value={stats.totalDistance} label="Total Distance" />
                 <SummaryCard icon="🧘‍♀️" value={stats.stretchingStreak} label="Stretching Streak" />
