@@ -65,7 +65,7 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
           <div className="form-group">
             <label htmlFor="workoutRoutine">Routine:</label>
             <select id="workoutRoutine" name="workoutRoutine">
-              <option value="">None (manual entry)</option>
+              <option value="rest">Rest</option>
               {availableRoutines.map((routine) => (
                 <option key={routine.id} value={routine.id}>
                   {routine.name}: {routine.exercises.map(ex => ex.name).join(', ')}
@@ -104,7 +104,7 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         <div className="form-row" id="stairsFields">
           <div className="form-group">
             <label htmlFor="stairsFloors">Floors:</label>
-            <input type="number" id="stairsFloors" name="stairsFloors" min="1" value="8" />
+            <input type="number" id="stairsFloors" name="stairsFloors" min="1" defaultValue="8" />
           </div>
           <div className="form-group">
             <label htmlFor="stairsTime">Time (mm:ss):</label>

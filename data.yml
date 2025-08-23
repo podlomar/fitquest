@@ -1,3 +1,17 @@
+- date: '2025-08-22'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 4
+  workout:
+    routine: friday
+    content: sq 12+12+12, rr 8+7+6
+  stretching: false
+  stairs: away
+  weight: 108.8
 - date: '2025-08-21'
   running:
     track:

@@ -58,7 +58,7 @@ function saveData(data: FitnessEntry[]): boolean {
       flowLevel: -1,
       indent: 2
     });
-    fs.writeFileSync('./data.yml', yamlContent, 'utf8');
+    fs.writeFileSync('../data.yml', yamlContent, 'utf8');
     return true;
   } catch (e) {
     console.error('Error saving data.yml:', e);

@@ -20,16 +20,19 @@ function suggestRoutineForDate() {
       }
     }
   }
+
+  toggleWorkoutContent();
 }
 
-// Toggle workout content field based on level
+// Toggle workout content field based on routine
 function toggleWorkoutContent() {
-  const workoutLevel = document.getElementById('workoutLevel').value;
+  const workoutRoutine = document.getElementById('workoutRoutine').value;
   const workoutContent = document.getElementById('workoutContent');
   const workoutContentGroup = workoutContent.closest('.form-group');
 
-  // Hide content field for 'rest' level
-  if (workoutLevel === 'rest') {
+  // Hide content field for 'rest' routine
+  console.log('Toggling workout content for routine:', workoutRoutine);
+  if (workoutRoutine === 'rest') {
     workoutContentGroup.style.display = 'none';
     workoutContent.value = '';
   } else {
@@ -60,7 +63,6 @@ function toggleStairsFields() {
 // Update track info display when track is selected
 function updateTrackInfo() {
   const selectedTrack = document.getElementById('selectedTrack');
-  const trackInfoDisplay = document.getElementById('trackInfoDisplay');
   const trackLength = document.getElementById('trackLength');
 
   if (selectedTrack.value) {
@@ -81,12 +83,12 @@ function updateTrackInfo() {
 document.getElementById('stairsType').addEventListener('change', toggleStairsFields);
 document.getElementById('selectedTrack').addEventListener('change', updateTrackInfo);
 document.getElementById('date').addEventListener('change', suggestRoutineForDate);
-document.getElementById('workoutLevel').addEventListener('change', toggleWorkoutContent);
+document.getElementById('workoutRoutine').addEventListener('change', toggleWorkoutContent);
 
 // Initialize form state
 toggleStairsFields();
-toggleWorkoutContent();
 suggestRoutineForDate();
+
 
 // Hide messages after 5 seconds
 setTimeout(function () {
