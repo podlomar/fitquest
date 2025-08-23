@@ -1,10 +1,10 @@
+import { Layout } from "../../components/Layout";
 import { FitnessEntry, PredefinedTrack, Statistics } from "../../types";
 import { Header } from "../../components/Header";
 import { AddEntryForm } from "../../components/AddEntryForm";
 import { FitnessTable } from "../../components/FitnessTable";
 import { SummaryCard } from "../../components/SummaryCard";
 import { Footer } from "../../components/Footer";
-import './global.css';
 import styles from './styles.module.css';
 
 interface Props {
@@ -16,39 +16,28 @@ interface Props {
 
 export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fitness Tracker</title>
-        <link rel="stylesheet" href="/server.css" />
+    <Layout>
+      <div className={styles.container}>
+        <Header alert={alert} />
+        <AddEntryForm predefinedTracks={predefinedTracks} />
 
-        <script defer src="/index.js"></script>
-      </head>
-
-      <body>
-        <div className={styles.container}>
-          <Header alert={alert} />
-          <AddEntryForm predefinedTracks={predefinedTracks} />
-
-          <main>
-            <div className={styles.summarySection}>
-              <div className={styles.summaryCards}>
-                <SummaryCard icon="🗓️" value={stats.totalDays} label="Total Days" />
-                <SummaryCard icon="🏃‍♂️" value={stats.totalDistance} label="Total Distance" />
-                <SummaryCard icon="🧘‍♀️" value={stats.stretchingStreak} label="Stretching Streak" />
-                <SummaryCard icon="⭐" value={stats.avgPerformance > 0 ? stats.avgPerformance : '-'} label="Avg Performance" />
-                <SummaryCard icon="🏢" value={stats.bestStairsTime ? stats.bestStairsTime : '-'} label="Best 8 Flights" />
-                <SummaryCard icon="⏲️" value={stats.weight !== null ? stats.weight : '-'} label="Current Weight" />
-              </div>
+        <main>
+          <div className={styles.summarySection}>
+            <div className={styles.summaryCards}>
+              <SummaryCard icon="🗓️" value={stats.totalDays} label="Total Days" />
+              <SummaryCard icon="🏃‍♂️" value={stats.totalDistance} label="Total Distance" />
+              <SummaryCard icon="🧘‍♀️" value={stats.stretchingStreak} label="Stretching Streak" />
+              <SummaryCard icon="⭐" value={stats.avgPerformance > 0 ? stats.avgPerformance : '-'} label="Avg Performance" />
+              <SummaryCard icon="🏢" value={stats.bestStairsTime ? stats.bestStairsTime : '-'} label="Best 8 Flights" />
+              <SummaryCard icon="⏲️" value={stats.weight !== null ? stats.weight : '-'} label="Current Weight" />
             </div>
+          </div>
 
-            <FitnessTable data={data} />
-          </main>
+          <FitnessTable data={data} />
+        </main>
 
-          <Footer />
-        </div>
-      </body>
-    </html>
+        <Footer />
+      </div>
+    </Layout>
   );
 };
