@@ -162,6 +162,15 @@
   font-size: var(--font-size-xl);
 }
 
+.weight {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.weightNone {
+  color: var(--text-muted);
+}
+
 @media (max-width: 48rem) {
 
   .fitnessTable,

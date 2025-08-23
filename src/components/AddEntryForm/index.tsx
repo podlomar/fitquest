@@ -1,5 +1,6 @@
 import { PredefinedTrack } from "../../types";
 import { getAllRoutines, getRoutineForDay } from "../../routines";
+import styles from "./styles.module.css";
 
 interface Props {
   predefinedTracks: PredefinedTrack[];
@@ -10,19 +11,19 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
   const availableRoutines = allRoutines.filter(routine => !routine.isLegacy);
 
   return (
-    <form id="addEntryForm" className="entry-form" action="/add-entry" method="POST" style={{ display: "none" }}>
+    <form id="addEntryForm" className={styles.entryForm} action="/add-entry" method="POST" style={{ display: "none" }}>
       <h2>Add New Fitness Entry</h2>
-      <div className="form-row">
-        <div className="form-group">
+      <div className={styles.formRow}>
+        <div className={styles.formGroup}>
           <label htmlFor="date">Date:</label>
           <input type="date" id="date" name="date" required />
         </div>
       </div>
 
-      <div className="form-section">
+      <div className={styles.formSection}>
         <h3>🏃‍♂️ Running</h3>
-        <div className="form-row">
-          <div className="form-group">
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
             <label htmlFor="selectedTrack">Track:</label>
             <select id="selectedTrack" name="selectedTrack" required>
               <option value="">Select a track...</option>
@@ -33,19 +34,19 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
               ))}
             </select>
           </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="trackProgress">Progress:</label>
             <input type="text" id="trackProgress" name="trackProgress" placeholder="e.g., full, flight 6" required />
           </div>
         </div>
-        <div className="form-row">
-          <div className="form-group track-info">
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
             <label>Track Info:</label>
-            <div id="trackInfoDisplay" className="track-info-display">
+            <div id="trackInfoDisplay" className={styles.trackInfo}>
               <span id="trackLength">Select a track to see details</span>
             </div>
           </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="performance">Performance (1-5):</label>
             <select id="performance" name="performance" defaultValue="2">
               <option value="none">None</option>
@@ -59,10 +60,10 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         </div>
       </div>
 
-      <div className="form-section">
+      <div className={styles.formSection}>
         <h3>💪 Workout</h3>
-        <div className="form-row">
-          <div className="form-group">
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
             <label htmlFor="workoutRoutine">Routine:</label>
             <select id="workoutRoutine" name="workoutRoutine">
               <option value="rest">Rest</option>
@@ -74,25 +75,25 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
             </select>
           </div>
         </div>
-        <div className="form-row">
-          <div className="form-group">
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
             <label htmlFor="workoutContent">Content:</label>
             <input type="text" id="workoutContent" name="workoutContent" placeholder="e.g., 12d 8k" />
           </div>
         </div>
       </div>
 
-      <div className="form-section">
+      <div className={styles.formSection}>
         <h3>🧘‍♀️ Other Activities</h3>
-        <div className="form-row">
-          <div className="form-group">
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
             <label htmlFor="stretching">Stretching:</label>
             <select id="stretching" name="stretching" defaultValue="true">
               <option value="true">Yes ✓</option>
               <option value="false">No ✗</option>
             </select>
           </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="stairsType">Stairs:</label>
             <select id="stairsType" name="stairsType">
               <option value="data">Stairs Data</option>
@@ -101,31 +102,31 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
             </select>
           </div>
         </div>
-        <div className="form-row" id="stairsFields">
-          <div className="form-group">
+        <div className={styles.formRow} id="stairsFields">
+          <div className={styles.formGroup}>
             <label htmlFor="stairsFloors">Floors:</label>
             <input type="number" id="stairsFloors" name="stairsFloors" min="1" defaultValue="8" />
           </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="stairsTime">Time (mm:ss):</label>
             <input type="text" id="stairsTime" name="stairsTime" placeholder="1:15" pattern="[0-9]+:[0-5][0-9]" />
           </div>
         </div>
-        <div className="form-row">
-          <div className="form-group">
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
             <label htmlFor="weight">Weight (kg):</label>
             <input type="number" id="weight" name="weight" step="0.1" min="0" placeholder="70.5" />
           </div>
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label>&nbsp;</label>
             <small style={{ color: 'var(--text-muted)', marginTop: '5px' }}>Leave empty for 'none'</small>
           </div>
         </div>
       </div>
 
-      <div className="form-actions">
-        <button type="submit" className="submit-btn">Save Entry</button>
-        <button type="button" id="cancelBtn" className="cancel-btn">Cancel</button>
+      <div className={styles.formActions}>
+        <button type="submit" className={styles.submitBtn}>Save Entry</button>
+        <button type="button" id="cancelBtn" className={styles.cancelBtn}>Cancel</button>
       </div>
     </form>
   );
