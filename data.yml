@@ -1,3 +1,15 @@
+- date: '2025-08-24'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 3
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: 107.5
 - date: '2025-08-23'
   running:
     track:
@@ -8,7 +20,11 @@
     performance: 3
   workout:
     routine: saturday
-    content: kpu 8+8+8, gb 3x45
+    results:
+      - id: kneePushUps
+        reps: 3x8
+      - id: gluteBridges
+        holds: 3x45s
   stretching: true
   stairs: away
   weight: 108.8
@@ -22,7 +38,11 @@
     performance: 4
   workout:
     routine: friday
-    content: sq 12+12+12, rr 8+7+6
+    results:
+      - id: squats
+        reps: 3x12
+      - id: ringRows
+        reps: 8+7+6
   stretching: false
   stairs: away
   weight: 108.8
@@ -36,7 +56,11 @@
     performance: 3
   workout:
     routine: thursday
-    content: kpu 8+8+6, sp 30s es
+    results:
+      - id: kneePushUps
+        reps: 8+8+6
+      - id: sidePlanks
+        holds: 30s
   stretching: true
   stairs: away
   weight: 109.1
@@ -50,7 +74,11 @@
     performance: 3
   workout:
     routine: wednesday
-    content: sq 3x10, gb 3x45s
+    results:
+      - id: squats
+        reps: 3x10
+      - id: gluteBridges
+        holds: 3x45s
   stretching: true
   stairs: away
   weight: 108.2
@@ -64,7 +92,13 @@
     performance: 3
   workout:
     routine: legacy
-    content: 18d 10k
+    results:
+      - id: squats
+        reps: 18
+      - id: kneePushUps
+        reps: 10
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: 107.5
@@ -78,7 +112,13 @@
     performance: 3
   workout:
     routine: legacy
-    content: 18d 10k
+    results:
+      - id: squats
+        reps: 18
+      - id: kneePushUps
+        reps: 10
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: 107.9
@@ -92,7 +132,13 @@
     performance: 3
   workout:
     routine: legacy
-    content: 12d 10k
+    results:
+      - id: squats
+        reps: 18
+      - id: kneePushUps
+        reps: 10
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: 107.4
@@ -106,7 +152,13 @@
     performance: 2
   workout:
     routine: legacy
-    content: 12d 8k
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 10
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: 107.4
@@ -120,7 +172,13 @@
     performance: 2
   workout:
     routine: legacy
-    content: 12d 8k
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: none
@@ -134,7 +192,13 @@
     performance: 1
   workout:
     routine: legacy
-    content: 12d 8k
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: none
@@ -148,12 +212,18 @@
     performance: 3
   workout:
     routine: legacy
-    content: 12d 8k
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: none
 - date: 2025-08-12T00:00:00.000Z
-  running:
+  running:  
     track:
       name: Město
       length: 2.3
@@ -162,7 +232,13 @@
     performance: 2
   workout:
     routine: legacy
-    content: 12d 8k
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: none
@@ -176,7 +252,13 @@
     performance: 4
   workout:
     routine: legacy
-    content: 12d 8k
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: none
@@ -190,7 +272,13 @@
     performance: 4
   workout:
     routine: legacy
-    content: 12d 8k
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: none
@@ -204,7 +292,13 @@
     performance: 3
   workout:
     routine: legacy
-    content: 8d 5k
+    results:
+      - id: squats
+        reps: 8
+      - id: kneePushUps
+        reps: 5
+      - id: ringRows
+        reps: 0
   stretching: true
   stairs: away
   weight: none
@@ -353,7 +447,13 @@
     performance: none
   workout:
     routine: legacy
-    content: 20+20d 12k 10r
+    results:
+      - id: squats
+        reps: 20+20
+      - id: kneePushUps
+        reps: 12
+      - id: ringRows
+        reps: 10
   stretching: false
   stairs:
     floors: 8
@@ -392,7 +492,13 @@
     performance: none
   workout:
     routine: legacy
-    content: 20+20d 12k 8r
+    results:
+      - id: squats
+        reps: 20+20
+      - id: kneePushUps
+        reps: 12
+      - id: ringRows
+        reps: 8
   stretching: false
   stairs: away
   weight: none
@@ -419,7 +525,13 @@
     performance: none
   workout:
     routine: legacy
-    content: 0d 12k
+    results:
+      - id: squats
+        reps: 0
+      - id: kneePushUps
+        reps: 12
+      - id: ringRows
+        reps: 0
   stretching: false
   stairs:
     floors: 8
@@ -447,7 +559,13 @@
     performance: none
   workout:
     routine: legacy
-    content: 12d 10k
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 10
+      - id: ringRows
+        reps: 0
   stretching: false
   stairs:
     floors: 8
@@ -486,7 +604,13 @@
     performance: none
   workout:
     routine: legacy
-    content: 12d 8k
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
   stretching: false
   stairs: none
 - date: 2025-07-17T00:00:00.000Z

@@ -3,8 +3,8 @@ import express, { Request, Response } from 'express';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import { prerenderToNodeStream } from 'react-dom/static';
-import { HomePage } from './pages/HomePage';
-import { FitnessEntry, Statistics, PredefinedTrack } from './types';
+import { HomePage } from './pages/HomePage/index.js';
+import { FitnessEntry, Statistics, PredefinedTrack, WorkoutResult, ExerciseResult } from './types';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -177,6 +177,8 @@ app.post('/add-entry', (req: Request, res: Response) => {
       workoutRoutine,
       workoutLevel,
       workoutContent,
+      useStructuredContent,
+      exercises,
       stretching,
       stairsType,
       stairsFloors,
@@ -202,7 +204,27 @@ app.post('/add-entry', (req: Request, res: Response) => {
       },
       workout: workoutLevel === 'rest' ? 'rest' : {
         routine: workoutRoutine || undefined,
-        content: workoutContent || ''
+        content: useStructuredContent === 'on' && exercises ?
+          (() => {
+            const structuredContent: WorkoutResult = {};
+            Object.keys(exercises).forEach(exerciseName => {
+              const exercise = exercises[exerciseName];
+              let exerciseDetail: ExerciseResult;
+
+              // Create the appropriate union type based on what's provided
+              if (exercise.reps) {
+                exerciseDetail = { reps: exercise.reps };
+              } else if (exercise.holds) {
+                exerciseDetail = { holds: exercise.holds };
+              } else {
+                return; // Skip if no valid data
+              }
+
+              structuredContent[exerciseName] = exerciseDetail;
+            });
+            return structuredContent;
+          })() :
+          workoutContent || ''
       },
       stretching: stretching === 'true',
       stairs: stairsType === 'away' ? 'away' :

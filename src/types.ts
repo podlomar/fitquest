@@ -1,3 +1,5 @@
+import type { ExerciseId } from "./routines";
+
 export interface Track {
   name: string;
   length: number;
@@ -16,21 +18,21 @@ export interface Running {
   performance: number | 'none';
 }
 
-export interface Exercise {
-  name: string;
-  reps?: string;
+export interface RepsResult {
+  id: ExerciseId;
+  reps: string;
 }
 
-export interface Routine {
-  id: string;
-  name: string;
-  exercises: Exercise[];
-  isLegacy?: boolean;
+export interface HoldsResult {
+  id: ExerciseId;
+  holds: string;
 }
+
+export type ExerciseResult = RepsResult | HoldsResult;
 
 export interface Workout {
   routine: string;
-  content: string;
+  results: ExerciseResult[];
 }
 
 export interface StairsData {

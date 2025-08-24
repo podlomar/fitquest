@@ -1,5 +1,5 @@
 import { PredefinedTrack } from "../../types";
-import { getAllRoutines, getRoutineForDay } from "../../routines";
+import { getSelectableRoutines, getRoutineForDay } from "../../routines";
 import styles from "./styles.module.css";
 
 interface Props {
@@ -7,8 +7,7 @@ interface Props {
 }
 
 export const AddEntryForm = ({ predefinedTracks }: Props) => {
-  const allRoutines = getAllRoutines();
-  const availableRoutines = allRoutines.filter(routine => !routine.isLegacy);
+  const availableRoutines = getSelectableRoutines();
 
   return (
     <form id="addEntryForm" className={styles.entryForm} action="/add-entry" method="POST" style={{ display: "none" }}>
@@ -69,7 +68,7 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
               <option value="rest">Rest</option>
               {availableRoutines.map((routine) => (
                 <option key={routine.id} value={routine.id}>
-                  {routine.name}: {routine.exercises.map(ex => ex.name).join(', ')}
+                  {routine.name}: {routine.exercises.join(', ')}
                 </option>
               ))}
             </select>
@@ -77,8 +76,22 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         </div>
         <div className={styles.formRow}>
           <div className={styles.formGroup}>
+            <label>
+              <input type="checkbox" id="useStructuredContent" name="useStructuredContent" />
+              Use structured exercise format
+            </label>
+          </div>
+        </div>
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
             <label htmlFor="workoutContent">Content:</label>
             <input type="text" id="workoutContent" name="workoutContent" placeholder="e.g., 12d 8k" />
+          </div>
+        </div>
+        <div id="exerciseFields" className={styles.exerciseFields} style={{ display: 'none' }}>
+          <h4>Exercise Details</h4>
+          <div id="exerciseInputs" className={styles.exerciseInputs}>
+            {/* Dynamic exercise inputs will be inserted here */}
           </div>
         </div>
       </div>

@@ -1,65 +1,105 @@
-import { Routine } from './types';
+export interface Exercise {
+  id: string;
+  name: string;
+  execution: 'reps' | 'holds';
+}
+
+export const exerciseIds = [
+  'squats',
+  'kneePushUps',
+  'ringRows',
+  'frontPlanks',
+  'gluteBridges',
+  'sidePlanks'
+] as const;
+
+export type ExerciseId = typeof exerciseIds[number];
+
+export const exercises: Record<ExerciseId, Exercise> = {
+  squats: {
+    id: 'squats',
+    name: 'Squats',
+    execution: 'reps'
+  },
+  kneePushUps: {
+    id: 'kneePushUps',
+    name: 'Knee Push Ups',
+    execution: 'reps'
+  },
+  ringRows: {
+    id: 'ringRows',
+    name: 'Ring Rows',
+    execution: 'reps'
+  },
+  frontPlanks: {
+    id: 'frontPlanks',
+    name: 'Front Planks',
+    execution: 'holds'
+  },
+  gluteBridges: {
+    id: 'gluteBridges',
+    name: 'Glute Bridges',
+    execution: 'reps'
+  },
+  sidePlanks: {
+    id: 'sidePlanks',
+    name: 'Side Planks',
+    execution: 'holds'
+  }
+};
+
+export const getExerciseById = (id: ExerciseId): Exercise => {
+  return exercises[id];
+};
+
+export interface Routine {
+  id: string;
+  name: string;
+  exercises: ExerciseId[];
+}
 
 export const weeklyRoutines: Record<string, Routine> = {
   monday: {
     id: 'monday',
     name: 'Monday',
-    exercises: [
-      { name: 'squats' },
-      { name: 'knee push ups' }
-    ]
+    exercises: ['squats', 'kneePushUps']
   },
   tuesday: {
     id: 'tuesday',
     name: 'Tuesday',
-    exercises: [
-      { name: 'ring rows' },
-      { name: 'front plank' }
-    ]
+    exercises: ['ringRows', 'frontPlanks']
   },
   wednesday: {
     id: 'wednesday',
     name: 'Wednesday',
-    exercises: [
-      { name: 'squats' },
-      { name: 'glute bridges' }
-    ]
+    exercises: ['squats', 'gluteBridges']
   },
   thursday: {
     id: 'thursday',
     name: 'Thursday',
-    exercises: [
-      { name: 'knee push ups' },
-      { name: 'side plank' }
-    ]
+    exercises: ['kneePushUps', 'sidePlanks']
   },
   friday: {
     id: 'friday',
     name: 'Friday',
-    exercises: [
-      { name: 'ring rows' },
-      { name: 'squats' }
-    ]
+    exercises: ['ringRows', 'squats']
   },
   saturday: {
     id: 'saturday',
     name: 'Saturday',
-    exercises: [
-      { name: 'knee push ups' },
-      { name: 'glute bridges' }
-    ]
+    exercises: ['kneePushUps', 'gluteBridges']
   },
-  sunday: {
-    id: 'sunday',
-    name: 'Sunday',
-    exercises: [
-      { name: 'yoga flow' }
-    ]
-  }
+  legacy: {
+    id: 'legacy',
+    name: 'Legacy Routine',
+    exercises: ['squats', 'kneePushUps', 'ringRows']
+  },
 };
 
-export const getAllRoutines = (): Routine[] => {
-  return Object.values(weeklyRoutines);
+export const getSelectableRoutines = (): Routine[] => {
+  return Object.values(weeklyRoutines).filter(
+    (routine) => routine.id !== 'legacy'
+  );
 };
 
 export const getRoutineForDay = (date: Date): Routine => {

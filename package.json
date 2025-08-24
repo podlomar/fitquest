@@ -7,8 +7,7 @@
   "scripts": {
     "start": "cd dist && node server.js",
     "dev": "gulp watch --color && nodemon",
-    "build": "tsc",
-    "watch": "tsc -w"
+    "build": "gulp build --color"
   },
   "keywords": [
     "fitness",

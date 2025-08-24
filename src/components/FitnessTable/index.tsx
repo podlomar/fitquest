@@ -1,4 +1,5 @@
 import { FitnessEntry } from "../../types";
+import { getExerciseById } from "../../routines";
 import styles from "./styles.module.css";
 
 const formatDate = (dateStr: string): string => {
@@ -91,7 +92,27 @@ export const FitnessTable = ({ data }: Props) => {
                         {entry.workout.routine}
                       </div>
                       <div className={styles.workoutContent}>
-                        {entry.workout.content}
+                        <div className={styles.structuredContent}>
+                          {entry.workout.results.map((result) => (
+                            <div key={result.id} className={styles.exerciseDetail}>
+                              <span className={styles.exerciseName}>
+                                {getExerciseById(result.id).name}:
+                              </span>
+                              <span className={styles.exerciseValues}>
+                                {'reps' in result ? (
+                                  <span className={styles.exerciseMetric}>
+                                    reps: {result.reps}
+                                  </span>
+                                ) : null}
+                                {'holds' in result ? (
+                                  <span className={styles.exerciseMetric}>
+                                    holds: {result.holds}
+                                  </span>
+                                ) : null}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   )
