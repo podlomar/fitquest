@@ -6,6 +6,8 @@ import { prerenderToNodeStream } from 'react-dom/static';
 import { HomePage } from './pages/HomePage/index.js';
 import { FitnessEntry, Statistics, PredefinedTrack, ExerciseResult } from './types';
 import { weeklyRoutines, getExerciseById, type ExerciseId } from './routines';
+import { ExerciseFields } from './components/ExerciseFields/index.js';
+import { renderToStaticMarkup } from 'react-dom/server';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -156,7 +158,7 @@ function calculateStats(data: FitnessEntry[]): Statistics {
 app.get('/api/exercise-fields', (req: Request, res: Response) => {
   const { workoutRoutine } = req.query;
 
-  // If structured content is not enabled or no routine selected, return empty
+  // If no routine selected or rest, return empty
   if (!workoutRoutine || workoutRoutine === 'rest') {
     res.send('');
     return;
@@ -168,30 +170,9 @@ app.get('/api/exercise-fields', (req: Request, res: Response) => {
     return;
   }
 
-  // Generate HTML for exercise inputs
-  let html = '<h4>Exercise Details</h4>';
-
-  routine.exercises.forEach(exerciseId => {
-    const exercise = getExerciseById(exerciseId);
-    const isHolds = exercise.execution === 'holds';
-
-    html += `
-      <div class="exercise-input-group">
-        <h5>${exercise.name}</h5>
-        <div class="exercise-details">
-          <div class="form-group">
-            <label for="${exercise.id}_${exercise.execution}">${isHolds ? 'Holds' : 'Reps'}:</label>
-            <input 
-              type="text" 
-              id="${exercise.id}_${exercise.execution}" 
-              name="exercises[${exercise.id}][${exercise.execution}]" 
-              placeholder="${isHolds ? 'e.g., 30s' : 'e.g., 10+10+8'}" 
-            />
-          </div>
-        </div>
-      </div>
-    `;
-  });
+  const html = renderToStaticMarkup(
+    <ExerciseFields exerciseIds={routine.exercises} />
+  );
 
   res.send(html);
 });
@@ -220,8 +201,6 @@ app.post('/add-entry', (req: Request, res: Response) => {
       trackProgress,
       performance,
       workoutRoutine,
-      workoutLevel,
-      workoutContent,
       useStructuredContent,
       exercises,
       stretching,

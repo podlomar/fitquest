@@ -1,5 +1,6 @@
 import { PredefinedTrack } from "../../types";
-import { getSelectableRoutines, getRoutineForDay } from "../../routines";
+import { getSelectableRoutines, getRoutineForDay, weeklyRoutines } from "../../routines";
+import { ExerciseFields } from "../ExerciseFields";
 import styles from "./styles.module.css";
 
 interface Props {
@@ -8,6 +9,11 @@ interface Props {
 
 export const AddEntryForm = ({ predefinedTracks }: Props) => {
   const availableRoutines = getSelectableRoutines();
+
+  // Get today's routine for initial render
+  const today = new Date();
+  const todayRoutine = getRoutineForDay(today);
+  const initialExercises = todayRoutine ? weeklyRoutines[todayRoutine.id]?.exercises || [] : [];
 
   return (
     <form id="addEntryForm" className={styles.entryForm} action="/add-entry" method="POST" style={{ display: "none" }}>
@@ -70,7 +76,7 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
               hx-get="/api/exercise-fields"
               hx-trigger="change"
               hx-target="#exerciseInputs"
-              hx-include="[name='workoutRoutine'], [name='useStructuredContent']"
+              hx-include="[name='workoutRoutine']"
             >
               <option value="rest">Rest</option>
               {availableRoutines.map((routine) => (
@@ -83,7 +89,7 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         </div>
         <div id="exerciseFields" className={styles.exerciseFields}>
           <div id="exerciseInputs" className={styles.exerciseInputs}>
-            {/* Dynamic exercise inputs will be loaded here via HTMX */}
+            <ExerciseFields exerciseIds={initialExercises} />
           </div>
         </div>
       </div>
