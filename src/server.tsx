@@ -4,7 +4,8 @@ import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import { prerenderToNodeStream } from 'react-dom/static';
 import { HomePage } from './pages/HomePage/index.js';
-import { FitnessEntry, Statistics, PredefinedTrack, WorkoutResult, ExerciseResult } from './types';
+import { FitnessEntry, Statistics, PredefinedTrack, ExerciseResult } from './types';
+import { weeklyRoutines, getExerciseById, type ExerciseId } from './routines';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -151,6 +152,50 @@ function calculateStats(data: FitnessEntry[]): Statistics {
   return stats;
 }
 
+// API endpoint for dynamic exercise fields
+app.get('/api/exercise-fields', (req: Request, res: Response) => {
+  const { workoutRoutine } = req.query;
+
+  // If structured content is not enabled or no routine selected, return empty
+  if (!workoutRoutine || workoutRoutine === 'rest') {
+    res.send('');
+    return;
+  }
+
+  const routine = weeklyRoutines[workoutRoutine as string];
+  if (!routine) {
+    res.send('');
+    return;
+  }
+
+  // Generate HTML for exercise inputs
+  let html = '<h4>Exercise Details</h4>';
+
+  routine.exercises.forEach(exerciseId => {
+    const exercise = getExerciseById(exerciseId);
+    const isHolds = exercise.execution === 'holds';
+
+    html += `
+      <div class="exercise-input-group">
+        <h5>${exercise.name}</h5>
+        <div class="exercise-details">
+          <div class="form-group">
+            <label for="${exercise.id}_${exercise.execution}">${isHolds ? 'Holds' : 'Reps'}:</label>
+            <input 
+              type="text" 
+              id="${exercise.id}_${exercise.execution}" 
+              name="exercises[${exercise.id}][${exercise.execution}]" 
+              placeholder="${isHolds ? 'e.g., 30s' : 'e.g., 10+10+8'}" 
+            />
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  res.send(html);
+});
+
 app.get('/', (req: Request, res: Response) => {
   const data = loadData();
   const stats = calculateStats(data);
@@ -202,29 +247,30 @@ app.post('/add-entry', (req: Request, res: Response) => {
         },
         performance: performance === 'none' ? 'none' : parseInt(performance) || 1
       },
-      workout: workoutLevel === 'rest' ? 'rest' : {
-        routine: workoutRoutine || undefined,
-        content: useStructuredContent === 'on' && exercises ?
+      workout: workoutRoutine === 'rest' ? 'rest' : {
+        routine: workoutRoutine || '',
+        results: useStructuredContent === 'on' && exercises ?
           (() => {
-            const structuredContent: WorkoutResult = {};
+            const results: ExerciseResult[] = [];
             Object.keys(exercises).forEach(exerciseName => {
               const exercise = exercises[exerciseName];
-              let exerciseDetail: ExerciseResult;
 
-              // Create the appropriate union type based on what's provided
+              // Create the appropriate result type based on what's provided
               if (exercise.reps) {
-                exerciseDetail = { reps: exercise.reps };
+                results.push({
+                  id: exerciseName as ExerciseId,
+                  reps: exercise.reps
+                });
               } else if (exercise.holds) {
-                exerciseDetail = { holds: exercise.holds };
-              } else {
-                return; // Skip if no valid data
+                results.push({
+                  id: exerciseName as ExerciseId,
+                  holds: exercise.holds
+                });
               }
-
-              structuredContent[exerciseName] = exerciseDetail;
             });
-            return structuredContent;
+            return results;
           })() :
-          workoutContent || ''
+          [] // Empty array for non-structured content
       },
       stretching: stretching === 'true',
       stairs: stairsType === 'away' ? 'away' :

@@ -64,7 +64,14 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         <div className={styles.formRow}>
           <div className={styles.formGroup}>
             <label htmlFor="workoutRoutine">Routine:</label>
-            <select id="workoutRoutine" name="workoutRoutine">
+            <select
+              id="workoutRoutine"
+              name="workoutRoutine"
+              hx-get="/api/exercise-fields"
+              hx-trigger="change"
+              hx-target="#exerciseInputs"
+              hx-include="[name='workoutRoutine'], [name='useStructuredContent']"
+            >
               <option value="rest">Rest</option>
               {availableRoutines.map((routine) => (
                 <option key={routine.id} value={routine.id}>
@@ -74,24 +81,9 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
             </select>
           </div>
         </div>
-        <div className={styles.formRow}>
-          <div className={styles.formGroup}>
-            <label>
-              <input type="checkbox" id="useStructuredContent" name="useStructuredContent" />
-              Use structured exercise format
-            </label>
-          </div>
-        </div>
-        <div className={styles.formRow}>
-          <div className={styles.formGroup}>
-            <label htmlFor="workoutContent">Content:</label>
-            <input type="text" id="workoutContent" name="workoutContent" placeholder="e.g., 12d 8k" />
-          </div>
-        </div>
-        <div id="exerciseFields" className={styles.exerciseFields} style={{ display: 'none' }}>
-          <h4>Exercise Details</h4>
+        <div id="exerciseFields" className={styles.exerciseFields}>
           <div id="exerciseInputs" className={styles.exerciseInputs}>
-            {/* Dynamic exercise inputs will be inserted here */}
+            {/* Dynamic exercise inputs will be loaded here via HTMX */}
           </div>
         </div>
       </div>

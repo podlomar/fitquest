@@ -133,29 +133,9 @@ function toggleExerciseInputType(exerciseName) {
   exerciseDetails.insertBefore(newInputGroup, typeSelect.closest('.form-group'));
 }
 
-function toggleStructuredContent() {
-  const useStructured = document.getElementById('useStructuredContent').checked;
-  const exerciseFields = document.getElementById('exerciseFields');
-  const workoutContent = document.getElementById('workoutContent');
-  const routineSelect = document.getElementById('workoutRoutine');
-
-  if (useStructured) {
-    exerciseFields.style.display = 'block';
-    workoutContent.style.display = 'none';
-    generateExerciseInputs(routineSelect.value);
-  } else {
-    exerciseFields.style.display = 'none';
-    workoutContent.style.display = 'block';
-  }
-}
-
 function onRoutineChange() {
   const routineSelect = document.getElementById('workoutRoutine');
-  const useStructured = document.getElementById('useStructuredContent').checked;
-
-  if (useStructured) {
-    generateExerciseInputs(routineSelect.value);
-  }
+  generateExerciseInputs(routineSelect.value);
 }
 
 function suggestRoutineForDate() {
@@ -185,16 +165,6 @@ function suggestRoutineForDate() {
 // Toggle workout content field based on level
 function toggleWorkoutContent() {
   const workoutRoutine = document.getElementById('workoutRoutine').value;
-  const workoutContent = document.getElementById('workoutContent');
-  const workoutContentGroup = workoutContent.closest('.form-group');
-
-  // Hide content field for 'rest' level
-  if (workoutRoutine === 'rest') {
-    workoutContentGroup.style.display = 'none';
-    workoutContent.value = '';
-  } else {
-    workoutContentGroup.style.display = 'block';
-  }
 }
 
 document.getElementById('addEntryBtn').addEventListener('click', function () {
@@ -240,9 +210,7 @@ function updateTrackInfo() {
 document.getElementById('stairsType').addEventListener('change', toggleStairsFields);
 document.getElementById('selectedTrack').addEventListener('change', updateTrackInfo);
 document.getElementById('date').addEventListener('change', suggestRoutineForDate);
-document.getElementById('workoutLevel').addEventListener('change', toggleWorkoutContent);
 document.getElementById('workoutRoutine').addEventListener('change', onRoutineChange);
-document.getElementById('useStructuredContent').addEventListener('change', toggleStructuredContent);
 
 // Initialize form state
 toggleStairsFields();
