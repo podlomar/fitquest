@@ -1,0 +1,100 @@
+- date: 2025-08-10
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 4
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
+  stretching: true
+  stairs: away
+  weight: none
+- date: 2025-08-09
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      progress: flight 9
+      url: http://example.com/track-a
+    performance: 3
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 8
+      - id: kneePushUps
+        reps: 5
+      - id: ringRows
+        reps: 0
+  stretching: true
+  stairs: away
+  weight: none
+- date: 2025-08-08
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 1
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: none
+- date: 2025-08-07
+  running:
+    track:
+      name: Newton
+      length: 3.7
+      progress: Cihelná brána
+      url: http://example.com/track-a
+    performance: 2
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: none
+- date: 2025-08-06
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 3
+  workout: rest
+  stretching: true
+  stairs: away
+  weight: none
+- date: 2025-08-05
+  running:
+    track:
+      name: Folimanka
+      length: 6
+      progress: pole 10
+      url: http://example.com/track-a
+    performance: 4
+  workout: rest
+  stretching: true
+  stairs: away
+  weight: none
+- date: 2025-08-04
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: none

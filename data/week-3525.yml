@@ -1,0 +1,18 @@
+- date: '2025-08-25'
+  running:
+    track:
+      name: Folimanka
+      length: 6
+      progress: 10 pole
+      url: http://example.com/track-a
+    performance: 4
+  workout:
+    routine: monday
+    results:
+      - id: squats
+        reps: 12+12+20
+      - id: kneePushUps
+        reps: 8+8+6
+  stretching: true
+  stairs: away
+  weight: 108.2

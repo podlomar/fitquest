@@ -1,0 +1,96 @@
+- date: 2025-08-03
+  running:
+    track:
+      name: Folimanka
+      length: 6
+      progress: pole 10
+      url: http://example.com/track-a
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: none
+- date: 2025-08-02
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: none
+- date: 2025-08-01
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      progress: flight 8
+      url: http://example.com/track-a
+    performance: none
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: none
+- date: 2025-07-31
+  running:
+    track:
+      name: Folimanka
+      length: 6
+      progress: pole 10
+      url: http://example.com/track-a
+    performance: none
+  workout: rest
+  stretching: false
+  stairs:
+    floors: 8
+    time: '1:30'
+- date: 2025-07-30
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: none
+  workout: rest
+  stretching: false
+  stairs:
+    floors: 8
+    time: '1:05'
+- date: 2025-07-29
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: none
+  workout: rest
+  stretching: false
+  stairs:
+    floors: 8
+    time: '1:15'
+- date: 2025-07-28
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      progress: flight 8
+      url: http://example.com/track-a
+    performance: none
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 20+20
+      - id: kneePushUps
+        reps: 12
+      - id: ringRows
+        reps: 10
+  stretching: false
+  stairs:
+    floors: 8
+    time: '1:12'

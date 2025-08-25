@@ -5,6 +5,7 @@ import { AddEntryForm } from "../../components/AddEntryForm";
 import { FitnessTable } from "../../components/FitnessTable";
 import { SummaryCard } from "../../components/SummaryCard";
 import { Footer } from "../../components/Footer";
+import { WeekNavigation } from "../../components/WeekNavigation";
 import styles from './styles.module.css';
 
 interface Props {
@@ -12,17 +13,22 @@ interface Props {
   stats: Statistics;
   data: FitnessEntry[];
   predefinedTracks: PredefinedTrack[];
+  availableWeeks: string[];
+  selectedWeek: string;
 }
 
-export const HomePage = ({ alert, stats, data, predefinedTracks }: Props) => {
+export const HomePage = ({ alert, stats, data, predefinedTracks, availableWeeks, selectedWeek }: Props) => {
   return (
     <Layout>
       <div className={styles.container}>
         <Header alert={alert} />
         <AddEntryForm predefinedTracks={predefinedTracks} />
 
+        <WeekNavigation availableWeeks={availableWeeks} selectedWeek={selectedWeek} />
+
         <main>
           <div className={styles.summarySection}>
+            <h2 className={styles.statsTitle}>Global Statistics (All Weeks)</h2>
             <div className={styles.summaryCards}>
               <SummaryCard icon="🗓️" value={stats.totalDays} label="Total Days" />
               <SummaryCard icon="🏃‍♂️" value={stats.totalDistance} label="Total Distance" />

@@ -44,29 +44,84 @@ const render = async (component: JSX.Element, res: express.Response) => {
   prelude.pipe(res);
 };
 
-function loadData(): FitnessEntry[] {
+function loadWeekData(weekFile: string): FitnessEntry[] {
   try {
-    const fileContents = fs.readFileSync('../data.yml', 'utf8');
+    const fileContents = fs.readFileSync(`../data/${weekFile}`, 'utf8');
     const data = yaml.load(fileContents) as FitnessEntry[];
     return data || [];
   } catch (e) {
-    console.error('Error loading data.yml:', e);
+    console.error(`Error loading ${weekFile}:`, e);
     return [];
   }
 }
 
-function saveData(data: FitnessEntry[]): boolean {
+function loadAllData(): FitnessEntry[] {
+  try {
+    const weekFiles = fs.readdirSync('../data').filter(file => file.startsWith('week-') && file.endsWith('.yml'));
+    const allData: FitnessEntry[] = [];
+
+    weekFiles.forEach(weekFile => {
+      const weekData = loadWeekData(weekFile);
+      allData.push(...weekData);
+    });
+
+    // Sort by date (newest first)
+    return allData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  } catch (e) {
+    console.error('Error loading week data:', e);
+    return [];
+  }
+}
+
+function getAvailableWeeks(): string[] {
+  try {
+    const weekFiles = fs.readdirSync('../data').filter(file => file.startsWith('week-') && file.endsWith('.yml'));
+    return weekFiles.map(file => file.replace('week-', '').replace('.yml', '')).sort().reverse();
+  } catch (e) {
+    console.error('Error getting available weeks:', e);
+    return [];
+  }
+}
+
+function getCurrentWeek(): string {
+  const now = new Date();
+  const year = now.getFullYear();
+  const weekNumber = getWeekNumber(now);
+  return `${weekNumber.toString().padStart(2, '0')}${year % 100}`;
+}
+
+function getWeekNumber(date: Date): number {
+  const start = new Date(date.getFullYear(), 0, 1);
+  const diff = date.getTime() - start.getTime();
+  const oneWeek = 1000 * 60 * 60 * 24 * 7;
+  return Math.ceil(diff / oneWeek);
+}
+
+function saveWeekData(weekFile: string, data: FitnessEntry[]): boolean {
   try {
     const yamlContent = yaml.dump(data, {
       flowLevel: -1,
       indent: 2
     });
-    fs.writeFileSync('../data.yml', yamlContent, 'utf8');
+    fs.writeFileSync(`../data/${weekFile}`, yamlContent, 'utf8');
     return true;
   } catch (e) {
-    console.error('Error saving data.yml:', e);
+    console.error(`Error saving ${weekFile}:`, e);
     return false;
   }
+}
+
+function addEntryToWeek(entry: FitnessEntry): boolean {
+  const entryDate = new Date(entry.date);
+  const year = entryDate.getFullYear();
+  const weekNumber = getWeekNumber(entryDate);
+  const weekId = `${weekNumber.toString().padStart(2, '0')}${year % 100}`;
+  const weekFile = `week-${weekId}.yml`;
+
+  const weekData = loadWeekData(weekFile);
+  weekData.unshift(entry);
+
+  return saveWeekData(weekFile, weekData);
 }
 
 function calculateStats(data: FitnessEntry[]): Statistics {
@@ -178,16 +233,23 @@ app.get('/api/exercise-fields', (req: Request, res: Response) => {
 });
 
 app.get('/', (req: Request, res: Response) => {
-  const data = loadData();
-  const stats = calculateStats(data);
+  const allData = loadAllData();
+  const stats = calculateStats(allData);
+
+  const availableWeeks = getAvailableWeeks();
+  const selectedWeek = req.query.week as string || getCurrentWeek();
+  const weekData = loadWeekData(`week-${selectedWeek}.yml`);
+
   const success = req.query.success === '1';
   const error = req.query.error === '1';
   render(
     <HomePage
       alert={success ? 'success' : error ? 'error' : null}
-      data={data}
+      data={weekData}
       stats={stats}
       predefinedTracks={predefinedTracks}
+      availableWeeks={availableWeeks}
+      selectedWeek={selectedWeek}
     />,
     res,
   );
@@ -260,10 +322,7 @@ app.post('/add-entry', (req: Request, res: Response) => {
       weight: weight === 'none' || weight === '' ? 'none' : parseFloat(weight) || 'none'
     };
 
-    const data = loadData();
-    data.unshift(newEntry);
-
-    if (saveData(data)) {
+    if (addEntryToWeek(newEntry)) {
       res.redirect('/?success=1');
     } else {
       res.redirect('/?error=1');

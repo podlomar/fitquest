@@ -1,0 +1,140 @@
+- date: 2025-08-17
+  running:
+    track:
+      name: Folimanka
+      length: 6
+      progress: pole 8
+      url: http://example.com/track-a
+    performance: 3
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 18
+      - id: kneePushUps
+        reps: 10
+      - id: ringRows
+        reps: 0
+  stretching: true
+  stairs: away
+  weight: 107.4
+- date: 2025-08-16
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      progress: flight 6
+      url: http://example.com/track-a
+    performance: 2
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 10
+      - id: ringRows
+        reps: 0
+  stretching: true
+  stairs: away
+  weight: 107.4
+- date: 2025-08-15
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 2
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
+  stretching: true
+  stairs: away
+  weight: none
+- date: 2025-08-14
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 1
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
+  stretching: true
+  stairs: away
+  weight: none
+- date: 2025-08-13
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      progress: flight 6
+      url: http://example.com/track-a
+    performance: 3
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
+  stretching: true
+  stairs: away
+  weight: none
+- date: 2025-08-12
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 2
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
+  stretching: true
+  stairs: away
+  weight: none
+- date: 2025-08-11
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      progress: flight 10
+      url: http://example.com/track-a
+    performance: 4
+  workout:
+    routine: legacy
+    results:
+      - id: squats
+        reps: 12
+      - id: kneePushUps
+        reps: 8
+      - id: ringRows
+        reps: 0
+  stretching: true
+  stairs: away
+  weight: none
