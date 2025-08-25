@@ -7,6 +7,10 @@ interface Props {
   predefinedTracks: PredefinedTrack[];
 }
 
+const getCurrentDate = (): string => {
+  return new Date().toISOString().split('T')[0];
+};
+
 export const AddEntryForm = ({ predefinedTracks }: Props) => {
   const availableRoutines = getSelectableRoutines();
 
@@ -21,7 +25,7 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
           <label htmlFor="date">Date:</label>
-          <input type="date" id="date" name="date" required />
+          <input type="date" id="date" name="date" required defaultValue={getCurrentDate()} />
         </div>
       </div>
 

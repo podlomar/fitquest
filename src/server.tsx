@@ -201,7 +201,6 @@ app.post('/add-entry', (req: Request, res: Response) => {
       trackProgress,
       performance,
       workoutRoutine,
-      useStructuredContent,
       exercises,
       stretching,
       stairsType,
@@ -228,21 +227,21 @@ app.post('/add-entry', (req: Request, res: Response) => {
       },
       workout: workoutRoutine === 'rest' ? 'rest' : {
         routine: workoutRoutine || '',
-        results: useStructuredContent === 'on' && exercises ?
+        results: exercises ?
           (() => {
             const results: ExerciseResult[] = [];
-            Object.keys(exercises).forEach(exerciseName => {
-              const exercise = exercises[exerciseName];
+            Object.keys(exercises).forEach(exerciseId => {
+              const exercise = exercises[exerciseId];
 
               // Create the appropriate result type based on what's provided
               if (exercise.reps) {
                 results.push({
-                  id: exerciseName as ExerciseId,
+                  id: exerciseId as ExerciseId,
                   reps: exercise.reps
                 });
               } else if (exercise.holds) {
                 results.push({
-                  id: exerciseName as ExerciseId,
+                  id: exerciseId as ExerciseId,
                   holds: exercise.holds
                 });
               }

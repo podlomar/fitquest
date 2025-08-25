@@ -223,7 +223,7 @@
   stairs: away
   weight: none
 - date: 2025-08-12T00:00:00.000Z
-  running:  
+  running:
     track:
       name: Město
       length: 2.3
