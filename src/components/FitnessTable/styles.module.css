@@ -1,9 +1,8 @@
 .tableWrapper {
   overflow-x: auto;
-  background: var(--glass-bg);
+  background: var(--primary-bg);
   border-radius: var(--radius-md);
   backdrop-filter: blur(0.625rem);
-  box-shadow: var(--shadow-glass);
   border: 1px solid var(--glass-border);
 }
 
@@ -101,7 +100,7 @@
   color: var(--text-secondary);
   font-style: italic;
   padding: var(--spacing-xs) var(--spacing-sm);
-  background: var(--glass-bg);
+  background: var(--primary-bg);
   border-radius: var(--radius-sm);
 }
 
@@ -189,11 +188,10 @@
   }
 
   .fitnessTable tr {
-    background: var(--glass-bg);
+    background: var(--primary-bg);
     margin-bottom: var(--spacing-lg);
     border-radius: var(--radius-sm);
     padding: var(--spacing-lg);
-    box-shadow: var(--shadow-card);
   }
 
   .fitnessTable td {
@@ -245,7 +243,7 @@
 .exerciseDetail {
   display: flex;
   flex-direction: column;
-  background: var(--glass-bg);
+  background: var(--primary-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
   padding: var(--spacing-xs) var(--spacing-sm);

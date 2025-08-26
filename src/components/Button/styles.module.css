@@ -10,7 +10,6 @@
   text-decoration: none;
   cursor: pointer;
   transition: all var(--transition-normal);
-  box-shadow: var(--shadow-card);
   white-space: nowrap;
   user-select: none;
   position: relative;
@@ -19,7 +18,6 @@
 
 .button:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.5);
 }
 
 /* Size Variants */
@@ -75,24 +73,6 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Ghost Variant */
-.ghost {
-  background: transparent;
-  color: var(--text-secondary);
-  border: 1px solid transparent;
-  box-shadow: none;
-}
-
-.ghost:hover:not(.disabled) {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
-  border-color: var(--glass-border);
-}
-
-.ghost:active:not(.disabled) {
-  background: rgba(255, 255, 255, 0.05);
-}
-
 /* Danger Variant */
 .danger {
   background: linear-gradient(45deg, var(--error-color) 0%, #d32f2f 100%);
@@ -114,7 +94,6 @@
   opacity: 0.5;
   cursor: not-allowed;
   transform: none !important;
-  box-shadow: var(--shadow-card) !important;
 }
 
 /* Loading State (for future use) */

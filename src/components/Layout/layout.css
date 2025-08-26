@@ -1,7 +1,7 @@
 :root {
   /* Colors */
-  --primary-gradient: linear-gradient(135deg, #273238 0%, #101518 100%);
-  --text-primary: #e5e5e5;
+  --primary-gradient: linear-gradient(135deg, #111d41 0%, #04011b 100%);
+  --text-primary: #fff;
   --text-secondary: #b0b0b0;
   --text-muted: #666;
   --accent-primary: #4facfe;
@@ -12,14 +12,9 @@
   --star-color: #ffd700;
 
   /* Background colors */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-bg-hover: rgba(79, 172, 254, 0.1);
+  --primary-bg: #1f2639;
   --glass-border: rgba(255, 255, 255, 0.1);
   --level-low-bg: rgba(76, 175, 80, 0.3);
-
-  /* Shadows */
-  --shadow-glass: 0 0 0.5rem rgba(0, 0, 0, 0.3);
-  --shadow-card: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
 
   /* Spacing */
   --spacing-xs: 0.25rem;

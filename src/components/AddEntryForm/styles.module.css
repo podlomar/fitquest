@@ -1,11 +1,10 @@
 .entryForm {
   padding: var(--spacing-xl);
-  background: var(--glass-bg);
+  background: var(--primary-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   backdrop-filter: blur(10px);
   margin: var(--spacing-xl) 0;
-  box-shadow: var(--shadow-glass);
 }
 
 .entryForm h2 {
@@ -143,7 +142,7 @@
 }
 
 .exerciseInputGroup {
-  background: var(--glass-bg);
+  background: var(--primary-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
   padding: var(--spacing-md);

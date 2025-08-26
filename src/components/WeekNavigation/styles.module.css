@@ -1,11 +1,10 @@
 .weekNavigation {
   padding: var(--spacing-xl);
-  background: var(--glass-bg);
+  background: var(--primary-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   backdrop-filter: blur(10px);
   margin: var(--spacing-xl) 0;
-  box-shadow: var(--shadow-glass);
 }
 
 .navigationControls {
@@ -68,7 +67,6 @@
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-normal);
-  box-shadow: var(--shadow-card);
   font-family: var(--font-family);
 }
 

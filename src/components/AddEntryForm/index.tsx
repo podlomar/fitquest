@@ -142,7 +142,7 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
 
       <div className={styles.formActions}>
         <Button type="submit" variant="primary" size="md">Save Entry</Button>
-        <Button type="button" variant="ghost" size="md" className="cancel-btn">Cancel</Button>
+        <Button type="button" variant="secondary" size="md">Cancel</Button>
       </div>
     </form>
   );
