@@ -46,7 +46,7 @@ const copyStaticFiles = () => {
 }
 
 const watchStyles = () => {
-  return gulp.watch('dist/server.css', copyStyles);
+  return gulp.watch('src/**/*.css', gulp.series(buildTs, copyStyles));
 }
 
 const watchStaticFiles = () => {

@@ -80,7 +80,6 @@
 }
 
 .submitBtn {
-  background: var(--accent-gradient);
   color: white;
   border: none;
   padding: var(--spacing-md) var(--spacing-xl);

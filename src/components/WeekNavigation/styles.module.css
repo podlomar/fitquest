@@ -17,7 +17,6 @@
 }
 
 .navButton {
-  background: var(--accent-gradient);
   color: white;
   text-decoration: none;
   padding: var(--spacing-sm) var(--spacing-lg);
@@ -82,7 +81,6 @@
 }
 
 .goButton {
-  background: var(--accent-gradient);
   color: white;
   border: none;
   padding: var(--spacing-sm) var(--spacing-md);
@@ -110,10 +108,6 @@
   font-size: var(--font-size-lg);
   font-weight: 600;
   color: var(--accent-primary);
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 /* Mobile responsiveness */

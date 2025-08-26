@@ -1,7 +1,6 @@
 :root {
   /* Colors */
-  --primary-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  --accent-gradient: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+  --primary-gradient: linear-gradient(135deg, #273238 0%, #101518 100%);
   --text-primary: #e5e5e5;
   --text-secondary: #b0b0b0;
   --text-muted: #666;
@@ -17,8 +16,6 @@
   --glass-bg-hover: rgba(79, 172, 254, 0.1);
   --glass-border: rgba(255, 255, 255, 0.1);
   --level-low-bg: rgba(76, 175, 80, 0.3);
-  --level-mid-bg: rgba(255, 152, 0, 0.3);
-  --level-high-bg: rgba(244, 67, 54, 0.3);
 
   /* Shadows */
   --shadow-glass: 0 0 0.5rem rgba(0, 0, 0, 0.3);
@@ -72,6 +69,7 @@ html {
 
 body {
   background: var(--primary-gradient);
+  background-attachment: fixed;
   color: var(--text-primary);
   line-height: var(--line-height);
   min-height: 100vh;
