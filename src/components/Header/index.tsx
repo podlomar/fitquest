@@ -1,4 +1,5 @@
 import styles from './styles.module.css';
+import { Button } from '../Button';
 
 interface Props {
   alert: 'success' | 'error' | null;
@@ -17,7 +18,7 @@ export const Header = ({ alert }: Props) => {
         <div className={`${styles.message} ${styles.error}`}>❌ Error adding entry. Please try again.</div>
       )}
 
-      <button id="addEntryBtn" className={styles.addEntryBtn}>+ Add New Entry</button>
+      <Button id="addEntryBtn" variant="primary" size="lg">+ Add New Entry</Button>
     </header>
   );
 };

@@ -1,4 +1,5 @@
 import styles from './styles.module.css';
+import { Button } from '../Button';
 
 interface Props {
   availableWeeks: string[];
@@ -20,9 +21,9 @@ export const WeekNavigation = ({ availableWeeks, selectedWeek }: Props) => {
     <div className={styles.weekNavigation}>
       <div className={styles.navigationControls}>
         {prevWeek && (
-          <a href={`/?week=${prevWeek}`} className={styles.navButton}>
+          <Button variant="primary" size="sm" href={`/?week=${prevWeek}`}>
             ← Previous Week
-          </a>
+          </Button>
         )}
 
         <div className={styles.weekSelector}>
@@ -42,14 +43,16 @@ export const WeekNavigation = ({ availableWeeks, selectedWeek }: Props) => {
                 </option>
               ))}
             </select>
-            <button type="submit" className={styles.goButton}>Go</button>
+            <Button type="submit" variant="secondary" size="sm">
+              Go
+            </Button>
           </form>
         </div>
 
         {nextWeek && (
-          <a href={`/?week=${nextWeek}`} className={styles.navButton}>
+          <Button variant="primary" size="sm" href={`/?week=${nextWeek}`}>
             Next Week →
-          </a>
+          </Button>
         )}
       </div>
 

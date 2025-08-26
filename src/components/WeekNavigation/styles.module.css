@@ -16,27 +16,6 @@
   margin-bottom: var(--spacing-lg);
 }
 
-.navButton {
-  color: white;
-  text-decoration: none;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  transition: all var(--transition-normal);
-  box-shadow: var(--shadow-card);
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-family);
-}
-
-.navButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0.5rem 1rem rgba(79, 172, 254, 0.3);
-  text-decoration: none;
-  color: white;
-}
-
 .weekSelector {
   display: flex;
   align-items: center;
@@ -133,11 +112,6 @@
     min-width: 200px;
   }
 
-  .navButton {
-    min-width: 140px;
-    text-align: center;
-  }
-
   .weekNavigation {
     padding: var(--spacing-lg);
   }
@@ -150,14 +124,5 @@
 
   .weekSelect {
     min-width: 100%;
-  }
-
-  .navButton {
-    min-width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md);
-  }
-
-  .goButton {
-    width: 100%;
   }
 }

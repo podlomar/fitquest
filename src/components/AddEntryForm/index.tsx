@@ -1,6 +1,7 @@
 import { PredefinedTrack } from "../../types";
 import { getSelectableRoutines, getRoutineForDay, weeklyRoutines } from "../../routines";
 import { ExerciseFields } from "../ExerciseFields";
+import { Button } from "../Button";
 import styles from "./styles.module.css";
 
 interface Props {
@@ -140,8 +141,8 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
       </div>
 
       <div className={styles.formActions}>
-        <button type="submit" className={styles.submitBtn}>Save Entry</button>
-        <button type="button" id="cancelBtn" className={styles.cancelBtn}>Cancel</button>
+        <Button type="submit" variant="primary" size="md">Save Entry</Button>
+        <Button type="button" variant="ghost" size="md" className="cancel-btn">Cancel</Button>
       </div>
     </form>
   );

@@ -1,4 +1,22 @@
-- date: '2025-08-25'
+- date: 2025-08-26
+  running:
+    track:
+      name: Folimanka
+      length: 6
+      progress: 12 pole
+      url: http://example.com/track-a
+    performance: 4
+  workout:
+    routine: tuesday
+    results:
+      - id: ringRows
+        reps: 8+8+6
+      - id: frontPlanks
+        holds: 3x30
+  stretching: false
+  stairs: away
+  weight: 108.8
+- date: 2025-08-25
   running:
     track:
       name: Folimanka
