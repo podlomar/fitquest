@@ -14,6 +14,11 @@ const PORT = process.env.PORT || 3001;
 
 const predefinedTracks: PredefinedTrack[] = [
   {
+    name: "Blok",
+    length: 1.1,
+    url: "https://mapy.com/s/gefabamaja"
+  },
+  {
     name: "Město",
     length: 2.3,
     url: "https://mapy.com/s/kafolokugu"
