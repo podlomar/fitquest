@@ -1,4 +1,77 @@
-- date: 2025-08-26
+- date: '2025-08-30'
+  running:
+    track:
+      name: Blok
+      length: 1.1
+      progress: full
+      url: https://mapy.com/s/gefabamaja
+    performance: 2
+  workout:
+    routine: saturday
+    results:
+      - id: kneePushUps
+        reps: 8+8+8
+      - id: gluteBridges
+        reps: 3x50s
+  stretching: true
+  stairs: away
+  weight: 107.1
+  diary: "Dneska brutální bolest zad, jsem rád, že se vůbec hýbu."
+- date: '2025-08-29'
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      progress: flight 9
+      url: http://example.com/track-a
+    performance: 3
+  workout:
+    routine: friday
+    results:
+      - id: ringRows
+        reps: 8+8+6
+      - id: squats
+        reps: 18+18+18
+  stretching: true
+  stairs: away
+  weight: 108.2
+- date: '2025-08-28'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 2
+  workout:
+    routine: thursday
+    results:
+      - id: kneePushUps
+        reps: 8+8+8
+      - id: sidePlanks
+        holds: 2x30s
+  stretching: true
+  stairs: away
+  weight: 108.3
+- date: '2025-08-27'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      progress: full
+      url: https://mapy.com/s/kafolokugu
+    performance: 3
+  workout:
+    routine: wednesday
+    results:
+      - id: squats
+        reps: 15+15+20
+      - id: gluteBridges
+        reps: 3x50s
+  stretching: true
+  stairs: away
+  weight: 107.8
+- date: 2025-08-26T00:00:00.000Z
   running:
     track:
       name: Folimanka
@@ -16,7 +89,8 @@
   stretching: false
   stairs: away
   weight: 108.8
-- date: 2025-08-25
+  diary: "První společný běh s Evčou na Folimance. A hned jsem udělal rekord."
+- date: 2025-08-25T00:00:00.000Z
   running:
     track:
       name: Folimanka
