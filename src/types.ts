@@ -3,18 +3,12 @@ import type { ExerciseId } from "./routines";
 export interface Track {
   name: string;
   length: number;
-  progress: string;
-  url: string;
-}
-
-export interface PredefinedTrack {
-  name: string;
-  length: number;
   url: string;
 }
 
 export interface Running {
   track: Track;
+  progress: string;
   performance: number | 'none';
 }
 

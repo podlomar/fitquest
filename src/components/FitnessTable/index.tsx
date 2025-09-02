@@ -50,29 +50,17 @@ export const FitnessTable = ({ data }: Props) => {
                 {formatDate(entry.date)}
               </td>
               <td data-label="Track">
-                {entry.running && entry.running.track ? (
-                  entry.running.track.url ? (
-                    <a href={entry.running.track.url} target="_blank" className={styles.trackLink}>
-                      {entry.running.track.name} ({entry.running.track.length} km)
-                    </a>
-                  ) : (
-                    entry.running.track.name
-                  )
-                ) : (
-                  "-"
-                )}
+                <a href={entry.running.track.url} target="_blank" className={styles.trackLink}>
+                  {entry.running.track.name} ({entry.running.track.length} km)
+                </a>
               </td>
               <td data-label="Progress">
-                {entry.running && entry.running.track && entry.running.track.progress ? (
-                  <span className={styles.progress}>
-                    {entry.running.track.progress}
-                  </span>
-                ) : (
-                  "-"
-                )}
+                <span className={styles.progress}>
+                  {entry.running.progress}
+                </span>
               </td>
               <td data-label="Performance">
-                {entry.running && entry.running.performance && entry.running.performance !== 'none' ? (
+                {entry.running.performance !== 'none' ? (
                   <div className={styles.performanceRating}>
                     {Array.from({ length: 5 }, (_, i) => (
                       <span key={i} className={`${styles.star} ${i < Number(entry.running.performance) ? styles.filled : ''}`}>★</span>

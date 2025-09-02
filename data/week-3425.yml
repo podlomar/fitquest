@@ -3,8 +3,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 3
   workout: rest
   stretching: false
@@ -16,8 +16,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 3
   workout:
     routine: saturday
@@ -34,8 +34,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 4
   workout:
     routine: friday
@@ -52,8 +52,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 3
   workout:
     routine: thursday
@@ -70,8 +70,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 3
   workout:
     routine: wednesday
@@ -88,8 +88,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 3
   workout:
     routine: legacy
@@ -108,8 +108,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 3
   workout:
     routine: legacy

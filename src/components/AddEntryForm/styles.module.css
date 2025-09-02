@@ -78,18 +78,6 @@
   border-top: 1px solid var(--glass-border);
 }
 
-.trackInfo {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-sm);
-  padding: var(--spacing-sm);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  min-height: 3rem;
-  display: flex;
-  align-items: center;
-}
-
 /* Mobile Form Styles */
 @media (max-width: 48rem) {
   .formRow {

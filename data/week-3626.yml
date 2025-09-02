@@ -1,0 +1,31 @@
+- date: '2025-09-02'
+  running:
+    track:
+      name: Blok
+      length: 1.1
+      url: https://mapy.com/s/gefabamaja
+    progress: full
+    performance: 1
+  workout: rest
+  stretching: false
+  stairs: none
+  weight: 106.9
+  diary: Největší únova, jakou jsem zažil od začátku celého programu. Záda mě bolí, jsem úplně vyřízený, nemám sílu ani na workout ani na stretching.
+- date: '2025-09-01'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      url: https://mapy.com/s/kafolokugu
+    progress: full
+    performance: 2
+  workout:
+    routine: monday
+    results:
+      - id: squats
+        reps: 10+10+10
+      - id: kneePushUps
+        reps: 8+8+6
+  stretching: false
+  stairs: none
+  weight: 106.1

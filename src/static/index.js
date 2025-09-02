@@ -42,28 +42,7 @@ function toggleStairsFields() {
   stairsFields.style.display = stairsType === 'data' ? 'flex' : 'none';
 }
 
-// Update track info display when track is selected
-function updateTrackInfo() {
-  const selectedTrack = document.getElementById('selectedTrack');
-  const trackLength = document.getElementById('trackLength');
-
-  if (selectedTrack.value) {
-    const selectedOption = selectedTrack.options[selectedTrack.selectedIndex];
-    const length = selectedOption.getAttribute('data-length');
-    const url = selectedOption.getAttribute('data-url');
-
-    trackLength.innerHTML = `
-  <strong>${selectedTrack.value}</strong><br>
-    <span style="color: var(--text-secondary);">Length: ${length} km</span><br>
-      <a href="${url}" target="_blank" style="color: var(--accent-primary); text-decoration: none;">View Track →</a>
-      `;
-  } else {
-    trackLength.textContent = 'Select a track to see details';
-  }
-}
-
 document.getElementById('stairsType').addEventListener('change', toggleStairsFields);
-document.getElementById('selectedTrack').addEventListener('change', updateTrackInfo);
 document.getElementById('date').addEventListener('change', suggestRoutineForDate);
 
 // Initialize form state

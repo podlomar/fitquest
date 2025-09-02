@@ -3,8 +3,8 @@
     track:
       name: Folimanka
       length: 6
-      progress: pole 8
       url: http://example.com/track-a
+    progress: pole 8
     performance: 3
   workout:
     routine: legacy
@@ -23,8 +23,8 @@
     track:
       name: Nuselská
       length: 4
-      progress: flight 6
       url: http://example.com/track-a
+    progress: flight 6
     performance: 2
   workout:
     routine: legacy
@@ -43,8 +43,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 2
   workout:
     routine: legacy
@@ -63,8 +63,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 1
   workout:
     routine: legacy
@@ -83,8 +83,8 @@
     track:
       name: Nuselská
       length: 4
-      progress: flight 6
       url: http://example.com/track-a
+    progress: flight 6
     performance: 3
   workout:
     routine: legacy
@@ -103,8 +103,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 2
   workout:
     routine: legacy
@@ -123,8 +123,8 @@
     track:
       name: Nuselská
       length: 4
-      progress: flight 10
       url: http://example.com/track-a
+    progress: flight 10
     performance: 4
   workout:
     routine: legacy

@@ -4,15 +4,16 @@ import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import { prerenderToNodeStream } from 'react-dom/static';
 import { HomePage } from './pages/HomePage/index.js';
-import { FitnessEntry, Statistics, PredefinedTrack, ExerciseResult } from './types';
+import { FitnessEntry, Statistics, Track, ExerciseResult } from './types';
 import { weeklyRoutines, getExerciseById, type ExerciseId } from './routines';
 import { ExerciseFields } from './components/ExerciseFields/index.js';
+import { TrackInfo } from './components/TrackInfo/index.js';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const predefinedTracks: PredefinedTrack[] = [
+const predefinedTracks: Track[] = [
   {
     name: "Blok",
     length: 1.1,
@@ -237,6 +238,27 @@ app.get('/api/exercise-fields', (req: Request, res: Response) => {
   res.send(html);
 });
 
+app.get('/api/track-info', (req: Request, res: Response) => {
+  const { selectedTrack } = req.query;
+
+  if (!selectedTrack) {
+    res.send('');
+    return;
+  }
+
+  const track = predefinedTracks.find(t => t.name === selectedTrack);
+  if (!track) {
+    res.send('');
+    return;
+  }
+
+  const html = renderToStaticMarkup(
+    <TrackInfo track={track} />
+  );
+
+  res.send(html);
+});
+
 app.get('/', (req: Request, res: Response) => {
   const allData = loadAllData();
   const stats = calculateStats(allData);
@@ -287,9 +309,9 @@ app.post('/add-entry', (req: Request, res: Response) => {
         track: {
           name: predefinedTrack.name,
           length: predefinedTrack.length,
-          progress: trackProgress || '',
           url: predefinedTrack.url
         },
+        progress: trackProgress || '',
         performance: performance === 'none' ? 'none' : parseInt(performance) || 1
       },
       workout: workoutRoutine === 'rest' ? 'rest' : {

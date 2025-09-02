@@ -1,5 +1,5 @@
 import { Layout } from "../../components/Layout";
-import { FitnessEntry, PredefinedTrack, Statistics } from "../../types";
+import { FitnessEntry, Track, Statistics } from "../../types";
 import { Header } from "../../components/Header";
 import { AddEntryForm } from "../../components/AddEntryForm";
 import { FitnessTable } from "../../components/FitnessTable";
@@ -12,7 +12,7 @@ interface Props {
   alert: 'success' | 'error' | null;
   stats: Statistics;
   data: FitnessEntry[];
-  predefinedTracks: PredefinedTrack[];
+  predefinedTracks: Track[];
   availableWeeks: string[];
   selectedWeek: string;
 }

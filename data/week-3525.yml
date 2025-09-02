@@ -3,21 +3,23 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 1
   workout: rest
   stretching: true
   stairs: away
   weight: 107
-  diary: 'Další zničeny den po vášnivé noci s Andrejkou. Navíc mě pořád dost bolí záda, i když už to není tak hrozné jako včera.'
+  diary: >-
+    Další zničeny den po vášnivé noci s Andrejkou. Navíc mě pořád dost bolí
+    záda, i když už to není tak hrozné jako včera.
 - date: '2025-08-30'
   running:
     track:
       name: Blok
       length: 1.1
-      progress: full
       url: https://mapy.com/s/gefabamaja
+    progress: full
     performance: 2
   workout:
     routine: saturday
@@ -29,14 +31,14 @@
   stretching: true
   stairs: away
   weight: 107.1
-  diary: 'Dneska brutální bolest zad, jsem rád, že se vůbec hýbu.'
+  diary: Dneska brutální bolest zad, jsem rád, že se vůbec hýbu.
 - date: '2025-08-29'
   running:
     track:
       name: Nuselská
       length: 4
-      progress: flight 9
       url: http://example.com/track-a
+    progress: flight 9
     performance: 3
   workout:
     routine: friday
@@ -53,8 +55,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 2
   workout:
     routine: thursday
@@ -71,8 +73,8 @@
     track:
       name: Město
       length: 2.3
-      progress: full
       url: https://mapy.com/s/kafolokugu
+    progress: full
     performance: 3
   workout:
     routine: wednesday
@@ -89,8 +91,8 @@
     track:
       name: Folimanka
       length: 6
-      progress: 12 pole
       url: http://example.com/track-a
+    progress: 12 pole
     performance: 4
   workout:
     routine: tuesday
@@ -108,8 +110,8 @@
     track:
       name: Folimanka
       length: 6
-      progress: 10 pole
       url: http://example.com/track-a
+    progress: 10 pole
     performance: 4
   workout:
     routine: monday

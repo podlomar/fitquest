@@ -1,11 +1,12 @@
-import { PredefinedTrack } from "../../types";
+import { Track } from "../../types";
 import { getSelectableRoutines, getRoutineForDay, weeklyRoutines } from "../../routines";
+import { TrackInfo } from "../TrackInfo";
 import { ExerciseFields } from "../ExerciseFields";
 import { Button } from "../Button";
 import styles from "./styles.module.css";
 
 interface Props {
-  predefinedTracks: PredefinedTrack[];
+  predefinedTracks: Track[];
 }
 
 const getCurrentDate = (): string => {
@@ -35,7 +36,15 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         <div className={styles.formRow}>
           <div className={styles.formGroup}>
             <label htmlFor="selectedTrack">Track:</label>
-            <select id="selectedTrack" name="selectedTrack" required>
+            <select
+              id="selectedTrack"
+              name="selectedTrack"
+              required
+              hx-get="/api/track-info"
+              hx-trigger="change"
+              hx-target="#trackInfo"
+              hx-include="[name='selectedTrack']"
+            >
               <option value="">Select a track...</option>
               {predefinedTracks.map((track) => (
                 <option key={track.name} value={track.name} data-length={track.length} data-url={track.url}>
@@ -52,14 +61,12 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         <div className={styles.formRow}>
           <div className={styles.formGroup}>
             <label>Track Info:</label>
-            <div id="trackInfoDisplay" className={styles.trackInfo}>
-              <span id="trackLength">Select a track to see details</span>
-            </div>
+            <TrackInfo track={null} />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="performance">Performance (1-5):</label>
             <select id="performance" name="performance" defaultValue="2">
-              <option value="none">None</option>
+              <option value="0">0</option>
               <option value="1">1 ⭐</option>
               <option value="2">2 ⭐⭐</option>
               <option value="3">3 ⭐⭐⭐</option>
