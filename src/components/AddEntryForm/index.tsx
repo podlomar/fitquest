@@ -1,5 +1,5 @@
 import { Track } from "../../types";
-import { getSelectableRoutines, getRoutineForDay, weeklyRoutines } from "../../routines";
+import { getRoutineForDay, weeklyRoutines } from "../../routines";
 import { TrackInfo } from "../TrackInfo";
 import { ExerciseFields } from "../ExerciseFields";
 import { Button } from "../Button";
@@ -14,8 +14,6 @@ const getCurrentDate = (): string => {
 };
 
 export const AddEntryForm = ({ predefinedTracks }: Props) => {
-  const availableRoutines = getSelectableRoutines();
-
   // Get today's routine for initial render
   const today = new Date();
   const todayRoutine = getRoutineForDay(today);
@@ -27,7 +25,17 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
           <label htmlFor="date">Date:</label>
-          <input type="date" id="date" name="date" required defaultValue={getCurrentDate()} />
+          <input
+            type="date"
+            id="date"
+            name="date"
+            required
+            defaultValue={getCurrentDate()}
+            hx-get="/api/exercise-fields"
+            hx-trigger="change"
+            hx-target="#exerciseInputs"
+            hx-include="[name='date'], [name='workoutType']"
+          />
         </div>
       </div>
 
@@ -81,21 +89,18 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         <h3>💪 Workout</h3>
         <div className={styles.formRow}>
           <div className={styles.formGroup}>
-            <label htmlFor="workoutRoutine">Routine:</label>
+            <label htmlFor="workoutType">Workout:</label>
             <select
-              id="workoutRoutine"
-              name="workoutRoutine"
+              id="workoutType"
+              name="workoutType"
+              defaultValue="workout"
               hx-get="/api/exercise-fields"
               hx-trigger="change"
               hx-target="#exerciseInputs"
-              hx-include="[name='workoutRoutine']"
+              hx-include="[name='date'], [name='workoutType']"
             >
+              <option value="workout">Workout (based on date)</option>
               <option value="rest">Rest</option>
-              {availableRoutines.map((routine) => (
-                <option key={routine.id} value={routine.id}>
-                  {routine.name}: {routine.exercises.join(', ')}
-                </option>
-              ))}
             </select>
           </div>
         </div>

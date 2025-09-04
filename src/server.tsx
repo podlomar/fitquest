@@ -5,7 +5,7 @@ import * as yaml from 'js-yaml';
 import { prerenderToNodeStream } from 'react-dom/static';
 import { HomePage } from './pages/HomePage/index.js';
 import { FitnessEntry, Statistics, Track, ExerciseResult } from './types';
-import { weeklyRoutines, getExerciseById, type ExerciseId } from './routines';
+import { weeklyRoutines, getExerciseById, getRoutineForDay, type ExerciseId } from './routines';
 import { ExerciseFields } from './components/ExerciseFields/index.js';
 import { TrackInfo } from './components/TrackInfo/index.js';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -217,22 +217,31 @@ function calculateStats(data: FitnessEntry[]): Statistics {
 
 // API endpoint for dynamic exercise fields
 app.get('/api/exercise-fields', (req: Request, res: Response) => {
-  const { workoutRoutine } = req.query;
+  const { date, workoutType } = req.query;
 
-  // If no routine selected or rest, return empty
-  if (!workoutRoutine || workoutRoutine === 'rest') {
+  // If rest is selected, return empty
+  if (workoutType === 'rest') {
     res.send('');
     return;
   }
 
-  const routine = weeklyRoutines[workoutRoutine as string];
+  // Get routine based on date
+  const selectedDate = date ? new Date(date as string) : new Date();
+  const routine = getRoutineForDay(selectedDate);
+
   if (!routine) {
     res.send('');
     return;
   }
 
+  const routineDetails = weeklyRoutines[routine.id];
+  if (!routineDetails) {
+    res.send('');
+    return;
+  }
+
   const html = renderToStaticMarkup(
-    <ExerciseFields exerciseIds={routine.exercises} />
+    <ExerciseFields exerciseIds={routineDetails.exercises} />
   );
 
   res.send(html);
@@ -289,7 +298,7 @@ app.post('/add-entry', (req: Request, res: Response) => {
       selectedTrack,
       trackProgress,
       performance,
-      workoutRoutine,
+      workoutType,
       exercises,
       stretching,
       stairsType,
@@ -314,31 +323,36 @@ app.post('/add-entry', (req: Request, res: Response) => {
         progress: trackProgress || '',
         performance: performance === 'none' ? 'none' : parseInt(performance) || 1
       },
-      workout: workoutRoutine === 'rest' ? 'rest' : {
-        routine: workoutRoutine || '',
-        results: exercises ?
-          (() => {
-            const results: ExerciseResult[] = [];
-            Object.keys(exercises).forEach(exerciseId => {
-              const exercise = exercises[exerciseId];
+      workout: workoutType === 'rest' ? 'rest' : (() => {
+        // Get routine based on the entry date
+        const entryDate = new Date(date || new Date().toISOString().split('T')[0]);
+        const routine = getRoutineForDay(entryDate);
+        return {
+          routine: routine?.id || '',
+          results: exercises ?
+            (() => {
+              const results: ExerciseResult[] = [];
+              Object.keys(exercises).forEach(exerciseId => {
+                const exercise = exercises[exerciseId];
 
-              // Create the appropriate result type based on what's provided
-              if (exercise.reps) {
-                results.push({
-                  id: exerciseId as ExerciseId,
-                  reps: exercise.reps
-                });
-              } else if (exercise.holds) {
-                results.push({
-                  id: exerciseId as ExerciseId,
-                  holds: exercise.holds
-                });
-              }
-            });
-            return results;
-          })() :
-          [] // Empty array for non-structured content
-      },
+                // Create the appropriate result type based on what's provided
+                if (exercise.reps) {
+                  results.push({
+                    id: exerciseId as ExerciseId,
+                    reps: exercise.reps
+                  });
+                } else if (exercise.holds) {
+                  results.push({
+                    id: exerciseId as ExerciseId,
+                    holds: exercise.holds
+                  });
+                }
+              });
+              return results;
+            })() :
+            [] // Empty array for non-structured content
+        };
+      })(),
       stretching: stretching === 'true',
       stairs: stairsType === 'away' ? 'away' :
         stairsType === 'none' ? 'none' :
