@@ -1,3 +1,15 @@
+- date: '2025-09-03'
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      url: http://example.com/track-a
+    progress: flight 6
+    performance: 2
+  workout: rest
+  stretching: false
+  stairs: none
+  weight: 107.6
 - date: '2025-09-02'
   running:
     track:
@@ -10,7 +22,9 @@
   stretching: false
   stairs: none
   weight: 106.9
-  diary: Největší únova, jakou jsem zažil od začátku celého programu. Záda mě bolí, jsem úplně vyřízený, nemám sílu ani na workout ani na stretching.
+  diary: >-
+    Největší únova, jakou jsem zažil od začátku celého programu. Záda mě bolí,
+    jsem úplně vyřízený, nemám sílu ani na workout ani na stretching.
 - date: '2025-09-01'
   running:
     track:
