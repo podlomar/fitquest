@@ -100,6 +100,7 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
               hx-include="[name='date'], [name='workoutType']"
             >
               <option value="workout">Workout (based on date)</option>
+              <option value="custom">Build your own routine</option>
               <option value="rest">Rest</option>
             </select>
           </div>

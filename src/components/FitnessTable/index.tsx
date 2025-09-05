@@ -78,6 +78,9 @@ export const FitnessTable = ({ data }: Props) => {
                     <div className={styles.workoutInfo}>
                       <div className={styles.workoutRoutine}>
                         {entry.workout.routine}
+                        {entry.workout.type === 'custom' && (
+                          <span className={styles.customWorkoutLabel}> (Custom)</span>
+                        )}
                       </div>
                       <div className={styles.workoutContent}>
                         <div className={styles.structuredContent}>

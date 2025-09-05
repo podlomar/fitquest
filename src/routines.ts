@@ -107,3 +107,11 @@ export const getRoutineForDay = (date: Date): Routine => {
   const dayName = dayNames[date.getDay()];
   return weeklyRoutines[dayName];
 };
+
+export const getAllExercises = (): Exercise[] => {
+  return Object.values(exercises);
+};
+
+export const getExercisesByIds = (ids: ExerciseId[]): Exercise[] => {
+  return ids.map(id => exercises[id]).filter(Boolean);
+};

@@ -1,3 +1,15 @@
+- date: '2025-09-05'
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      url: http://example.com/track-a
+    progress: flight 6
+    performance: 2
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: 106.7
 - date: '2025-09-04'
   running:
     track:
@@ -46,6 +58,7 @@
     progress: full
     performance: 2
   workout:
+    type: predefined
     routine: monday
     results:
       - id: squats

@@ -4,8 +4,8 @@ import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import { prerenderToNodeStream } from 'react-dom/static';
 import { HomePage } from './pages/HomePage/index.js';
-import { FitnessEntry, Statistics, Track, ExerciseResult } from './types';
-import { weeklyRoutines, getExerciseById, getRoutineForDay, type ExerciseId } from './routines';
+import { FitnessEntry, Statistics, Track, ExerciseResult, createPredefinedWorkout, createCustomWorkout } from './types';
+import { weeklyRoutines, getExerciseById, getRoutineForDay, getAllExercises, type ExerciseId } from './routines';
 import { ExerciseFields } from './components/ExerciseFields/index.js';
 import { TrackInfo } from './components/TrackInfo/index.js';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -53,8 +53,19 @@ const render = async (component: JSX.Element, res: express.Response) => {
 function loadWeekData(weekFile: string): FitnessEntry[] {
   try {
     const fileContents = fs.readFileSync(`../data/${weekFile}`, 'utf8');
-    const data = yaml.load(fileContents) as FitnessEntry[];
-    return data || [];
+    const data = yaml.load(fileContents) as any[];
+
+    // Migrate old workout format to new format
+    return (data || []).map(entry => {
+      if (entry.workout && entry.workout !== 'rest' && typeof entry.workout === 'object' && !entry.workout.type) {
+        // Convert old format to new format
+        return {
+          ...entry,
+          workout: createPredefinedWorkout(entry.workout.routine, entry.workout.results)
+        };
+      }
+      return entry;
+    });
   } catch (e) {
     console.error(`Error loading ${weekFile}:`, e);
     return [];
@@ -230,6 +241,41 @@ app.get('/api/exercise-fields', (req: Request, res: Response) => {
     return;
   }
 
+  // If custom workout is selected, show exercise selection
+  if (workoutType === 'custom') {
+    const allExercises = getAllExercises();
+    const html = renderToStaticMarkup(
+      <div>
+        <div style={{ marginBottom: '1rem' }}>
+          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+            Select Exercises:
+          </label>
+          <div
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}
+          >
+            {allExercises.map(exercise => (
+              <label key={exercise.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <input
+                  type="checkbox"
+                  name="selectedExercises"
+                  value={exercise.id}
+                  hx-post="/api/custom-exercise-inputs"
+                  hx-trigger="change"
+                  hx-target="#customExerciseInputs"
+                  hx-include="[name='selectedExercises']:checked"
+                />
+                <span>{exercise.name} ({exercise.execution})</span>
+              </label>
+            ))}
+          </div>
+        </div>
+        <div id="customExerciseInputs"></div>
+      </div>
+    );
+    res.send(html);
+    return;
+  }
+
   // Get routine based on date
   const selectedDate = date ? new Date(date as string) : new Date();
   const routine = getRoutineForDay(selectedDate);
@@ -249,6 +295,22 @@ app.get('/api/exercise-fields', (req: Request, res: Response) => {
     <ExerciseFields exerciseIds={routineDetails.exercises} />
   );
 
+  res.send(html);
+});
+
+// API endpoint for custom exercise input fields
+app.post('/api/custom-exercise-inputs', (req: Request, res: Response) => {
+  const { selectedExercises } = req.body;
+
+  if (!selectedExercises || selectedExercises.length === 0) {
+    res.send('');
+    return;
+  }
+
+  const exerciseIds = Array.isArray(selectedExercises) ? selectedExercises : [selectedExercises];
+  const html = renderToStaticMarkup(
+    <ExerciseFields exerciseIds={exerciseIds as ExerciseId[]} />
+  );
   res.send(html);
 });
 
@@ -329,34 +391,40 @@ app.post('/add-entry', (req: Request, res: Response) => {
         performance: performance === 'none' ? 'none' : parseInt(performance) || 1
       },
       workout: workoutType === 'rest' ? 'rest' : (() => {
-        // Get routine based on the entry date
-        const entryDate = new Date(date || new Date().toISOString().split('T')[0]);
-        const routine = getRoutineForDay(entryDate);
-        return {
-          routine: routine?.id || '',
-          results: exercises ?
-            (() => {
-              const results: ExerciseResult[] = [];
-              Object.keys(exercises).forEach(exerciseId => {
-                const exercise = exercises[exerciseId];
+        const results: ExerciseResult[] = exercises ?
+          (() => {
+            const exerciseResults: ExerciseResult[] = [];
+            Object.keys(exercises).forEach(exerciseId => {
+              const exercise = exercises[exerciseId];
 
-                // Create the appropriate result type based on what's provided
-                if (exercise.reps) {
-                  results.push({
-                    id: exerciseId as ExerciseId,
-                    reps: exercise.reps
-                  });
-                } else if (exercise.holds) {
-                  results.push({
-                    id: exerciseId as ExerciseId,
-                    holds: exercise.holds
-                  });
-                }
-              });
-              return results;
-            })() :
-            [] // Empty array for non-structured content
-        };
+              // Create the appropriate result type based on what's provided
+              if (exercise.reps) {
+                exerciseResults.push({
+                  id: exerciseId as ExerciseId,
+                  reps: exercise.reps
+                });
+              } else if (exercise.holds) {
+                exerciseResults.push({
+                  id: exerciseId as ExerciseId,
+                  holds: exercise.holds
+                });
+              }
+            });
+            return exerciseResults;
+          })() :
+          []; // Empty array for non-structured content
+
+        if (workoutType === 'custom') {
+          // For custom workouts, get the selected exercises from the form
+          const selectedExercises = req.body.selectedExercises;
+          const exerciseIds = Array.isArray(selectedExercises) ? selectedExercises : [selectedExercises];
+          return createCustomWorkout(exerciseIds as ExerciseId[], results);
+        } else {
+          // For date-based workouts
+          const entryDate = new Date(date || new Date().toISOString().split('T')[0]);
+          const routine = getRoutineForDay(entryDate);
+          return createPredefinedWorkout(routine?.id || '', results);
+        }
       })(),
       stretching: stretching === 'true',
       stairs: stairsType === 'away' ? 'away' :
