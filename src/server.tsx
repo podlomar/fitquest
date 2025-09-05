@@ -141,9 +141,14 @@ function calculateStats(data: FitnessEntry[]): Statistics {
   };
 
   // Calculate total distance
+  const distanceProgressRegex = /([0-9]+) km/;
   data.forEach(entry => {
-    if (entry.running?.track?.length) {
+    const match = entry.running.progress.match(distanceProgressRegex);
+    if (match === null) {
       stats.totalDistance += entry.running.track.length;
+    } else {
+      const distance = parseFloat(match[1]);
+      stats.totalDistance += distance;
     }
   });
 
