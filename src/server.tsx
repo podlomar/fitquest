@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import { prerenderToNodeStream } from 'react-dom/static';
 import { HomePage } from './pages/HomePage/index.js';
+import { StatsPage } from './pages/StatsPage/index.js';
 import { FitnessEntry, Statistics, Track, ExerciseResult, createPredefinedWorkout, createCustomWorkout } from './types';
 import { weeklyRoutines, getExerciseById, getRoutineForDay, getAllExercises, type ExerciseId } from './routines';
 import { ExerciseFields } from './components/ExerciseFields/index.js';
@@ -349,11 +350,25 @@ app.get('/', (req: Request, res: Response) => {
     <HomePage
       alert={success ? 'success' : error ? 'error' : null}
       data={weekData}
-      allData={allData}
-      stats={stats}
       predefinedTracks={predefinedTracks}
       availableWeeks={availableWeeks}
       selectedWeek={selectedWeek}
+    />,
+    res,
+  );
+});
+
+app.get('/stats', (req: Request, res: Response) => {
+  const allData = loadAllData();
+  const stats = calculateStats(allData);
+
+  const success = req.query.success === '1';
+  const error = req.query.error === '1';
+  render(
+    <StatsPage
+      alert={success ? 'success' : error ? 'error' : null}
+      stats={stats}
+      allData={allData}
     />,
     res,
   );
