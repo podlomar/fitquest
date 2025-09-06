@@ -13,6 +13,7 @@ export const Layout = ({ children }: Props) => {
         <title>Fitness Tracker</title>
         <link rel="stylesheet" href="/server.css" />
         <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script defer src="/index.js"></script>
       </head>
 

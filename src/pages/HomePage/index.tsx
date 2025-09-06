@@ -4,6 +4,7 @@ import { Header } from "../../components/Header";
 import { AddEntryForm } from "../../components/AddEntryForm";
 import { FitnessTable } from "../../components/FitnessTable";
 import { SummaryCard } from "../../components/SummaryCard";
+import { WeightChart } from "../../components/WeightChart";
 import { Footer } from "../../components/Footer";
 import { WeekNavigation } from "../../components/WeekNavigation";
 import styles from './styles.module.css';
@@ -12,12 +13,13 @@ interface Props {
   alert: 'success' | 'error' | null;
   stats: Statistics;
   data: FitnessEntry[];
+  allData: FitnessEntry[]; // All data for weight chart
   predefinedTracks: Track[];
   availableWeeks: string[];
   selectedWeek: string;
 }
 
-export const HomePage = ({ alert, stats, data, predefinedTracks, availableWeeks, selectedWeek }: Props) => {
+export const HomePage = ({ alert, stats, data, allData, predefinedTracks, availableWeeks, selectedWeek }: Props) => {
   return (
     <Layout>
       <div className={styles.container}>
@@ -38,6 +40,8 @@ export const HomePage = ({ alert, stats, data, predefinedTracks, availableWeeks,
               <SummaryCard icon="⏲️" value={stats.weight !== null ? stats.weight : '-'} label="Current Weight" />
             </div>
           </div>
+
+          <WeightChart data={allData} />
 
           <FitnessTable data={data} />
         </main>

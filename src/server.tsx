@@ -349,6 +349,7 @@ app.get('/', (req: Request, res: Response) => {
     <HomePage
       alert={success ? 'success' : error ? 'error' : null}
       data={weekData}
+      allData={allData}
       stats={stats}
       predefinedTracks={predefinedTracks}
       availableWeeks={availableWeeks}
