@@ -23,15 +23,12 @@ export const WeightChart = ({ data }: Props) => {
 
   // Calculate 7-day moving average
   const dataWithMovingAverage = weightData.map((point, index) => {
-    if (index < 6) {
-      // Not enough data for 7-day average yet
-      return point;
-    }
-
     // Calculate average of current point and previous 6 points
-    const last7Days = weightData.slice(index - 6, index + 1);
-    const sum = last7Days.reduce((acc, curr) => acc + curr.weight, 0);
-    const movingAverage = sum / 7;
+    const lastDays = index < 6
+      ? weightData.slice(0, index + 1)
+      : weightData.slice(index - 6, index + 1);
+    const sum = lastDays.reduce((acc, curr) => acc + curr.weight, 0);
+    const movingAverage = sum / lastDays.length;
 
     return {
       ...point,
