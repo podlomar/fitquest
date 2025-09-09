@@ -6,7 +6,7 @@ import { prerenderToNodeStream } from 'react-dom/static';
 import { HomePage } from './pages/HomePage/index.js';
 import { StatsPage } from './pages/StatsPage/index.js';
 import { FitnessEntry, Statistics, Track, ExerciseResult, createPredefinedWorkout, createCustomWorkout } from './types';
-import { weeklyRoutines, getExerciseById, getRoutineForDay, getAllExercises, type ExerciseId } from './routines';
+import { weeklyRoutines, getRoutineForDay, getAllExercises } from './routines';
 import { ExerciseFields } from './components/ExerciseFields/index.js';
 import { TrackInfo } from './components/TrackInfo/index.js';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -232,6 +232,23 @@ function calculateStats(data: FitnessEntry[]): Statistics {
   return stats;
 }
 
+// const repsRegex = /^([0-9]+)+$/;
+
+// const updateExerciseStats = (result: ExerciseResult, stats: ExerciseStats): void => {
+//   if ('reps' in result) {
+//     const repsStr = result.reps;
+//     const match = repsStr.match(repsRegex);
+
+// const calculateExerciseStats = (data: FitnessEntry[]): Record<ExerciseId, ExerciseStats> => {
+//   const exerciseStats: Record<ExerciseId, ExerciseStats> = {};
+
+//   data.forEach(entry => {
+//     if (entry.workout !== 'rest') {
+//       const workout = entry.workout;
+//       const results = workout.results;
+
+//       results.forEach(result => {
+
 // API endpoint for dynamic exercise fields
 app.get('/api/exercise-fields', (req: Request, res: Response) => {
   const { date, workoutType } = req.query;
@@ -293,7 +310,7 @@ app.get('/api/exercise-fields', (req: Request, res: Response) => {
   }
 
   const html = renderToStaticMarkup(
-    <ExerciseFields exerciseIds={routineDetails.exercises} />
+    <ExerciseFields exerciseIds={routineDetails.exercises} title={routineDetails.name} />
   );
 
   res.send(html);
@@ -310,7 +327,7 @@ app.post('/api/custom-exercise-inputs', (req: Request, res: Response) => {
 
   const exerciseIds = Array.isArray(selectedExercises) ? selectedExercises : [selectedExercises];
   const html = renderToStaticMarkup(
-    <ExerciseFields exerciseIds={exerciseIds as ExerciseId[]} />
+    <ExerciseFields exerciseIds={exerciseIds} />
   );
   res.send(html);
 });
@@ -416,12 +433,12 @@ app.post('/add-entry', (req: Request, res: Response) => {
               // Create the appropriate result type based on what's provided
               if (exercise.reps) {
                 exerciseResults.push({
-                  id: exerciseId as ExerciseId,
+                  id: exerciseId,
                   reps: exercise.reps
                 });
               } else if (exercise.holds) {
                 exerciseResults.push({
-                  id: exerciseId as ExerciseId,
+                  id: exerciseId,
                   holds: exercise.holds
                 });
               }
@@ -434,7 +451,7 @@ app.post('/add-entry', (req: Request, res: Response) => {
           // For custom workouts, get the selected exercises from the form
           const selectedExercises = req.body.selectedExercises;
           const exerciseIds = Array.isArray(selectedExercises) ? selectedExercises : [selectedExercises];
-          return createCustomWorkout(exerciseIds as ExerciseId[], results);
+          return createCustomWorkout(exerciseIds, results);
         } else {
           // For date-based workouts
           const entryDate = new Date(date || new Date().toISOString().split('T')[0]);

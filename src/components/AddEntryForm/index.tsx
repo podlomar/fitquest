@@ -14,10 +14,9 @@ const getCurrentDate = (): string => {
 };
 
 export const AddEntryForm = ({ predefinedTracks }: Props) => {
-  // Get today's routine for initial render
   const today = new Date();
   const todayRoutine = getRoutineForDay(today);
-  const initialExercises = todayRoutine ? weeklyRoutines[todayRoutine.id]?.exercises || [] : [];
+  const initialExercises = weeklyRoutines[todayRoutine.id].exercises;
 
   return (
     <form id="addEntryForm" className={styles.entryForm} action="/add-entry" method="POST" style={{ display: "none" }}>
@@ -107,7 +106,10 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         </div>
         <div id="exerciseFields" className={styles.exerciseFields}>
           <div id="exerciseInputs" className={styles.exerciseInputs}>
-            <ExerciseFields exerciseIds={initialExercises} />
+            <ExerciseFields
+              exerciseIds={initialExercises}
+              title={todayRoutine.name}
+            />
           </div>
         </div>
       </div>

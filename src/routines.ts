@@ -4,18 +4,7 @@ export interface Exercise {
   execution: 'reps' | 'holds';
 }
 
-export const exerciseIds = [
-  'squats',
-  'kneePushUps',
-  'ringRows',
-  'frontPlanks',
-  'gluteBridges',
-  'sidePlanks'
-] as const;
-
-export type ExerciseId = typeof exerciseIds[number];
-
-export const exercises: Record<ExerciseId, Exercise> = {
+export const exercises: Record<string, Exercise> = {
   squats: {
     id: 'squats',
     name: 'Squats',
@@ -31,9 +20,9 @@ export const exercises: Record<ExerciseId, Exercise> = {
     name: 'Ring Rows',
     execution: 'reps'
   },
-  frontPlanks: {
-    id: 'frontPlanks',
-    name: 'Front Planks',
+  frontPlank: {
+    id: 'frontPlank',
+    name: 'Front Plank',
     execution: 'holds'
   },
   gluteBridges: {
@@ -45,49 +34,66 @@ export const exercises: Record<ExerciseId, Exercise> = {
     id: 'sidePlanks',
     name: 'Side Planks',
     execution: 'holds'
+  },
+  barHang: {
+    id: 'barHang',
+    name: 'Bar Hang',
+    execution: 'holds'
   }
 };
 
-export const getExerciseById = (id: ExerciseId): Exercise => {
-  return exercises[id];
+export interface HoldExerciseStats {
+  holdTimes: number[];
+  bestHold: number;
+}
+
+export interface RepsExerciseStats {
+  repCounts: number[];
+  maxReps: number;
+}
+
+export type ExerciseStats = HoldExerciseStats | RepsExerciseStats;
+
+export const getExerciseById = (id: string): Exercise | null => {
+  return exercises[id] ?? null;
 };
 
 export interface Routine {
   id: string;
   name: string;
-  exercises: ExerciseId[];
+  exercises: string[];
 }
 
 export const weeklyRoutines: Record<string, Routine> = {
   monday: {
     id: 'monday',
-    name: 'Monday',
-    exercises: ['squats', 'kneePushUps']
+    name: 'Monday: Legs + Push',
+    exercises: ['squats', 'kneePushUps', 'frontPlank', 'barHang'],
   },
   tuesday: {
     id: 'tuesday',
-    name: 'Tuesday',
-    exercises: ['ringRows', 'frontPlanks']
+    name: 'Tuesday: Pull + Core',
+    exercises: ['ringRows', 'sidePlanks', 'frontPlank', 'barHang'],
   },
   wednesday: {
     id: 'wednesday',
-    name: 'Wednesday',
-    exercises: ['squats', 'gluteBridges']
+    name: 'Wednesday: Legs + Glutes',
+    exercises: ['squats', 'gluteBridges', 'frontPlank', 'barHang'],
   },
   thursday: {
     id: 'thursday',
-    name: 'Thursday',
-    exercises: ['kneePushUps', 'sidePlanks']
+    name: 'Thursday: Push + Core',
+    exercises: ['kneePushUps', 'sidePlanks', 'frontPlank', 'barHang']
   },
   friday: {
     id: 'friday',
-    name: 'Friday',
-    exercises: ['ringRows', 'squats']
+    name: 'Friday: Pull + Legs',
+    exercises: ['ringRows', 'squats', 'frontPlank', 'barHang']
   },
   saturday: {
     id: 'saturday',
-    name: 'Saturday',
-    exercises: ['kneePushUps', 'gluteBridges']
+    name: 'Saturday: Push + Glutes',
+    exercises: ['kneePushUps', 'gluteBridges', 'frontPlank', 'barHang']
   },
   legacy: {
     id: 'legacy',
@@ -112,6 +118,6 @@ export const getAllExercises = (): Exercise[] => {
   return Object.values(exercises);
 };
 
-export const getExercisesByIds = (ids: ExerciseId[]): Exercise[] => {
+export const getExercisesByIds = (ids: string[]): Exercise[] => {
   return ids.map(id => exercises[id]).filter(Boolean);
 };

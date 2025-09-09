@@ -1,8 +1,8 @@
-import { getExerciseById, type ExerciseId } from "../../routines";
+import { getAllExercises } from "../../routines";
 import styles from "./styles.module.css";
 
 interface Props {
-  exerciseIds: ExerciseId[];
+  exerciseIds: string[];
   title?: string;
 }
 
@@ -11,11 +11,15 @@ export const ExerciseFields = ({ exerciseIds, title = "Exercise Details" }: Prop
     return null;
   }
 
+  const allExercises = getAllExercises();
+  const exercises = exerciseIds.map(
+    id => allExercises.find(ex => ex.id === id)!
+  );
+
   return (
     <>
       <h4 className={styles.title}>{title}</h4>
-      {exerciseIds.map(exerciseId => {
-        const exercise = getExerciseById(exerciseId);
+      {exercises.map(exercise => {
         const isHolds = exercise.execution === 'holds';
 
         return (

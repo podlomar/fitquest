@@ -1,5 +1,3 @@
-import type { ExerciseId } from "./routines";
-
 export interface Track {
   name: string;
   length: number;
@@ -13,12 +11,12 @@ export interface Running {
 }
 
 export interface RepsResult {
-  id: ExerciseId;
+  id: string;
   reps: string;
 }
 
 export interface HoldsResult {
-  id: ExerciseId;
+  id: string;
   holds: string;
 }
 
@@ -35,7 +33,7 @@ export interface PredefinedWorkout {
 export interface CustomWorkout {
   type: 'custom';
   routine: 'Custom Routine';
-  exercises: ExerciseId[];
+  exercises: string[];
   results: ExerciseResult[];
 }
 
@@ -71,7 +69,7 @@ export const createPredefinedWorkout = (routine: string, results: ExerciseResult
   results
 });
 
-export const createCustomWorkout = (exercises: ExerciseId[], results: ExerciseResult[]): CustomWorkout => ({
+export const createCustomWorkout = (exercises: string[], results: ExerciseResult[]): CustomWorkout => ({
   type: 'custom',
   routine: 'Custom Routine',
   exercises,

@@ -87,7 +87,7 @@ export const FitnessTable = ({ data }: Props) => {
                           {entry.workout.results.map((result) => (
                             <div key={result.id} className={styles.exerciseDetail}>
                               <span className={styles.exerciseName}>
-                                {getExerciseById(result.id).name}:
+                                {getExerciseById(result.id)?.name}:
                               </span>
                               <span className={styles.exerciseValues}>
                                 {'reps' in result ? (
