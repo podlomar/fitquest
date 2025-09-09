@@ -1,0 +1,40 @@
+- date: '2025-09-09'
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      url: http://example.com/track-a
+    progress: flight 6
+    performance: 3
+  workout:
+    type: predefined
+    routine: tuesday
+    results:
+      - id: ringRows
+        reps: 8+8+8
+      - id: frontPlanks
+        holds: 35s+35s+35s
+      - id: barHang
+        holds: 20s
+  stretching: true
+  stairs: none
+  weight: 107.7
+- date: '2025-09-08'
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      url: http://example.com/track-a
+    progress: flight 8
+    performance: 4
+  workout:
+    type: predefined
+    routine: monday
+    results:
+      - id: squats
+        reps: 18+18+18
+      - id: kneePushUps
+        reps: 8+8+8
+  stretching: false
+  stairs: away
+  weight: 107.4

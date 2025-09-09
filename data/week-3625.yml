@@ -1,3 +1,27 @@
+- date: '2025-09-07'
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      url: http://example.com/track-a
+    progress: flight 10
+    performance: 3
+  workout: rest
+  stretching: true
+  stairs: away
+  weight: 107.4
+- date: '2025-09-06'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      url: https://mapy.com/s/kafolokugu
+    progress: full
+    performance: 1
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: 105.2
 - date: '2025-09-05'
   running:
     track:
