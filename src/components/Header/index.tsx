@@ -16,6 +16,7 @@ export const Header = ({ alert }: Props) => {
 
         <nav className={styles.navigation}>
           <a href="/" className={styles.navLink}>📋 Entries</a>
+          <a href="/workout-plan" className={styles.navLink}>💪 Workout Plan</a>
           <a href="/stats" className={styles.navLink}>📊 Statistics</a>
         </nav>
       </div>

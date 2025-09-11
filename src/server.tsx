@@ -5,6 +5,7 @@ import * as yaml from 'js-yaml';
 import { prerenderToNodeStream } from 'react-dom/static';
 import { HomePage } from './pages/HomePage/index.js';
 import { StatsPage } from './pages/StatsPage/index.js';
+import { WorkoutPlanPage } from './pages/WorkoutPlanPage/index.js';
 import { FitnessEntry, Statistics, Track, ExerciseResult, createPredefinedWorkout, createCustomWorkout } from './types';
 import { weeklyRoutines, getRoutineForDay, getAllExercises } from './routines';
 import { ExerciseFields } from './components/ExerciseFields/index.js';
@@ -386,6 +387,17 @@ app.get('/stats', (req: Request, res: Response) => {
       alert={success ? 'success' : error ? 'error' : null}
       stats={stats}
       allData={allData}
+    />,
+    res,
+  );
+});
+
+app.get('/workout-plan', (req: Request, res: Response) => {
+  const success = req.query.success === '1';
+  const error = req.query.error === '1';
+  render(
+    <WorkoutPlanPage
+      alert={success ? 'success' : error ? 'error' : null}
     />,
     res,
   );

@@ -1,3 +1,26 @@
+- date: '2025-09-10'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      url: https://mapy.com/s/kafolokugu
+    progress: full
+    performance: 2
+  workout:
+    type: predefined
+    routine: wednesday
+    results:
+      - id: squats
+        reps: 18+18+20
+      - id: gluteBridges
+        reps: 50s+50s+50s
+      - id: frontPlank
+        holds: 40s
+      - id: barHang
+        holds: 25s
+  stretching: true
+  stairs: none
+  weight: 108
 - date: '2025-09-09'
   running:
     track:
