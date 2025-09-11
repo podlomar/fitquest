@@ -1,6 +1,7 @@
 import { Layout } from "../../components/Layout";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
+import { Panel } from "../../components/Panel";
 import { weeklyRoutines, getSelectableRoutines, getExerciseById, type Exercise } from "../../routines";
 import styles from './styles.module.css';
 
@@ -18,10 +19,12 @@ export const WorkoutPlanPage = ({ alert }: Props) => {
         <Header alert={alert} />
 
         <main>
-          <div className={styles.pageHeader}>
-            <h1 className={styles.pageTitle}>💪 Weekly Workout Plan</h1>
-            <p className={styles.pageDescription}>Your structured fitness routine for each day</p>
-          </div>
+          <Panel>
+            <div className={styles.pageHeader}>
+              <h1 className={styles.pageTitle}>💪 Weekly Workout Plan</h1>
+              <p className={styles.pageDescription}>Your structured fitness routine for each day</p>
+            </div>
+          </Panel>
 
           <div className={styles.weeklyPlan}>
             {dayNames.map((dayName, index) => {
@@ -29,7 +32,7 @@ export const WorkoutPlanPage = ({ alert }: Props) => {
               const routine = weeklyRoutines[routineKey];
 
               return (
-                <div key={dayName} className={styles.dayCard}>
+                <Panel key={dayName}>
                   <div className={styles.dayHeader}>
                     <h3 className={styles.dayName}>{dayName}</h3>
                     <span className={styles.routineName}>{routine?.name || 'Rest Day'}</span>
@@ -57,35 +60,37 @@ export const WorkoutPlanPage = ({ alert }: Props) => {
                       <span className={styles.restText}>Rest & Recovery</span>
                     </div>
                   )}
-                </div>
+                </Panel>
               );
             })}
           </div>
 
-          <div className={styles.exerciseReference}>
-            <h2 className={styles.referenceTitle}>Exercise Reference</h2>
-            <div className={styles.exerciseGrid}>
-              {(() => {
-                const uniqueExercises: Exercise[] = [];
-                getSelectableRoutines().forEach(routine => {
-                  routine.exercises.forEach(exerciseId => {
-                    const exercise = getExerciseById(exerciseId);
-                    if (exercise && !uniqueExercises.find(ex => ex.id === exerciseId)) {
-                      uniqueExercises.push(exercise);
-                    }
+          <Panel>
+            <div className={styles.exerciseReference}>
+              <h2 className={styles.referenceTitle}>Exercise Reference</h2>
+              <div className={styles.exerciseGrid}>
+                {(() => {
+                  const uniqueExercises: Exercise[] = [];
+                  getSelectableRoutines().forEach(routine => {
+                    routine.exercises.forEach(exerciseId => {
+                      const exercise = getExerciseById(exerciseId);
+                      if (exercise && !uniqueExercises.find(ex => ex.id === exerciseId)) {
+                        uniqueExercises.push(exercise);
+                      }
+                    });
                   });
-                });
-                return uniqueExercises;
-              })().map((exercise) => (
-                <div key={exercise.id} className={styles.exerciseCard}>
-                  <h4 className={styles.exerciseCardName}>{exercise.name}</h4>
-                  <span className={styles.exerciseCardType}>
-                    {exercise.execution === 'reps' ? '🔢 Count repetitions' : '⏱️ Hold position'}
-                  </span>
-                </div>
-              ))}
+                  return uniqueExercises;
+                })().map((exercise) => (
+                  <div key={exercise.id} className={styles.exerciseCard}>
+                    <h4 className={styles.exerciseCardName}>{exercise.name}</h4>
+                    <span className={styles.exerciseCardType}>
+                      {exercise.execution === 'reps' ? '🔢 Count repetitions' : '⏱️ Hold position'}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          </Panel>
         </main>
 
         <Footer />
