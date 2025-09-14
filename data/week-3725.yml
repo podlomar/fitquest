@@ -1,3 +1,72 @@
+- date: '2025-09-13'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      url: https://mapy.com/s/kafolokugu
+    progress: full
+    performance: 3
+  workout:
+    type: predefined
+    routine: saturday
+    results:
+      - id: kneePushUps
+        reps: 8+8+9
+      - id: gluteBridges
+        reps: 50s+50s+50s
+      - id: frontPlank
+        holds: 40s
+      - id: barHang
+        holds: 25s
+  stretching: true
+  stairs: away
+  weight: 107.2
+- date: '2025-09-12'
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      url: http://example.com/track-a
+    progress: flight 12
+    performance: 3
+  workout:
+    type: predefined
+    routine: friday
+    results:
+      - id: ringRows
+        reps: 8+8+8
+      - id: squats
+        reps: 20+20+20
+      - id: frontPlank
+        holds: 40s
+      - id: barHang
+        holds: 25s
+  stretching: false
+  stairs: away
+  weight: 106.7
+- date: '2025-09-11'
+  running:
+    track:
+      name: Nuselská
+      length: 4
+      url: http://example.com/track-a
+    progress: flight 10
+    performance: 2
+  workout:
+    type: predefined
+    routine: thursday
+    results:
+      - id: kneePushUps
+        reps: 8+8+8
+      - id: sidePlanks
+        holds: 30s+30s+30s
+      - id: frontPlank
+        holds: 40s
+      - id: barHang
+        holds: 25s
+  stretching: true
+  stairs: none
+  weight: 107.5
 - date: '2025-09-10'
   running:
     track:
@@ -19,7 +88,9 @@
       - id: barHang
         holds: 25s
   stretching: true
-  stairs: none
+  stairs:
+    floors: 8
+    time: '1:10'
   weight: 108
 - date: '2025-09-09'
   running:

@@ -1,45 +1,65 @@
 export interface Exercise {
   id: string;
+  usage: 'legacy' | 'active';
   name: string;
   execution: 'reps' | 'holds';
+  goal?: string;
 }
 
 export const exercises: Record<string, Exercise> = {
   squats: {
     id: 'squats',
+    usage: 'active',
     name: 'Squats',
-    execution: 'reps'
+    execution: 'reps',
+    goal: '3x35'
   },
   kneePushUps: {
     id: 'kneePushUps',
+    usage: 'active',
     name: 'Knee Push Ups',
-    execution: 'reps'
+    execution: 'reps',
+    goal: '3x12'
   },
   ringRows: {
     id: 'ringRows',
+    usage: 'active',
     name: 'Ring Rows',
-    execution: 'reps'
+    execution: 'reps',
+    goal: '3x12'
   },
   frontPlank: {
     id: 'frontPlank',
+    usage: 'active',
     name: 'Front Plank',
-    execution: 'holds'
+    execution: 'holds',
+    goal: '3m'
   },
   gluteBridges: {
     id: 'gluteBridges',
+    usage: 'active',
     name: 'Glute Bridges',
     execution: 'reps'
   },
   sidePlanks: {
     id: 'sidePlanks',
+    usage: 'active',
     name: 'Side Planks',
     execution: 'holds'
   },
   barHang: {
     id: 'barHang',
+    usage: 'active',
     name: 'Bar Hang',
+    execution: 'holds',
+    goal: '90s'
+  },
+  frontPlanks: {
+    id: 'frontPlanks',
+    usage: 'legacy',
+    name: 'Front Planks',
     execution: 'holds'
-  }
+  },
 };
 
 export interface HoldExerciseStats {
@@ -87,8 +107,8 @@ export const weeklyRoutines: Record<string, Routine> = {
   },
   friday: {
     id: 'friday',
-    name: 'Friday: Pull + Legs',
-    exercises: ['ringRows', 'squats', 'frontPlank', 'barHang']
+    name: 'Friday: Legs + Pull',
+    exercises: ['squats', 'ringRows', 'frontPlank', 'barHang']
   },
   saturday: {
     id: 'saturday',
@@ -115,7 +135,7 @@ export const getRoutineForDay = (date: Date): Routine => {
 };
 
 export const getAllExercises = (): Exercise[] => {
-  return Object.values(exercises);
+  return Object.values(exercises).filter(ex => ex.usage === 'active');
 };
 
 export const getExercisesByIds = (ids: string[]): Exercise[] => {
