@@ -115,6 +115,11 @@ export const weeklyRoutines: Record<string, Routine> = {
     name: 'Saturday: Push + Glutes',
     exercises: ['kneePushUps', 'gluteBridges', 'frontPlank', 'barHang']
   },
+  sunday: {
+    id: 'rest',
+    name: 'Recovery',
+    exercises: []
+  },
   legacy: {
     id: 'legacy',
     name: 'Legacy Routine',

@@ -37,6 +37,11 @@ const predefinedTracks: Track[] = [
     url: "http://example.com/track-a"
   },
   {
+    name: "Pobřežní",
+    length: 7,
+    url: "https://mapy.com/s/lomupedero"
+  },
+  {
     name: "Newton",
     length: 3.7,
     url: "http://example.com/track-a"
