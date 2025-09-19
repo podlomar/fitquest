@@ -49,6 +49,7 @@ const predefinedTracks: Track[] = [
 ];
 
 app.use(express.static('static'));
+app.use('/img', express.static('img'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

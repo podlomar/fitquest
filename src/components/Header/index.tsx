@@ -10,8 +10,9 @@ export const Header = ({ alert }: Props) => {
     <header className={styles.header}>
       <div className={styles.headerTop}>
         <div className={styles.titleSection}>
-          <h1>🏃‍♂️ Fitness Tracker</h1>
-          <p>Your fitness journey at a glance</p>
+          <div className={styles.logo} />
+          <h1>Fit Quest</h1>
+          <p>Slay your limits, forge your muscles</p>
         </div>
 
         <nav className={styles.navigation}>

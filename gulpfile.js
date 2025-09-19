@@ -14,6 +14,10 @@ const buildTs = async () => {
     entryPoints: {
       main: 'src/server.tsx'
     },
+    loader: {
+      ".svg": "file",
+    },
+    assetNames: "img/[name]-[hash]",
     tsconfig: 'tsconfig.json',
     outbase: 'src',
     outfile: 'dist/server.js',

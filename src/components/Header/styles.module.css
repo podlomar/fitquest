@@ -4,6 +4,15 @@
   padding: var(--spacing-xl) 0;
 }
 
+.logo {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--spacing-sm);
+  background: url('./img/logo.svg') no-repeat center;
+  background-size: contain;
+  display: inline-block;
+}
+
 .headerTop {
   display: flex;
   justify-content: space-between;
