@@ -1,3 +1,61 @@
+- date: '2025-09-21'
+  running:
+    track:
+      name: Modřany
+      length: 8.2
+      url: https://mapy.com/s/gebeluguzo
+    progress: full
+    performance: 3
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: 107.0
+- date: '2025-09-20'
+  running:
+    track:
+      name: Město
+      length: 2.3
+      url: https://mapy.com/s/kafolokugu
+    progress: full
+    performance: 2
+  workout:
+    type: predefined
+    routine: saturday
+    results:
+      - id: kneePushUps
+        reps: 8+8+8
+      - id: gluteBridges
+        reps: 50s+50s+50s
+      - id: frontPlank
+        holds: 40s
+      - id: barHang
+        holds: 25s
+  stretching: false
+  stairs: none
+  weight: 107.3
+- date: '2025-09-19'
+  running:
+    track:
+      name: Folimanka
+      length: 6
+      url: http://example.com/track-a
+    progress: pole 10
+    performance: 3
+  workout:
+    type: predefined
+    routine: friday
+    results:
+      - id: squats
+        reps: 22+22+22
+      - id: ringRows
+        reps: 10+10+8
+      - id: frontPlank
+        holds: 40s
+      - id: barHang
+        holds: 25s
+  stretching: false
+  stairs: none
+  weight: 107.3
 - date: '2025-09-18'
   running:
     track:

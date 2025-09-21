@@ -1,16 +1,6 @@
 .header {
-  text-align: center;
   margin-bottom: var(--spacing-3xl);
-  padding: var(--spacing-xl) 0;
-}
-
-.logo {
-  width: 48px;
-  height: 48px;
-  margin-bottom: var(--spacing-sm);
-  background: url('./img/logo.svg') no-repeat center;
-  background-size: contain;
-  display: inline-block;
+  padding: var(--spacing-sm) 0;
 }
 
 .headerTop {
@@ -21,18 +11,26 @@
 }
 
 .titleSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   flex: 1;
 }
 
+.logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: url('./img/logo.svg') no-repeat center;
+  background-size: contain;
+}
+
 .titleSection h1 {
-  font-size: var(--font-size-4xl);
-  margin-bottom: var(--spacing-sm);
-  margin-top: 0;
+  font-size: var(--font-size-2xl);
+  margin: 0;
 }
 
 .titleSection p {
   color: var(--text-secondary);
-  font-size: var(--font-size-lg);
   margin: 0;
 }
 

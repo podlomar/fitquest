@@ -18,7 +18,9 @@ export const Layout = ({ children }: Props) => {
       </head>
 
       <body>
-        {children}
+        <div className="container">
+          {children}
+        </div>
       </body>
     </html>
   );

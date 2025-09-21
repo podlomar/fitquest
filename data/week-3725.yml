@@ -1,11 +1,11 @@
 - date: '2025-09-14'
   running:
     track:
-      name: Pobřežní
-      length: 7
-      url: https://mapy.com/s/lomupedero
+      name: Modřany
+      length: 8.2
+      url: https://mapy.com/s/gebeluguzo
     progress: full
-    performance: 3
+    performance: 7 km
   workout: rest
   stretching: false
   stairs: away

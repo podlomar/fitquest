@@ -1,11 +1,11 @@
 import { Layout } from "../../components/Layout";
 import { FitnessEntry, Track, Statistics } from "../../types";
 import { Header } from "../../components/Header";
+import { Button } from '../../components/Button';
 import { AddEntryForm } from "../../components/AddEntryForm";
 import { FitnessTable } from "../../components/FitnessTable";
 import { Footer } from "../../components/Footer";
 import { WeekNavigation } from "../../components/WeekNavigation";
-import styles from './styles.module.css';
 
 interface Props {
   alert: 'success' | 'error' | null;
@@ -18,18 +18,17 @@ interface Props {
 export const HomePage = ({ alert, data, predefinedTracks, availableWeeks, selectedWeek }: Props) => {
   return (
     <Layout>
-      <div className={styles.container}>
-        <Header alert={alert} />
-        <AddEntryForm predefinedTracks={predefinedTracks} />
+      <Header alert={alert} />
+      <AddEntryForm predefinedTracks={predefinedTracks} />
 
-        <WeekNavigation availableWeeks={availableWeeks} selectedWeek={selectedWeek} />
+      <WeekNavigation availableWeeks={availableWeeks} selectedWeek={selectedWeek} />
 
-        <main>
-          <FitnessTable data={data} />
-        </main>
+      <main>
+        <Button id="addEntryBtn" variant="primary" size="lg">+ Add New Entry</Button>
+        <FitnessTable data={data} />
+      </main>
 
-        <Footer />
-      </div>
+      <Footer />
     </Layout>
   );
 };
