@@ -1,0 +1,28 @@
+main {
+  flex: 1;
+  margin-bottom: var(--spacing-3xl);
+}
+
+.entriesContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.noEntries {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  color: var(--text-secondary);
+  background: var(--primary-bg);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(0.625rem);
+  border: 1px solid var(--glass-border);
+}
+
+.noEntries p {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-style: italic;
+}
