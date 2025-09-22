@@ -2,6 +2,7 @@ import { Layout } from "../../components/Layout";
 import { FitnessEntry, Track } from "../../types";
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
+import { Card } from "../../components/Card";
 import { AddEntryForm } from "../../components/AddEntryForm";
 import { DayEntryCard } from "../../components/DayEntryCard";
 import { Footer } from "../../components/Footer";
@@ -23,6 +24,11 @@ export const HomePage = ({ alert, data, predefinedTracks, availableWeeks, select
       <AddEntryForm predefinedTracks={predefinedTracks} />
 
       <WeekNavigation availableWeeks={availableWeeks} selectedWeek={selectedWeek} />
+
+      <Card title="Your Fitness Entries" meta={<span>{data.length} entries found</span>}>
+        <p>Keep track of your daily fitness activities and monitor your progress over time. Your entries will appear here as you log them.</p>
+      </Card>
+
 
       <main>
         <Button id="addEntryBtn" variant="primary" size="lg">+ Add New Entry</Button>

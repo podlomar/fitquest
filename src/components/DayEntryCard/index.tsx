@@ -1,6 +1,6 @@
 import { FitnessEntry } from '../../types';
 import { getExerciseById } from '../../routines';
-import { Panel } from '../Panel';
+import { Card } from '../Card';
 import styles from './styles.module.css';
 
 interface Props {
@@ -91,14 +91,10 @@ export const DayEntryCard = ({ entry }: Props) => {
   };
 
   return (
-    <Panel className={styles.dayEntry}>
-      <div className={styles.dayHeader}>
-        <h3 className={styles.dayDate}>{formatDate(entry.date)}</h3>
-        <div className={styles.dayMeta}>
-          {entry.stretching && <span className={styles.stretchingBadge}>🧘‍♀️ Stretching</span>}
-        </div>
-      </div>
-
+    <Card
+      title={formatDate(entry.date)}
+      meta={entry.stretching ? <span className={styles.stretchingBadge}>🧘‍♀️ Stretching</span> : null}
+    >
       <div className={styles.dayContent}>
         {/* Running Section */}
         <div className={styles.section}>
@@ -146,6 +142,6 @@ export const DayEntryCard = ({ entry }: Props) => {
           </div>
         </div>
       </div>
-    </Panel>
+    </Card>
   );
 };
