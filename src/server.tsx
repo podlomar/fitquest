@@ -3,6 +3,8 @@ import express, { Request, Response } from 'express';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import { prerenderToNodeStream } from 'react-dom/static';
+import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek.js';
 import { HomePage } from './pages/HomePage/index.js';
 import { StatsPage } from './pages/StatsPage/index.js';
 import { WorkoutPlanPage } from './pages/WorkoutPlanPage/index.js';
@@ -11,6 +13,8 @@ import { weeklyRoutines, getRoutineForDay, getAllExercises } from './routines';
 import { ExerciseFields } from './components/ExerciseFields/index.js';
 import { TrackInfo } from './components/TrackInfo/index.js';
 import { renderToStaticMarkup } from 'react-dom/server';
+
+dayjs.extend(isoWeek);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -75,7 +79,6 @@ function loadWeekData(weekFile: string): FitnessEntry[] {
       return entry;
     });
   } catch (e) {
-    console.error(`Error loading ${weekFile}:`, e);
     return [];
   }
 }
@@ -109,17 +112,13 @@ function getAvailableWeeks(): string[] {
 }
 
 function getCurrentWeek(): string {
-  const now = new Date();
-  const year = now.getFullYear();
-  const weekNumber = getWeekNumber(now);
-  return `${weekNumber.toString().padStart(2, '0')}${year % 100}`;
+  const weekNumber = dayjs().isoWeek();
+  const yearNumber = dayjs().year();
+  return `${weekNumber.toString().padStart(2, '0')}${yearNumber % 100}`;
 }
 
 function getWeekNumber(date: Date): number {
-  const start = new Date(date.getFullYear(), 0, 1);
-  const diff = date.getTime() - start.getTime();
-  const oneWeek = 1000 * 60 * 60 * 24 * 7;
-  return Math.ceil(diff / oneWeek);
+  return dayjs(date).isoWeek();
 }
 
 function saveWeekData(weekFile: string, data: FitnessEntry[]): boolean {

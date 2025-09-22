@@ -1,6 +1,7 @@
 import { Layout } from "../../components/Layout";
 import { FitnessEntry, Track } from "../../types";
 import { Header } from "../../components/Header";
+import { Button } from "../../components/Button";
 import { AddEntryForm } from "../../components/AddEntryForm";
 import { DayEntryCard } from "../../components/DayEntryCard";
 import { Footer } from "../../components/Footer";
@@ -24,6 +25,7 @@ export const HomePage = ({ alert, data, predefinedTracks, availableWeeks, select
       <WeekNavigation availableWeeks={availableWeeks} selectedWeek={selectedWeek} />
 
       <main>
+        <Button id="addEntryBtn" variant="primary" size="lg">+ Add New Entry</Button>
         <div className={styles.entriesContainer}>
           {data.length > 0 ? (
             data.map((entry) => (
