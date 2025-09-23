@@ -24,7 +24,7 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: flight 9
+    progress: 9 flight
     performance: 3
   workout:
     routine: legacy

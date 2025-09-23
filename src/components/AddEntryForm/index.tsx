@@ -62,7 +62,7 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="trackProgress">Progress:</label>
-            <input type="text" id="trackProgress" name="trackProgress" placeholder="e.g., full, flight 6" required />
+            <input type="text" id="trackProgress" name="trackProgress" placeholder="e.g., full, 6 flight" required />
           </div>
         </div>
         <div className={styles.formRow}>

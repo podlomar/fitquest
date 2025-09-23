@@ -24,7 +24,7 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: flight 6
+    progress: 6 flight
     performance: 2
   workout:
     routine: legacy
@@ -84,7 +84,7 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: flight 6
+    progress: 6 flight
     performance: 3
   workout:
     routine: legacy
@@ -124,7 +124,7 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: flight 10
+    progress: 10 flight
     performance: 4
   workout:
     routine: legacy

@@ -4,7 +4,7 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: flight 10
+    progress: 10 flight
     performance: 3
   workout: rest
   stretching: true
@@ -28,7 +28,7 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: flight 6
+    progress: 6 flight
     performance: 2
   workout: rest
   stretching: false
@@ -52,7 +52,7 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: flight 6
+    progress: 6 flight
     performance: 2
   workout: rest
   stretching: false
