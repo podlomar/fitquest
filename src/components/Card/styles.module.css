@@ -13,3 +13,7 @@
   font-weight: 600;
   margin: 0;
 }
+
+.cardMeta {
+  color: var(--text-secondary);
+}
