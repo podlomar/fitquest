@@ -23,32 +23,38 @@ const predefinedTracks: Track[] = [
   {
     name: "Blok",
     length: 1.1,
-    url: "https://mapy.com/s/gefabamaja"
+    url: "https://mapy.com/s/gefabamaja",
+    progressUnit: "km",
   },
   {
     name: "Město",
     length: 2.3,
-    url: "https://mapy.com/s/kafolokugu"
+    url: "https://mapy.com/s/kafolokugu",
+    progressUnit: "km"
   },
   {
     name: "Nuselská",
     length: 4,
-    url: "http://example.com/track-a"
+    url: "http://example.com/track-a",
+    progressUnit: "flight"
   },
   {
     name: "Folimanka",
     length: 6,
-    url: "http://example.com/track-a"
+    url: "http://example.com/track-a",
+    progressUnit: "pole"
   },
   {
     name: "Modřany",
     length: 8.2,
-    url: "https://mapy.com/s/gebeluguzo"
+    url: "https://mapy.com/s/gebeluguzo",
+    progressUnit: "km"
   },
   {
     name: "Newton",
     length: 3.7,
-    url: "http://example.com/track-a"
+    url: "http://example.com/track-a",
+    progressUnit: "km"
   }
 ];
 
@@ -435,7 +441,8 @@ app.post('/add-entry', (req: Request, res: Response) => {
         track: {
           name: predefinedTrack.name,
           length: predefinedTrack.length,
-          url: predefinedTrack.url
+          url: predefinedTrack.url,
+          progressUnit: predefinedTrack.progressUnit
         },
         progress: trackProgress || '',
         performance: performance === 'none' ? 'none' : parseInt(performance) || 1

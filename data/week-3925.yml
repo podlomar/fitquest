@@ -4,7 +4,8 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: 10 flight
+      progressUnit: flight
+    progress: 10
     performance: 3
   workout:
     type: predefined
@@ -27,6 +28,7 @@
       name: Město
       length: 2.3
       url: https://mapy.com/s/kafolokugu
+      progressUnit: km
     progress: full
     performance: 3
   workout:

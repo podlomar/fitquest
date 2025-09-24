@@ -4,7 +4,8 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: 10 flight
+      progressUnit: flight
+    progress: 10
     performance: 3
   workout: rest
   stretching: true
@@ -16,6 +17,7 @@
       name: Město
       length: 2.3
       url: https://mapy.com/s/kafolokugu
+      progressUnit: km
     progress: full
     performance: 1
   workout: rest
@@ -28,7 +30,8 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: 6 flight
+      progressUnit: flight
+    progress: 6
     performance: 2
   workout: rest
   stretching: false
@@ -40,7 +43,8 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: 2 km
+      progressUnit: km
+    progress: 2
     performance: 0
   workout: rest
   stretching: false
@@ -52,7 +56,8 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: 6 flight
+      progressUnit: flight
+    progress: 6
     performance: 2
   workout: rest
   stretching: false
@@ -64,6 +69,7 @@
       name: Blok
       length: 1.1
       url: https://mapy.com/s/gefabamaja
+      progressUnit: km
     progress: full
     performance: 1
   workout: rest
@@ -79,6 +85,7 @@
       name: Město
       length: 2.3
       url: https://mapy.com/s/kafolokugu
+      progressUnit: km
     progress: full
     performance: 2
   workout:

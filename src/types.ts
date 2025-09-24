@@ -2,6 +2,7 @@ export interface Track {
   name: string;
   length: number;
   url: string;
+  progressUnit: string;
 }
 
 export interface Running {

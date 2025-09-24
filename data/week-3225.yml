@@ -4,6 +4,7 @@
       name: Město
       length: 2.3
       url: https://mapy.com/s/kafolokugu
+      progressUnit: km
     progress: full
     performance: 4
   workout:
@@ -24,7 +25,8 @@
       name: Nuselská
       length: 4
       url: http://example.com/track-a
-    progress: 9 flight
+      progressUnit: flight
+    progress: 9
     performance: 3
   workout:
     routine: legacy
@@ -44,6 +46,7 @@
       name: Město
       length: 2.3
       url: https://mapy.com/s/kafolokugu
+      progressUnit: km
     progress: full
     performance: 1
   workout: rest
@@ -56,6 +59,7 @@
       name: Newton
       length: 3.7
       url: http://example.com/track-a
+      progressUnit: km
     progress: Cihelná brána
     performance: 2
   workout: rest
@@ -68,6 +72,7 @@
       name: Město
       length: 2.3
       url: https://mapy.com/s/kafolokugu
+      progressUnit: km
     progress: full
     performance: 3
   workout: rest
@@ -80,7 +85,8 @@
       name: Folimanka
       length: 6
       url: http://example.com/track-a
-    progress: pole 10
+      progressUnit: pole
+    progress: 10
     performance: 4
   workout: rest
   stretching: true
@@ -92,6 +98,7 @@
       name: Město
       length: 2.3
       url: https://mapy.com/s/kafolokugu
+      progressUnit: km
     progress: full
     performance: none
   workout: rest
