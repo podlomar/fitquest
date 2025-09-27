@@ -2,12 +2,15 @@ import { FitnessEntry } from '../../types';
 import { getExerciseById } from '../../routines';
 import { Card } from '../Card';
 import styles from './styles.module.css';
+import { useState } from 'react';
 
 interface Props {
   entry: FitnessEntry;
 }
 
 export const DayEntryCard = ({ entry }: Props) => {
+  const [isDiaryExpanded, setIsDiaryExpanded] = useState(false);
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -32,6 +35,38 @@ export const DayEntryCard = ({ entry }: Props) => {
             ⭐
           </span>
         ))}
+      </div>
+    );
+  };
+
+  const renderRunning = () => {
+    if (entry.running === 'rest') {
+      return (
+        <div className={styles.runningRest}>
+          <span className={styles.runningIcon}>😴</span>
+          <span>Rest Day</span>
+        </div>
+      );
+    }
+
+    return (
+      <div className={styles.runningInfo}>
+        <div className={styles.trackInfo}>
+          <a href={entry.running.track.url} target="_blank" rel="noopener noreferrer" className={styles.trackLink}>
+            {entry.running.track.name}
+          </a>
+          <span className={styles.trackLength}>({entry.running.track.length} km)</span>
+        </div>
+        <div className={styles.runningDetails}>
+          <div className={styles.progressInfo}>
+            <span className={styles.label}>Progress:</span>
+            <span className={styles.progress}>{entry.running.progress}</span>
+          </div>
+          <div className={styles.performanceInfo}>
+            <span className={styles.label}>Performance:</span>
+            {renderPerformance(entry.running.performance)}
+          </div>
+        </div>
       </div>
     );
   };
@@ -99,24 +134,7 @@ export const DayEntryCard = ({ entry }: Props) => {
         {/* Running Section */}
         <div className={styles.section}>
           <h4 className={styles.sectionTitle}>🏃‍♂️ Running</h4>
-          <div className={styles.runningInfo}>
-            <div className={styles.trackInfo}>
-              <a href={entry.running.track.url} target="_blank" rel="noopener noreferrer" className={styles.trackLink}>
-                {entry.running.track.name}
-              </a>
-              <span className={styles.trackLength}>({entry.running.track.length} km)</span>
-            </div>
-            <div className={styles.runningDetails}>
-              <div className={styles.progressInfo}>
-                <span className={styles.label}>Progress:</span>
-                <span className={styles.progress}>{entry.running.progress}</span>
-              </div>
-              <div className={styles.performanceInfo}>
-                <span className={styles.label}>Performance:</span>
-                {renderPerformance(entry.running.performance)}
-              </div>
-            </div>
-          </div>
+          {renderRunning()}
         </div>
 
         {/* Workout Section */}
@@ -141,6 +159,25 @@ export const DayEntryCard = ({ entry }: Props) => {
             </div>
           </div>
         </div>
+
+        {/* Diary Section */}
+        {entry.diary && (
+          <div className={styles.section}>
+            <div className={styles.diaryHeader}>
+              <h4 className={styles.sectionTitle}>📝 Diary</h4>
+              <button
+                className={styles.expandButton}
+                onClick={() => setIsDiaryExpanded(!isDiaryExpanded)}
+                aria-label={isDiaryExpanded ? "Collapse diary" : "Expand diary"}
+              >
+                {isDiaryExpanded ? "▲" : "▼"}
+              </button>
+            </div>
+            <div className={`${styles.diaryContent} ${isDiaryExpanded ? styles.diaryExpanded : styles.diaryCollapsed}`}>
+              <p className={styles.diaryText}>{entry.diary}</p>
+            </div>
+          </div>
+        )}
       </div>
     </Card>
   );

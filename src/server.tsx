@@ -165,14 +165,15 @@ function calculateStats(data: FitnessEntry[]): Statistics {
   };
 
   // Calculate total distance
-  const distanceProgressRegex = /([0-9]+) km/;
   data.forEach(entry => {
-    const match = entry.running.progress.match(distanceProgressRegex);
-    if (match === null) {
-      stats.totalDistance += entry.running.track.length;
+    if (entry.running === 'rest') {
+      return;
+    }
+
+    if (entry.running.track.progressUnit === 'km') {
+      stats.totalDistance += entry.running.progress;
     } else {
-      const distance = parseFloat(match[1]);
-      stats.totalDistance += distance;
+      stats.totalDistance += entry.running.track.length;
     }
   });
 
@@ -191,7 +192,11 @@ function calculateStats(data: FitnessEntry[]): Statistics {
   let totalPerformance = 0;
   let performanceCount = 0;
   data.forEach(entry => {
-    if (entry.running?.performance && entry.running.performance !== 'none') {
+    if (
+      entry.running !== 'rest' &&
+      entry.running.performance &&
+      entry.running.performance !== 'none'
+    ) {
       totalPerformance += entry.running.performance as number;
       performanceCount++;
     }

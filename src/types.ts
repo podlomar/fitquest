@@ -7,7 +7,7 @@ export interface Track {
 
 export interface Running {
   track: Track;
-  progress: string;
+  progress: number;
   performance: number | 'none';
 }
 
@@ -47,11 +47,12 @@ export interface StairsData {
 
 export interface FitnessEntry {
   date: string;
-  running: Running;
+  running: Running | 'rest';
   workout: Workout | 'rest';
   stretching: boolean;
   stairs: StairsData | 'away' | 'none';
   weight: number | 'none';
+  diary?: string;
 }
 
 export interface Statistics {

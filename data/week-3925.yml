@@ -1,3 +1,42 @@
+- date: '2025-09-27'
+  running: rest
+  workout: rest
+  stretching: false
+  stairs: none
+  weight: none
+  diary: >-
+    Po vášnivé noci s Andrejkou vstáváme oba ve 12h. Víkend mám totálně volný, takže se budu soustředit na odpočinek, regeneraci a návrat ke svojí rutině a zdravému režimu.
+- date: '2025-09-26'
+  running: rest
+  workout: rest
+  stretching: false
+  stairs: none
+  weight: 106.9
+  diary: >-
+    Vyspal jsem se jakž takž a dneska si dávám celý den volno. Ale když už jsem porušil běhací streak, tak si dneska dám total opdpočínek, ať zase naberu síly. Dneska je restart day, abych se zase dostal na koleje.
+- date: '2025-09-25'
+  running: rest
+  workout: rest
+  stretching: false
+  stairs: none
+  weight: 108.4
+  diary: >-
+    Po krátkém spánku jsem rovnou frčel na sedmou do práce ještě zachraňovat BeeyLive, takže dneska fakt ranní behání ani cvičení nebylo. Abych nějak zvládal stres, tak jsem totálně prasil všechno, co mi přišlo do cesty. Večer byl Newton AI View s rautem a vším možným. Dneska už na sport nemám. Nemám ani na zdravou stravu. Jsem úplně vyřízený.
+- date: '2025-09-24'
+  running:
+    track:
+      name: Folimanka
+      length: 6
+      url: http://example.com/track-a
+      progressUnit: pole
+    progress: 8
+    performance: 3
+  workout: rest
+  stretching: false
+  stairs: none
+  weight: 107.4
+  diary: >-
+    Dnes jsem se moc hezky vyspal, cítil se odpočatý, ale ranní dřepy jsem prostě nedal, bolí mě nohy. Takže je asi potřeba odpočinek. V práci jsem dneska kvůli BeeyLive strávil 12 hodin, takže jsem dost vyřízený. Taky jsem večer jedl spoustu nezdravých sladkostí, dortíky a tak, takže jsem rád, že už je den za mnou.
 - date: '2025-09-23'
   running:
     track:
@@ -22,6 +61,8 @@
   stretching: false
   stairs: none
   weight: 106.9
+  diary: >-
+    Brunch v Newtonu, takže docela nezřízené jezení, i když jsem se dopoledne hodně snažil.
 - date: '2025-09-22'
   running:
     track:
@@ -46,3 +87,5 @@
   stretching: false
   stairs: none
   weight: 107.2
+  diary: >-
+    Po včerejším běhacím rekordu se cítím docela fajn. Ranní běhání i cvičení šlo dobře.
