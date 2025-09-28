@@ -35,7 +35,7 @@ const predefinedTracks: Track[] = [
   {
     name: "Nuselská",
     length: 4,
-    url: "http://example.com/track-a",
+    url: "https://mapy.com/s/dasukaleto",
     progressUnit: "flight"
   },
   {

@@ -40,7 +40,7 @@
     track:
       name: Nuselská
       length: 4
-      url: http://example.com/track-a
+      url: https://mapy.com/s/dasukaleto
       progressUnit: flight
     progress: 12
     performance: 3
@@ -64,7 +64,7 @@
     track:
       name: Nuselská
       length: 4
-      url: http://example.com/track-a
+      url: https://mapy.com/s/dasukaleto
       progressUnit: flight
     progress: 10
     performance: 2
@@ -116,7 +116,7 @@
     track:
       name: Nuselská
       length: 4
-      url: http://example.com/track-a
+      url: https://mapy.com/s/dasukaleto
       progressUnit: flight
     progress: 6
     performance: 3
@@ -138,7 +138,7 @@
     track:
       name: Nuselská
       length: 4
-      url: http://example.com/track-a
+      url: https://mapy.com/s/dasukaleto
       progressUnit: flight
     progress: 8
     performance: 4
