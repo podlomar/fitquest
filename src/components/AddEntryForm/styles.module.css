@@ -163,3 +163,12 @@
   font-size: var(--font-size-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
 }
+
+/* Running Fields Styles */
+.runningFields {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+}

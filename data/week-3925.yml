@@ -1,3 +1,18 @@
+- date: '2025-09-28'
+  running:
+    track:
+      name: Modřany
+      length: 8.2
+      url: https://mapy.com/s/gebeluguzo
+      progressUnit: km
+    progress: full
+    performance: 3
+  workout: rest
+  stretching: false
+  stairs: away
+  weight: 108.2
+  diary: >-
+    Po včerejším dni volna jsem se dneska cítil jakt takž dobře. Ranní dlouhá trasa šla hladčeji než minule. Ale ještě to není ono. Chce to zase pořádný režim, spánek a zdravou stravu.
 - date: '2025-09-27'
   running: rest
   workout: rest

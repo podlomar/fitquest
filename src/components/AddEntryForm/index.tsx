@@ -42,44 +42,63 @@ export const AddEntryForm = ({ predefinedTracks }: Props) => {
         <h3>🏃‍♂️ Running</h3>
         <div className={styles.formRow}>
           <div className={styles.formGroup}>
-            <label htmlFor="selectedTrack">Track:</label>
+            <label htmlFor="runningType">Running:</label>
             <select
-              id="selectedTrack"
-              name="selectedTrack"
-              required
-              hx-get="/api/track-info"
+              id="runningType"
+              name="runningType"
+              defaultValue="track"
+              hx-get="/api/running-fields"
               hx-trigger="change"
-              hx-target="#trackInfo"
-              hx-include="[name='selectedTrack']"
+              hx-target="#runningFields"
+              hx-include="[name='runningType']"
             >
-              <option value="">Select a track...</option>
-              {predefinedTracks.map((track) => (
-                <option key={track.name} value={track.name} data-length={track.length} data-url={track.url}>
-                  {track.name} ({track.length} km)
-                </option>
-              ))}
+              <option value="track">Track Running</option>
+              <option value="rest">Rest</option>
             </select>
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="trackProgress">Progress:</label>
-            <input type="text" id="trackProgress" name="trackProgress" placeholder="e.g., full, 6 flight" required />
           </div>
         </div>
-        <div className={styles.formRow}>
-          <div className={styles.formGroup}>
-            <label>Track Info:</label>
-            <TrackInfo track={null} />
+        <div id="runningFields" className={styles.runningFields}>
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label htmlFor="selectedTrack">Track:</label>
+              <select
+                id="selectedTrack"
+                name="selectedTrack"
+                required
+                hx-get="/api/track-info"
+                hx-trigger="change"
+                hx-target="#trackInfo"
+                hx-include="[name='selectedTrack']"
+              >
+                <option value="">Select a track...</option>
+                {predefinedTracks.map((track) => (
+                  <option key={track.name} value={track.name} data-length={track.length} data-url={track.url}>
+                    {track.name} ({track.length} km)
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="trackProgress">Progress:</label>
+              <input type="text" id="trackProgress" name="trackProgress" placeholder="e.g., full, 6 flight" required />
+            </div>
           </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="performance">Performance (1-5):</label>
-            <select id="performance" name="performance" defaultValue="2">
-              <option value="0">0</option>
-              <option value="1">1 ⭐</option>
-              <option value="2">2 ⭐⭐</option>
-              <option value="3">3 ⭐⭐⭐</option>
-              <option value="4">4 ⭐⭐⭐⭐</option>
-              <option value="5">5 ⭐⭐⭐⭐⭐</option>
-            </select>
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label>Track Info:</label>
+              <TrackInfo track={null} />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="performance">Performance (1-5):</label>
+              <select id="performance" name="performance" defaultValue="2">
+                <option value="0">0</option>
+                <option value="1">1 ⭐</option>
+                <option value="2">2 ⭐⭐</option>
+                <option value="3">3 ⭐⭐⭐</option>
+                <option value="4">4 ⭐⭐⭐⭐</option>
+                <option value="5">5 ⭐⭐⭐⭐⭐</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

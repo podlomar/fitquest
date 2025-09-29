@@ -8,7 +8,7 @@ import isoWeek from 'dayjs/plugin/isoWeek.js';
 import { HomePage } from './pages/HomePage/index.js';
 import { StatsPage } from './pages/StatsPage/index.js';
 import { WorkoutPlanPage } from './pages/WorkoutPlanPage/index.js';
-import { FitnessEntry, Statistics, Track, ExerciseResult, createPredefinedWorkout, createCustomWorkout } from './types';
+import { FitnessEntry, Statistics, Track, Running, ExerciseResult, createPredefinedWorkout, createCustomWorkout } from './types';
 import { weeklyRoutines, getRoutineForDay, getAllExercises } from './routines';
 import { ExerciseFields } from './components/ExerciseFields/index.js';
 import { TrackInfo } from './components/TrackInfo/index.js';
@@ -370,6 +370,64 @@ app.get('/api/track-info', (req: Request, res: Response) => {
   res.send(html);
 });
 
+app.get('/api/running-fields', (req: Request, res: Response) => {
+  const { runningType } = req.query;
+
+  if (runningType === 'rest') {
+    res.send('<p style="color: var(--text-muted); font-style: italic;">Rest day - no running activities</p>');
+    return;
+  }
+
+  // Default to track running fields
+  const html = `
+    <div style="display: flex; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg);">
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <label for="selectedTrack" style="color: var(--text-secondary); margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); font-weight: 500;">Track:</label>
+        <select
+          id="selectedTrack"
+          name="selectedTrack"
+          required
+          hx-get="/api/track-info"
+          hx-trigger="change"
+          hx-target="#trackInfo"
+          hx-include="[name='selectedTrack']"
+          style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: var(--spacing-sm); color: var(--text-primary); font-size: var(--font-size-base);"
+        >
+          <option value="">Select a track...</option>
+          ${predefinedTracks.map((track) => `
+            <option value="${track.name}" data-length="${track.length}" data-url="${track.url}">
+              ${track.name} (${track.length} km)
+            </option>
+          `).join('')}
+        </select>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <label for="trackProgress" style="color: var(--text-secondary); margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); font-weight: 500;">Progress:</label>
+        <input type="text" id="trackProgress" name="trackProgress" placeholder="e.g., full, 6 flight" required style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: var(--spacing-sm); color: var(--text-primary); font-size: var(--font-size-base);" />
+      </div>
+    </div>
+    <div style="display: flex; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg);">
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <label style="color: var(--text-secondary); margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); font-weight: 500;">Track Info:</label>
+        <div id="trackInfo"></div>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <label for="performance" style="color: var(--text-secondary); margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); font-weight: 500;">Performance (1-5):</label>
+        <select id="performance" name="performance" style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: var(--spacing-sm); color: var(--text-primary); font-size: var(--font-size-base);">
+          <option value="0">0</option>
+          <option value="1">1 ⭐</option>
+          <option value="2" selected>2 ⭐⭐</option>
+          <option value="3">3 ⭐⭐⭐</option>
+          <option value="4">4 ⭐⭐⭐⭐</option>
+          <option value="5">5 ⭐⭐⭐⭐⭐</option>
+        </select>
+      </div>
+    </div>
+  `;
+
+  res.send(html);
+});
+
 app.get('/', (req: Request, res: Response) => {
   const allData = loadAllData();
   const stats = calculateStats(allData);
@@ -423,6 +481,7 @@ app.post('/add-entry', (req: Request, res: Response) => {
   try {
     const {
       date,
+      runningType,
       selectedTrack,
       trackProgress,
       performance,
@@ -435,14 +494,21 @@ app.post('/add-entry', (req: Request, res: Response) => {
       weight
     } = req.body;
 
-    const predefinedTrack = predefinedTracks.find(track => track.name === selectedTrack);
-    if (!predefinedTrack) {
-      throw new Error('Invalid track selection');
-    }
+    let running: Running | 'rest';
+    if (runningType === 'rest') {
+      running = 'rest';
+    } else {
+      // Only require track selection for non-rest running
+      if (!selectedTrack) {
+        throw new Error('Track selection is required when running type is not rest');
+      }
 
-    const newEntry: FitnessEntry = {
-      date: date || new Date().toISOString().split('T')[0],
-      running: {
+      const predefinedTrack = predefinedTracks.find(track => track.name === selectedTrack);
+      if (!predefinedTrack) {
+        throw new Error('Invalid track selection');
+      }
+
+      running = {
         track: {
           name: predefinedTrack.name,
           length: predefinedTrack.length,
@@ -451,7 +517,12 @@ app.post('/add-entry', (req: Request, res: Response) => {
         },
         progress: trackProgress || '',
         performance: performance === 'none' ? 'none' : parseInt(performance) || 1
-      },
+      };
+    }
+
+    const newEntry: FitnessEntry = {
+      date: date || new Date().toISOString().split('T')[0],
+      running,
       workout: workoutType === 'rest' ? 'rest' : (() => {
         const results: ExerciseResult[] = exercises ?
           (() => {
