@@ -40,8 +40,8 @@ const predefinedTracks: Track[] = [
   },
   {
     name: "Folimanka",
-    length: 6,
-    url: "http://example.com/track-a",
+    length: 5.9,
+    url: "https://mapy.com/s/mapehemuko",
     progressUnit: "pole"
   },
   {

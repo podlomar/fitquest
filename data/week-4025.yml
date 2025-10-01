@@ -1,3 +1,15 @@
+- date: '2025-10-01'
+  running: rest
+  workout: rest
+  stretching: false
+  stairs: none
+  weight: 107.3
+- date: '2025-09-30'
+  running: rest
+  workout: rest
+  stretching: false
+  stairs: none
+  weight: none
 - date: '2025-09-29'
   running: rest
   workout: rest
